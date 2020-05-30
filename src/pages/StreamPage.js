@@ -1,8 +1,9 @@
 import React from "react";
+import "./stream.css";
 
 const StreamPage = () => {
   return (
-    <div>
+    <div class='holder'>
       <iframe
         title='north stream'
         width='724'
@@ -11,7 +12,9 @@ const StreamPage = () => {
         frameborder='0'
         allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
         allowfullscreen
+        class='frame'
       ></iframe>
+      <div class='bar'>Soy gandalf</div>
     </div>
   );
 };
