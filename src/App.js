@@ -3,7 +3,8 @@ import { Switch, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import StreamPage from "./pages/StreamPage";
 import LoginPage from "./pages/LoginPage";
-import { saveSocketId } from "./store/user/actions";
+import DisconnectPage from "./pages/DisconnectedPage";
+import { saveSocketId, abortConnection } from "./store/user/actions";
 import "./App.css";
 
 import socketIOClient from "socket.io-client";
@@ -19,17 +20,19 @@ function App() {
     socket.on("connect", () => {
       dispatch(saveSocketId(socket.id));
     });
-    socket.on("FromAPI", data => {
-      setResponse(data);
-      // console.log(data);
+
+    socket.on("Hey fuckface!", data => {
+      dispatch(abortConnection());
+      console.log(data);
     });
   }, [dispatch]);
   return (
     <div className='App'>
       <header className='App-header'>
         <Switch>
-          <Route exact path='/' component={StreamPage} />
-          <Route path='/login' component={LoginPage} />
+          <Route path='/stream' component={StreamPage} />
+          <Route path='/disconnected' component={DisconnectPage} />
+          <Route path='/' component={LoginPage} />
         </Switch>
       </header>
     </div>

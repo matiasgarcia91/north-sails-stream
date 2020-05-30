@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { getStreamPermission } from "../store/user/selectors";
 import "./stream.css";
 
 const StreamPage = () => {
+  const permission = useSelector(getStreamPermission);
+  const history = useHistory();
+
+  useEffect(() => {
+    if (!permission) {
+      history.push("/disconnected");
+    }
+  }, [permission, history]);
   return (
-    <div class='holder'>
-      <iframe
+    <div className='holder'>
+      {/* <iframe
         title='north stream'
         width='724'
         height='568'
@@ -13,8 +24,8 @@ const StreamPage = () => {
         allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
         allowfullscreen
         class='frame'
-      ></iframe>
-      <div class='bar'>Soy gandalf</div>
+      ></iframe> */}
+      <div className='bar'>Soy gandalf</div>
     </div>
   );
 };

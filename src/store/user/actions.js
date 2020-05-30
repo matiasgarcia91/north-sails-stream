@@ -5,7 +5,17 @@ export const saveSocketId = socketId => ({
   payload: socketId,
 });
 
-export const login = (email, password) => async (dispatch, getState) => {
+export const loginSuccess = (id, email) => ({
+  type: "LOGIN",
+  payload: { id, email },
+});
+
+export const abortConnection = () => ({ type: "DISCONNECT" });
+
+export const login = (email, password, history) => async (
+  dispatch,
+  getState
+) => {
   const { socketId } = getState().user;
   try {
     const response = await axios.post("/login", {
@@ -14,5 +24,8 @@ export const login = (email, password) => async (dispatch, getState) => {
       socketId,
     });
     console.log(response);
+    const { data } = response;
+    dispatch(loginSuccess(data.id, data.email));
+    history.push("/stream");
   } catch (e) {}
 };
