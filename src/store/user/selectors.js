@@ -1,1 +1,4 @@
-export const getStreamPermission = state => state.user.streamAllowed;
+export const getStreamPermissionAndName = state => ({
+  permission: state.user.permission,
+  fullName: state.user.fullName,
+});

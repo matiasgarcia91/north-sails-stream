@@ -5,9 +5,9 @@ export const saveSocketId = socketId => ({
   payload: socketId,
 });
 
-export const loginSuccess = (id, email) => ({
+export const loginSuccess = (id, email, fullName) => ({
   type: "LOGIN",
-  payload: { id, email },
+  payload: { id, email, fullName },
 });
 
 export const abortConnection = () => ({ type: "DISCONNECT" });
@@ -23,9 +23,9 @@ export const login = (email, password, history) => async (
       password,
       socketId,
     });
-    console.log(response);
+    console.log(response.data.fullName);
     const { data } = response;
-    dispatch(loginSuccess(data.id, data.email));
+    dispatch(loginSuccess(data.id, data.emai, data.fullName));
     history.push("/stream");
   } catch (e) {}
 };

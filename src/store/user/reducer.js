@@ -1,6 +1,6 @@
 const initialState = {
   userData: null,
-  streamAllowed: false,
+  permission: false,
   socketId: null,
 };
 
@@ -9,9 +9,9 @@ export default function (state = initialState, action) {
     case "SOCKET_ID":
       return { ...state, socketId: action.payload };
     case "LOGIN":
-      return { ...state, ...action.payload, streamAllowed: true };
+      return { ...state, ...action.payload, permission: true };
     case "DISCONNECT":
-      return { ...state, userData: null, streamAllowed: false };
+      return { ...state, userData: null, permission: false };
     default:
       return state;
   }

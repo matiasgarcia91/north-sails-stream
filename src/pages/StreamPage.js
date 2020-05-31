@@ -1,18 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { getStreamPermission } from "../store/user/selectors";
+import { getStreamPermissionAndName } from "../store/user/selectors";
 import "./stream.css";
 
 const StreamPage = () => {
-  const permission = useSelector(getStreamPermission);
+  const { permission, fullName } = useSelector(getStreamPermissionAndName);
   const history = useHistory();
 
   useEffect(() => {
-    if (!permission) {
+    if (!permission && !fullName) {
+      history.push("/login");
+    } else if (!permission) {
       history.push("/disconnected");
     }
-  }, [permission, history]);
+  }, [permission, fullName, history]);
+
   return (
     <div className='holder'>
       {/* <iframe
@@ -25,7 +28,7 @@ const StreamPage = () => {
         allowfullscreen
         class='frame'
       ></iframe> */}
-      <div className='bar'>Soy gandalf</div>
+      <div className='bar'>{fullName}</div>
     </div>
   );
 };
