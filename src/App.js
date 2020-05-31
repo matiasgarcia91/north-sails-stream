@@ -3,6 +3,8 @@ import { Switch, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import StreamPage from "./pages/StreamPage";
 import LoginPage from "./pages/LoginPage";
+import AdminLogin from "./pages/AdminLogin";
+import AdminPage from "./pages/AdminPage";
 import DisconnectPage from "./pages/DisconnectedPage";
 import { saveSocketId, abortConnection } from "./store/user/actions";
 import "./App.css";
@@ -32,6 +34,8 @@ function App() {
         <Switch>
           <Route path='/stream' component={StreamPage} />
           <Route path='/disconnected' component={DisconnectPage} />
+          <Route path='/admin/edit' component={AdminPage} />
+          <Route path='/admin' component={AdminLogin} />
           <Route path='/' component={LoginPage} />
         </Switch>
       </header>
