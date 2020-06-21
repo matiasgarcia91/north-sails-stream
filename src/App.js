@@ -9,21 +9,22 @@ import DisconnectPage from "./pages/DisconnectedPage";
 import { saveSocketId, abortConnection } from "./store/user/actions";
 import "./App.css";
 import login from "./login.jpg";
+import { HEROKU_URL } from "./constants";
 
 import socketIOClient from "socket.io-client";
-const ENDPOINT = "http://127.0.0.1:4001";
 
 function App() {
   const dispatch = useDispatch();
   console.log(login);
   useEffect(() => {
-    const socket = socketIOClient(ENDPOINT);
+    const socket = socketIOClient(HEROKU_URL);
     console.log(socket);
     socket.on("connect", () => {
       dispatch(saveSocketId(socket.id));
     });
 
-    socket.on("Hey fuckface!", data => {
+    socket.on("kick-out", data => {
+      console.log("other connection");
       dispatch(abortConnection());
       console.log(data);
     });
