@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import Paper from "@material-ui/core/Paper";
 
 import { login } from "../store/user/actions";
 import { getError } from "../store/user/selectors";
@@ -47,12 +46,6 @@ const LoginPage = () => {
 
   return (
     <div className='login'>
-      {/* <Paper
-        elevation={3}
-        classes={{
-          root: classes.root,
-        }}
-      > */}
       <form
         style={{
           display: "flex",
@@ -94,7 +87,6 @@ const LoginPage = () => {
           </Button>
         </div>
       </form>
-      {/* </Paper> */}
     </div>
   );
 };
