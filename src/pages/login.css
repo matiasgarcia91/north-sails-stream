@@ -4,4 +4,16 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-fields {
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
+.form-button {
+  margin-top: 10px;
 }
