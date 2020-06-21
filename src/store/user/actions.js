@@ -28,7 +28,6 @@ export const login = (email, password, history) => async (
       password,
       socketId,
     });
-    console.log(response.data.fullName);
     const { data } = response;
     dispatch(loginSuccess(data));
     history.push("/stream");

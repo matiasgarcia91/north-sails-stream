@@ -5,7 +5,9 @@ import { getStreamPermissionAndName } from "../store/user/selectors";
 import "./stream.css";
 
 const StreamPage = () => {
-  const { permission, fullName } = useSelector(getStreamPermissionAndName);
+  const { permission, fullName, email } = useSelector(
+    getStreamPermissionAndName
+  );
   const history = useHistory();
 
   useEffect(() => {
@@ -21,6 +23,9 @@ const StreamPage = () => {
     <div className='stream-page'>
       <div className='center-it'>
         <div className='vimeo-container'>
+          <h2 className='bar'>
+            {fullName} - {email}
+          </h2>
           <iframe
             className='vimeo-player'
             title='oli'
