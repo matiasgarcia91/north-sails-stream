@@ -18,17 +18,19 @@ const StreamPage = () => {
 
   return (
     <div className='stream-page'>
-      <div className='holder'>
-        <iframe
-          title='stream'
-          width='1024'
-          height='568'
-          src='https://www.youtube.com/embed/vMk2IMEiwII'
-          frameBorder='0'
-          allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
-          allowFullscreen
-        ></iframe>
-        <div className='bar'>{fullName}</div>
+      <div className='center-it'>
+        <div className='video-container'>
+          <iframe
+            title='stream'
+            width='853'
+            height='480'
+            src='https://www.youtube.com/embed/vMk2IMEiwII'
+            frameBorder='0'
+            allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
+            allowFullScreen
+          ></iframe>
+          <div className='bar'>{fullName}</div>
+        </div>
       </div>
     </div>
   );

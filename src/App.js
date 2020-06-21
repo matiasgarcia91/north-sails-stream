@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import StreamPage from "./pages/StreamPage";
@@ -14,7 +14,6 @@ import socketIOClient from "socket.io-client";
 const ENDPOINT = "http://127.0.0.1:4001";
 
 function App() {
-  const [response, setResponse] = useState("");
   const dispatch = useDispatch();
   console.log(login);
   useEffect(() => {

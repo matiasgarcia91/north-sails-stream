@@ -19,7 +19,7 @@ const useStyles = makeStyles({
   },
   button: {
     color: "rgba(255,246,240,1)",
-    backgroundColor: "#9d9d9e",
+    backgroundColor: "#8f8f8f",
     "&:hover": {
       backgroundColor: "#7a7a7a",
     },
@@ -51,6 +51,7 @@ const LoginPage = () => {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
+          width: 300,
         }}
         onSubmit={submitLogin}
       >
@@ -61,6 +62,7 @@ const LoginPage = () => {
             name='email'
             label='Email'
             type='email'
+            fullWidth
             value={email}
             onChange={e => setEmail(e.target.value)}
           />
@@ -72,6 +74,7 @@ const LoginPage = () => {
             name='password'
             label='Password'
             type='password'
+            fullWidth
             helperText={error}
             value={password}
             onChange={e => setPassword(e.target.value)}
