@@ -29,7 +29,7 @@ const StreamPage = () => {
           <iframe
             className='vimeo-player'
             title='oli'
-            src='https://vimeo.com/event/122320/embed/27a6fdbff8'
+            src='https://player.vimeo.com/video/431282633'
             frameBorder='0'
             allowFullScreen
           ></iframe>
