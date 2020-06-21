@@ -10,6 +10,11 @@ export const loginSuccess = data => ({
   payload: { ...data },
 });
 
+export const loginError = message => ({
+  type: "LOGIN_ERROR",
+  payload: message,
+});
+
 export const abortConnection = () => ({ type: "DISCONNECT" });
 
 export const login = (email, password, history) => async (
@@ -28,6 +33,7 @@ export const login = (email, password, history) => async (
     dispatch(loginSuccess(data));
     history.push("/stream");
   } catch (e) {
+    dispatch(loginError("Invalid credentials"));
     console.error(e.message);
   }
 };

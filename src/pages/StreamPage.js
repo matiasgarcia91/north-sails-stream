@@ -17,18 +17,19 @@ const StreamPage = () => {
   }, [permission, fullName, history]);
 
   return (
-    <div className='holder'>
-      {/* <iframe
-        title='north stream'
-        width='724'
-        height='568'
-        src='https://www.youtube.com/embed/jm-wsyJ6TwA'
-        frameborder='0'
-        allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
-        allowfullscreen
-        class='frame'
-      ></iframe> */}
-      <div className='bar'>{fullName}</div>
+    <div className='stream-page'>
+      <div className='holder'>
+        <iframe
+          title='stream'
+          width='1024'
+          height='568'
+          src='https://www.youtube.com/embed/vMk2IMEiwII'
+          frameBorder='0'
+          allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
+          allowFullscreen
+        ></iframe>
+        <div className='bar'>{fullName}</div>
+      </div>
     </div>
   );
 };
