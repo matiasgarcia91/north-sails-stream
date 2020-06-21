@@ -10,25 +10,34 @@ const StreamPage = () => {
 
   useEffect(() => {
     if (!permission && !fullName) {
-      history.push("/login");
+      history.push("/disconnected");
     } else if (!permission) {
       history.push("/disconnected");
     }
   }, [permission, fullName, history]);
 
   return (
-    <div className='holder'>
-      {/* <iframe
-        title='north stream'
-        width='724'
-        height='568'
-        src='https://www.youtube.com/embed/jm-wsyJ6TwA'
-        frameborder='0'
-        allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
-        allowfullscreen
-        class='frame'
-      ></iframe> */}
-      <div className='bar'>{fullName}</div>
+    <div className='stream-page'>
+      <div className='center-it'>
+        <div className='vimeo-container'>
+          <iframe
+            className='vimeo-player'
+            title='oli'
+            src='https://player.vimeo.com/video/431197906'
+            frameBorder='0'
+            allowFullScreen
+          ></iframe>
+        </div>
+        <div style={{ marginLeft: 30 }}>
+          <iframe
+            title='chat'
+            src='https://vimeo.com/live-chat/431197906/eb6ef3c973'
+            width='400'
+            height='600'
+            frameBorder='0'
+          ></iframe>
+        </div>
+      </div>
     </div>
   );
 };

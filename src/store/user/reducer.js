@@ -1,7 +1,8 @@
 const initialState = {
-  userData: null,
   permission: false,
   socketId: null,
+  admin: false,
+  error: null,
 };
 
 export default function (state = initialState, action) {
@@ -10,8 +11,10 @@ export default function (state = initialState, action) {
       return { ...state, socketId: action.payload };
     case "LOGIN":
       return { ...state, ...action.payload, permission: true };
+    case "LOGIN_ERROR":
+      return { ...initialState, error: action.payload };
     case "DISCONNECT":
-      return { ...state, userData: null, permission: false };
+      return { socketId: state.socketId, permission: false, admin: false };
     default:
       return state;
   }

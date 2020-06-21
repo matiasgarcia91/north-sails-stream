@@ -1,0 +1,20 @@
+.login {
+  height: 100%;
+  background-image: url(../images/login.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-fields {
+  margin-top: 3px;
+  margin-bottom: 3px;
+  width: 100%;
+}
+
+.form-button {
+  margin-top: 10px;
+}

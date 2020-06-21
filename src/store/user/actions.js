@@ -5,9 +5,14 @@ export const saveSocketId = socketId => ({
   payload: socketId,
 });
 
-export const loginSuccess = (id, email, fullName) => ({
+export const loginSuccess = data => ({
   type: "LOGIN",
-  payload: { id, email, fullName },
+  payload: { ...data },
+});
+
+export const loginError = message => ({
+  type: "LOGIN_ERROR",
+  payload: message,
 });
 
 export const abortConnection = () => ({ type: "DISCONNECT" });
@@ -25,7 +30,24 @@ export const login = (email, password, history) => async (
     });
     console.log(response.data.fullName);
     const { data } = response;
-    dispatch(loginSuccess(data.id, data.emai, data.fullName));
+    dispatch(loginSuccess(data));
     history.push("/stream");
-  } catch (e) {}
+  } catch (e) {
+    dispatch(loginError("Invalid credentials"));
+    console.error(e.message);
+  }
+};
+
+export const adminLogin = (email, password, history) => async dispatch => {
+  try {
+    const response = await axios.post("/admin/login", {
+      email,
+      password,
+    });
+    const { data } = response;
+    dispatch(loginSuccess(data));
+    history.push("/admin/edit");
+  } catch (e) {
+    console.error(e.message);
+  }
 };
