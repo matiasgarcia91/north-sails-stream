@@ -19,17 +19,23 @@ const StreamPage = () => {
   return (
     <div className='stream-page'>
       <div className='center-it'>
-        <div className='video-container'>
+        <div className='vimeo-container'>
           <iframe
-            title='stream'
-            width='853'
-            height='480'
-            src='https://www.youtube.com/embed/vMk2IMEiwII'
+            className='vimeo-player'
+            title='oli'
+            src='https://player.vimeo.com/video/431197906'
             frameBorder='0'
-            allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
             allowFullScreen
           ></iframe>
-          <div className='bar'>{fullName}</div>
+        </div>
+        <div style={{ marginLeft: 30 }}>
+          <iframe
+            title='chat'
+            src='https://vimeo.com/live-chat/431197906/eb6ef3c973'
+            width='400'
+            height='600'
+            frameBorder='0'
+          ></iframe>
         </div>
       </div>
     </div>
