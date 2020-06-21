@@ -10,7 +10,7 @@ const StreamPage = () => {
 
   useEffect(() => {
     if (!permission && !fullName) {
-      history.push("/login");
+      history.push("/disconnected");
     } else if (!permission) {
       history.push("/disconnected");
     }

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "../store/user/actions";
 import { useHistory } from "react-router-dom";
+import "./login.css";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -17,7 +18,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div>
+    <div className='login'>
       <form
         style={{ display: "flex", flexDirection: "column" }}
         onSubmit={submitLogin}
