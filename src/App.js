@@ -10,6 +10,7 @@ import { saveSocketId, abortConnection } from "./store/user/actions";
 import "./App.css";
 import login from "./login.jpg";
 import { HEROKU_URL } from "./constants";
+import LiveChat from "react-livechat";
 
 import socketIOClient from "socket.io-client";
 
@@ -30,7 +31,7 @@ function App() {
     });
   }, [dispatch]);
   return (
-    <div className='App'>
+    <div className='App' id='app'>
       <Switch>
         <Route path='/stream' component={StreamPage} />
         <Route path='/disconnected' component={DisconnectPage} />
@@ -38,6 +39,7 @@ function App() {
         <Route path='/admin' component={AdminLogin} />
         <Route path='/' component={LoginPage} />
       </Switch>
+      <LiveChat license={12033240} />
     </div>
   );
 }
