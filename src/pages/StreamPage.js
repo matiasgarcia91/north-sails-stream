@@ -5,14 +5,10 @@ import { getStreamPermissionAndName } from "../store/user/selectors";
 import IframeResizer from "iframe-resizer-react";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
+import { useMediaQuery } from "react-responsive";
 import "./stream.css";
 
 const useStyles = makeStyles({
-  root: {
-    backgroundColor: "rgba(255,246,240,0.8)",
-    padding: "50px 30px 30px 30px",
-    marginBottom: 100,
-  },
   button: {
     color: "rgba(255,246,240,1)",
     backgroundColor: "black",
@@ -42,17 +38,20 @@ const StreamPage = () => {
   );
   const history = useHistory();
   const [fullScreen, setFullScreen] = useState(false);
+  const isDesktopOrLaptop = useMediaQuery({
+    query: "(min-device-width: 1224px)",
+  });
 
   const classes = useStyles();
 
-  // useEffect(() => {
-  //   console.log(permission);
-  //   if (!permission && !fullName) {
-  //     history.push("/disconnected");
-  //   } else if (!permission) {
-  //     history.push("/disconnected");
-  //   }
-  // }, [permission, fullName, history]);
+  useEffect(() => {
+    console.log(permission);
+    if (!permission && !fullName) {
+      history.push("/disconnected");
+    } else if (!permission) {
+      history.push("/disconnected");
+    }
+  }, [permission, fullName, history]);
 
   const onButtonClick = () => {
     setFullScreen(!fullScreen);
@@ -84,7 +83,11 @@ const StreamPage = () => {
         <Button
           variant='contained'
           className={`button`}
-          classes={{ contained: classes.buttonMobile }}
+          classes={{
+            contained: isDesktopOrLaptop
+              ? classes.button
+              : classes.buttonMobile,
+          }}
           onClick={onButtonClick}
         >
           {buttonText}
