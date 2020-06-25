@@ -16,9 +16,23 @@ const useStyles = makeStyles({
   button: {
     color: "rgba(255,246,240,1)",
     backgroundColor: "black",
+    maxWidth: 120,
+    minWidth: 120,
     "&:hover": {
       backgroundColor: "#454545",
     },
+  },
+  buttonMobile: {
+    color: "rgba(255,246,240,1)",
+    backgroundColor: "black",
+    "&:hover": {
+      backgroundColor: "#454545",
+    },
+    fontSize: 8,
+    maxWidth: 80,
+    minWidth: 80,
+    maxHeight: 30,
+    minHeight: 30,
   },
 });
 
@@ -31,27 +45,22 @@ const StreamPage = () => {
 
   const classes = useStyles();
 
-  useEffect(() => {
-    console.log(permission);
-    if (!permission && !fullName) {
-      history.push("/disconnected");
-    } else if (!permission) {
-      history.push("/disconnected");
-    }
-  }, [permission, fullName, history]);
+  // useEffect(() => {
+  //   console.log(permission);
+  //   if (!permission && !fullName) {
+  //     history.push("/disconnected");
+  //   } else if (!permission) {
+  //     history.push("/disconnected");
+  //   }
+  // }, [permission, fullName, history]);
 
   const onButtonClick = () => {
     setFullScreen(!fullScreen);
   };
 
-  const containerStyle = fullScreen
-    ? { height: "100%", width: "100%" }
-    : { height: "60%", width: "70%" };
+  const containerStyle = fullScreen ? { height: "100%", width: "100%" } : {};
 
   const barClassName = fullScreen ? "bar-fullscreen" : "bar";
-  const buttonClassName = fullScreen
-    ? "button-fullscreen"
-    : "button-smallscreen";
 
   const buttonText = fullScreen ? "Minimize" : "Fullscreen";
 
@@ -74,14 +83,8 @@ const StreamPage = () => {
         />
         <Button
           variant='contained'
-          className={`${buttonClassName}`}
-          style={{
-            maxWidth: "120px",
-            maxHeight: "32px",
-            minWidth: "120px",
-            minHeight: "32px",
-          }}
-          classes={{ contained: classes.button }}
+          className={`button`}
+          classes={{ contained: classes.buttonMobile }}
           onClick={onButtonClick}
         >
           {buttonText}
