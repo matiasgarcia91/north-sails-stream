@@ -1,5 +1,6 @@
 {
   "name": "north-sails-stream",
+  "homepage": "http://www.live-northasg.com",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_URL } from "../constants";
+import { HEROKU_URL } from "../constants";
 export default axios.create({
-  baseURL: API_URL, //"https://north-sails-server.herokuapp.com",
+  baseURL: HEROKU_URL, //"https://north-sails-server.herokuapp.com",
 });
