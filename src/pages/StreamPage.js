@@ -5,15 +5,19 @@ import { getStreamPermissionAndName } from "../store/user/selectors";
 import IframeResizer from "iframe-resizer-react";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
+import FullscreenIcon from "@material-ui/icons/Fullscreen";
+import FullscreenExitIcon from "@material-ui/icons/FullscreenExit";
 import { useMediaQuery } from "react-responsive";
 import "./stream.css";
 
 const useStyles = makeStyles({
   button: {
     color: "rgba(255,246,240,1)",
-    backgroundColor: "black",
-    maxWidth: 120,
-    minWidth: 120,
+    backgroundColor: "rgba(0,0,0,0.5)",
+    minHeight: 35,
+    maxHeight: 35,
+    maxWidth: 40,
+    minWidth: 40,
     "&:hover": {
       backgroundColor: "#454545",
     },
@@ -25,9 +29,9 @@ const useStyles = makeStyles({
       backgroundColor: "#454545",
     },
     fontSize: 8,
-    maxWidth: 80,
-    minWidth: 80,
-    maxHeight: 30,
+    maxWidth: 40,
+    minWidth: 40,
+    // maxHeight: 30,
     minHeight: 30,
   },
 });
@@ -37,34 +41,58 @@ const StreamPage = () => {
     getStreamPermissionAndName
   );
   const history = useHistory();
-  const [fullScreen, setFullScreen] = useState(false);
+  const [fullScreen, setFullScreen] = useState(true);
+
   const isDesktopOrLaptop = useMediaQuery({
     query: "(min-device-width: 1224px)",
   });
 
+  const isHugeScreen = useMediaQuery({
+    query: "(min-device-width: 1824px )",
+  });
+
   const classes = useStyles();
 
-  useEffect(() => {
-    console.log(permission);
-    if (!permission && !fullName) {
-      history.push("/disconnected");
-    } else if (!permission) {
-      history.push("/disconnected");
-    }
-  }, [permission, fullName, history]);
+  // useEffect(() => {
+  //   console.log(permission);
+  //   if (!permission && !fullName) {
+  //     history.push("/disconnected");
+  //   } else if (!permission) {
+  //     history.push("/disconnected");
+  //   }
+  // }, [permission, fullName, history]);
 
   const onButtonClick = () => {
     setFullScreen(!fullScreen);
   };
 
+  let buttonPositioning = {};
+  switch (fullScreen && true) {
+    case isHugeScreen:
+      buttonPositioning = { left: "-8%", top: "95.5%" };
+      break;
+    case isDesktopOrLaptop:
+      buttonPositioning = { left: "-10%" };
+      break;
+    default:
+      break;
+  }
+
+  console.log(isHugeScreen, buttonPositioning);
+
   const containerStyle = fullScreen ? { height: "100%", width: "100%" } : {};
+  // const barClassName = fullScreen ? "bar-fullscreen" : "bar";
+  const barClassName = "";
 
-  const barClassName = fullScreen ? "bar-fullscreen" : "bar";
-
-  const buttonText = fullScreen ? "Minimize" : "Fullscreen";
+  // const buttonPositioning = fullScreen ? { left: "-10%" } : {};
 
   return (
-    <div className='stream-page'>
+    <div
+      className='stream-page'
+      style={{
+        backgroundImage: "url(" + require("../images/stream.jpg") + ")",
+      }}
+    >
       <div className='center-it' style={containerStyle}>
         <span className={`${barClassName}`}>
           {fullName} - {email}
@@ -83,6 +111,7 @@ const StreamPage = () => {
         <Button
           variant='contained'
           className={`button`}
+          style={buttonPositioning}
           classes={{
             contained: isDesktopOrLaptop
               ? classes.button
@@ -90,7 +119,11 @@ const StreamPage = () => {
           }}
           onClick={onButtonClick}
         >
-          {buttonText}
+          {fullScreen ? (
+            <FullscreenExitIcon fontSize='medium' />
+          ) : (
+            <FullscreenIcon fontSize='medium' />
+          )}
         </Button>
       </div>
     </div>
