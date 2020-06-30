@@ -67,12 +67,12 @@ const StreamPage = () => {
   };
 
   let buttonPositioning = {};
-  switch (fullScreen && true) {
-    case isHugeScreen:
+  switch (true) {
+    case fullScreen && isHugeScreen:
       buttonPositioning = { left: "-8%", top: "95.5%" };
       break;
-    case isDesktopOrLaptop:
-      buttonPositioning = { left: "-10%" };
+    case fullScreen && isDesktopOrLaptop:
+      buttonPositioning = { left: "-7%", top: "94%" };
       break;
     default:
       break;
