@@ -141,9 +141,6 @@ const StreamPage = () => {
   });
 
   const containerStyle = fullScreen ? { height: "100%", width: "100%" } : {};
-  const barClassName = fullScreen ? "bar-fullscreen" : "bar";
-
-  // const buttonPositioning = fullScreen ? { left: "-10%" } : {};
 
   return (
     <div
@@ -153,8 +150,9 @@ const StreamPage = () => {
       }}
     >
       <div className='center-it' style={containerStyle} id='el-portador'>
-        <span className={`${barClassName}`}>
-          {fullName} - {email}
+        <span className='bar'>
+          Matias GarciaZufriategui <br />
+          matiasgarcia91@gmail.com
         </span>
         <IframeResizer
           log

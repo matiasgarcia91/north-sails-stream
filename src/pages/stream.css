@@ -27,6 +27,7 @@
 
 .bar {
   position: absolute;
+  flex: 0;
   top: 60%;
   left: 25%;
   z-index: 2;
@@ -52,6 +53,21 @@
   z-index: 2;
 }
 
+/* super small phones */
+@media (min-device-width: 300px) and (min-device-height: 520px) and (max-device-height: 650px) {
+  .button {
+    position: relative;
+    top: 56%;
+    left: -24%;
+    z-index: 2;
+  }
+  .bar {
+    top: 52%;
+    left: 18%;
+    font-size: 12px;
+  }
+}
+
 /* small phones */
 @media (min-device-width: 375px) and (min-device-height: 650px) and (max-device-height: 720px) {
   .center-it {
@@ -67,6 +83,11 @@
     left: -15%;
     z-index: 2;
   }
+  .bar {
+    top: 52%;
+    left: 8%;
+    font-size: 16px;
+  }
 }
 
 /* iphoneX */
@@ -76,6 +97,11 @@
     top: 56%;
     left: -18%;
     z-index: 2;
+  }
+  .bar {
+    top: 52%;
+    left: 15%;
+    font-size: 14px;
   }
 }
 
@@ -90,6 +116,11 @@
     top: 63%;
     left: -17%;
     z-index: 2;
+  }
+  .bar {
+    top: 52%;
+    left: 8%;
+    font-size: 16px;
   }
 }
 
@@ -182,12 +213,3 @@
     width: 90%;
   }
 }
-/* super small phones */
-/* @media (max-device-width: 360px) {
-  .button {
-    position: relative;
-    top: 64%;
-    left: -30%;
-    z-index: 2;
-  }
-} */
