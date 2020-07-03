@@ -1,10 +1,8 @@
 .stream-page {
   height: 100%;
-  background-image: url(../images/stream.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  padding: 0em 0.1em 0.1em 0.1em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,6 +27,7 @@
 
 .bar {
   position: absolute;
+  flex: 0;
   top: 60%;
   left: 25%;
   z-index: 2;
@@ -38,58 +37,208 @@
   opacity: 0.2;
 }
 
-.button-fullscreen {
-  position: relative;
-  top: 94%;
-  left: -10%;
-  z-index: 2;
-}
-
-.button-smallscreen {
-  position: relative;
-  top: 94%;
-  left: -15%;
-  z-index: 2;
-}
-
 .center-it {
-  /* height: 500px; */
-  /* width: 800px; */
+  height: 60%;
+  width: 70%;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-}
-
-.vimeo-container {
-  height: 500px;
-  width: 800px;
-  padding: 06.25% 0 0 0;
-  position: relative;
-}
-
-.vimeo-player {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.video-container {
-  position: relative;
-  padding-bottom: 56.25%;
-  padding-top: 30px;
-  height: 0;
-  top: 0;
   overflow: hidden;
 }
 
-.video-container iframe,
-.video-container object,
-.video-container embed {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.button {
+  position: relative;
+  top: 93%;
+  left: -11%;
+  z-index: 2;
+}
+
+/* super small phones */
+@media (min-device-width: 300px) and (min-device-height: 520px) and (max-device-height: 650px) {
+  .button {
+    position: relative;
+    top: 56%;
+    left: -24%;
+    z-index: 2;
+  }
+  .bar {
+    top: 52%;
+    left: 18%;
+    font-size: 12px;
+  }
+}
+
+/* small phones */
+@media (min-device-width: 375px) and (min-device-height: 650px) and (max-device-height: 720px) {
+  .center-it {
+    height: 60%;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .button {
+    position: relative;
+    top: 62%;
+    left: -15%;
+    z-index: 2;
+  }
+  .bar {
+    top: 52%;
+    left: 8%;
+    font-size: 16px;
+  }
+}
+
+/* iphoneX */
+@media (min-device-width: 375px) and (min-device-height: 800px) {
+  .button {
+    position: relative;
+    top: 56%;
+    left: -18%;
+    z-index: 2;
+  }
+  .bar {
+    top: 52%;
+    left: 15%;
+    font-size: 14px;
+  }
+}
+
+/* big phones */
+@media (min-device-width: 410px) and (min-device-height: 700px) {
+  .center-it {
+    height: 60%;
+    width: 90%;
+  }
+  .button {
+    position: relative;
+    top: 63%;
+    left: -17%;
+    z-index: 2;
+  }
+  .bar {
+    top: 52%;
+    left: 8%;
+    font-size: 16px;
+  }
+}
+/* super-small phones landscape */
+@media (min-device-width: 560px) and (min-device-height: 300px) and (max-device-height: 375px) {
+  .button {
+    position: relative;
+    top: 74%;
+    left: -20%;
+    z-index: 2;
+  }
+  .bar {
+    top: 52%;
+    left: 18%;
+    font-size: 12px;
+  }
+}
+
+/* small phones landscape */
+@media (min-device-width: 660px) and (max-device-width: 800px) and (min-device-height: 375px) {
+  .center-it {
+    height: 60%;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .button {
+    position: relative;
+    top: 78%;
+    left: -25%;
+    z-index: 2;
+  }
+  .bar {
+    top: 56%;
+    left: 21%;
+    font-size: 18px;
+  }
+}
+
+/* IphoneX landscape */
+@media (min-device-width: 800px) and (min-device-height: 375px) {
+  .center-it {
+    height: 60%;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .button {
+    position: relative;
+    top: 79%;
+    left: -30%;
+    z-index: 2;
+  }
+  .bar {
+    top: 55%;
+    left: 27%;
+    font-size: 18px;
+  }
+}
+
+/* big phones landscape */
+@media (min-device-height: 414px) and (min-device-width: 730px) {
+  .center-it {
+    height: 60%;
+    width: 90%;
+  }
+  .button {
+    position: relative;
+    top: 80%;
+    left: -25%;
+    z-index: 2;
+  }
+  .bar {
+    top: 56%;
+    left: 21%;
+    font-size: 18px;
+  }
+}
+
+/* tablets */
+@media (min-device-width: 768px) and (min-device-height: 1000px) {
+  .button {
+    position: relative;
+    top: 74%;
+    left: -10%;
+    z-index: 2;
+  }
+  .center-it {
+    height: 60%;
+    width: 90%;
+  }
+}
+
+/* normal laptop screens */
+@media (min-device-width: 1224px) and (min-device-height: 755px) {
+  .button {
+    position: relative;
+    top: 92%;
+    left: -20%;
+    z-index: 2;
+  }
+  .center-it {
+    height: 60%;
+    width: 90%;
+  }
+}
+
+/* huge screens */
+@media (min-device-width: 1824px) and (min-device-height: 900px) {
+  .button {
+    position: relative;
+    top: 93%;
+    left: -23%;
+    z-index: 2;
+  }
+  .center-it {
+    height: 60%;
+    width: 90%;
+  }
 }
