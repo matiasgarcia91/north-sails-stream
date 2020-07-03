@@ -64,12 +64,12 @@
     width: 90%;
   }
 }
-
+/* tablets */
 @media (max-width: 768px) {
   .button {
     position: relative;
-    top: 75%;
-    left: -14%;
+    top: 74%;
+    left: -10%;
     z-index: 2;
   }
   .center-it {
@@ -85,8 +85,8 @@
   }
   .button {
     position: relative;
-    top: 65%;
-    left: -24%;
+    top: 63%;
+    left: -17%;
     z-index: 2;
   }
 }
@@ -101,7 +101,7 @@
   }
   .button {
     position: relative;
-    top: 64%;
+    top: 62%;
     left: -15%;
     z-index: 2;
   }
