@@ -52,48 +52,8 @@
   z-index: 2;
 }
 
-@media (max-device-width: 1824px) {
-  .button {
-    position: relative;
-    top: 93%;
-    left: -23%;
-    z-index: 2;
-  }
-  .center-it {
-    height: 60%;
-    width: 90%;
-  }
-}
-/* tablets */
-@media (max-device-width: 768px) {
-  .button {
-    position: relative;
-    top: 74%;
-    left: -10%;
-    z-index: 2;
-  }
-  .center-it {
-    height: 60%;
-    width: 90%;
-  }
-}
-
-/* big phones */
-@media (max-device-width: 414px) {
-  .center-it {
-    height: 60%;
-    width: 90%;
-  }
-  .button {
-    position: relative;
-    top: 64%;
-    left: -17%;
-    z-index: 2;
-  }
-}
-
 /* small phones */
-@media (max-device-width: 375px) and (max-device-height: 700px) {
+@media (min-device-width: 375px) and (min-device-height: 650px) and (max-device-height: 720px) {
   .center-it {
     height: 60%;
     width: 90%;
@@ -109,8 +69,32 @@
   }
 }
 
+/* iphoneX */
+@media (min-device-width: 375px) and (min-device-height: 800px) {
+  .button {
+    position: relative;
+    top: 56%;
+    left: -18%;
+    z-index: 2;
+  }
+}
+
+/* big phones */
+@media (min-device-width: 410px) and (min-device-height: 700px) {
+  .center-it {
+    height: 60%;
+    width: 90%;
+  }
+  .button {
+    position: relative;
+    top: 63%;
+    left: -17%;
+    z-index: 2;
+  }
+}
+
 /* small phones landscape */
-@media (max-device-width: 670px) and (max-device-height: 375px) {
+@media (min-device-width: 660px) and (min-device-height: 375px) {
   .center-it {
     height: 60%;
     width: 90%;
@@ -126,16 +110,61 @@
   }
 }
 
-/* iphoneX */
-@media (max-device-width: 375px) and (min-device-height: 800px) {
+/* big phones landscape */
+@media (min-device-height: 414px) and (min-device-width: 730px) {
+  .center-it {
+    height: 60%;
+    width: 90%;
+  }
   .button {
     position: relative;
-    top: 60.5%;
-    left: -16%;
+    top: 80%;
+    left: -25%;
     z-index: 2;
   }
 }
 
+/* tablets */
+@media (min-device-width: 768px) {
+  .button {
+    position: relative;
+    top: 74%;
+    left: -10%;
+    z-index: 2;
+  }
+  .center-it {
+    height: 60%;
+    width: 90%;
+  }
+}
+
+/* normal laptop screens */
+@media (min-device-width: 1224px) and (min-device-height: 755px) {
+  .button {
+    position: relative;
+    top: 92%;
+    left: -20%;
+    z-index: 2;
+  }
+  .center-it {
+    height: 60%;
+    width: 90%;
+  }
+}
+
+/* huge screens */
+@media (min-device-width: 1824px) and (min-device-height: 900px) {
+  .button {
+    position: relative;
+    top: 93%;
+    left: -23%;
+    z-index: 2;
+  }
+  .center-it {
+    height: 60%;
+    width: 90%;
+  }
+}
 /* super small phones */
 /* @media (max-device-width: 360px) {
   .button {
