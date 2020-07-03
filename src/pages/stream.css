@@ -123,6 +123,20 @@
     font-size: 16px;
   }
 }
+/* super-small phones landscape */
+@media (min-device-width: 560px) and (min-device-height: 300px) and (max-device-height: 375px) {
+  .button {
+    position: relative;
+    top: 74%;
+    left: -20%;
+    z-index: 2;
+  }
+  .bar {
+    top: 52%;
+    left: 18%;
+    font-size: 12px;
+  }
+}
 
 /* small phones landscape */
 @media (min-device-width: 660px) and (max-device-width: 800px) and (min-device-height: 375px) {
@@ -138,6 +152,11 @@
     top: 78%;
     left: -25%;
     z-index: 2;
+  }
+  .bar {
+    top: 56%;
+    left: 21%;
+    font-size: 18px;
   }
 }
 
@@ -156,6 +175,11 @@
     left: -30%;
     z-index: 2;
   }
+  .bar {
+    top: 55%;
+    left: 27%;
+    font-size: 18px;
+  }
 }
 
 /* big phones landscape */
@@ -169,6 +193,11 @@
     top: 80%;
     left: -25%;
     z-index: 2;
+  }
+  .bar {
+    top: 56%;
+    left: 21%;
+    font-size: 18px;
   }
 }
 

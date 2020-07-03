@@ -31,7 +31,6 @@ const useStyles = makeStyles({
     fontSize: 8,
     maxWidth: 40,
     minWidth: 40,
-    // maxHeight: 30,
     minHeight: 30,
   },
 });
@@ -76,14 +75,14 @@ const StreamPage = () => {
 
   const classes = useStyles();
 
-  // useEffect(() => {
-  //   console.log(permission);
-  //   if (!permission && !fullName) {
-  //     history.push("/disconnected");
-  //   } else if (!permission) {
-  //     history.push("/disconnected");
-  //   }
-  // }, [permission, fullName, history]);
+  useEffect(() => {
+    console.log(permission);
+    if (!permission && !fullName) {
+      history.push("/disconnected");
+    } else if (!permission) {
+      history.push("/disconnected");
+    }
+  }, [permission, fullName, history]);
 
   const onButtonClick = () => {
     if (fullScreen) {
@@ -129,16 +128,16 @@ const StreamPage = () => {
     }
   }
 
-  console.log({
-    isHugeScreen,
-    isDesktopOrLaptop,
-    isMobileLarge,
-    isIphoneX,
-    isMobileSmall,
-    isMobileSmallLandscape,
-    isMobileBigLandscape,
-    isTablet,
-  });
+  // console.log({
+  //   isHugeScreen,
+  //   isDesktopOrLaptop,
+  //   isMobileLarge,
+  //   isIphoneX,
+  //   isMobileSmall,
+  //   isMobileSmallLandscape,
+  //   isMobileBigLandscape,
+  //   isTablet,
+  // });
 
   const containerStyle = fullScreen ? { height: "100%", width: "100%" } : {};
 
@@ -151,8 +150,8 @@ const StreamPage = () => {
     >
       <div className='center-it' style={containerStyle} id='el-portador'>
         <span className='bar'>
-          Matias GarciaZufriategui <br />
-          matiasgarcia91@gmail.com
+          {fullName} <br />
+          {email}
         </span>
         <IframeResizer
           log
