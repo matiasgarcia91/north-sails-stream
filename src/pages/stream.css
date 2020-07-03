@@ -52,7 +52,7 @@
   z-index: 2;
 }
 
-@media (min-device-width: 1824px) {
+@media (max-device-width: 1824px) {
   .button {
     position: relative;
     top: 93%;
@@ -65,7 +65,7 @@
   }
 }
 /* tablets */
-@media (max-width: 768px) {
+@media (max-device-width: 768px) {
   .button {
     position: relative;
     top: 74%;
@@ -78,20 +78,22 @@
   }
 }
 
-@media (max-width: 414px) {
+/* big phones */
+@media (max-device-width: 414px) {
   .center-it {
     height: 60%;
     width: 90%;
   }
   .button {
     position: relative;
-    top: 63%;
+    top: 64%;
     left: -17%;
     z-index: 2;
   }
 }
 
-@media (max-width: 375px) {
+/* small phones */
+@media (max-device-width: 375px) and (max-device-height: 700px) {
   .center-it {
     height: 60%;
     width: 90%;
@@ -107,11 +109,39 @@
   }
 }
 
-@media (max-width: 320px) {
+/* small phones landscape */
+@media (max-device-width: 670px) and (max-device-height: 375px) {
+  .center-it {
+    height: 60%;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .button {
+    position: relative;
+    top: 81%;
+    left: -25%;
+    z-index: 2;
+  }
+}
+
+/* iphoneX */
+@media (max-device-width: 375px) and (min-device-height: 800px) {
+  .button {
+    position: relative;
+    top: 60.5%;
+    left: -16%;
+    z-index: 2;
+  }
+}
+
+/* super small phones */
+/* @media (max-device-width: 360px) {
   .button {
     position: relative;
     top: 64%;
     left: -30%;
     z-index: 2;
   }
-}
+} */

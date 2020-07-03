@@ -49,14 +49,17 @@ const StreamPage = () => {
   const isDesktopOrLaptop = useMediaQuery({
     query: "(min-device-width: 1224px)",
   });
-  const isMobileSmall = useMediaQuery({
-    query: "(min-device-width: 375px)",
+  const isIphoneX = useMediaQuery({
+    query: "(min-device-width: 375px) and (min-device-height: 800px)",
   });
   const isMobileLarge = useMediaQuery({
     query: "(min-device-width: 414px)",
   });
-  const isIphoneX = useMediaQuery({
-    query: "(min-device-width: 375px) and (min-device-height: 800px)",
+  const isMobileSmall = useMediaQuery({
+    query: "(min-device-width: 375px)",
+  });
+  const isMobileSmallLandscape = useMediaQuery({
+    query: "(min-device-height: 375px) and (min-device-width: 660px)",
   });
 
   const classes = useStyles();
@@ -75,27 +78,39 @@ const StreamPage = () => {
   };
 
   let buttonPositioning = {};
-  switch (true) {
-    case fullScreen && isHugeScreen:
-      buttonPositioning = { left: "-8%", top: "95.5%" };
-      break;
-    case fullScreen && isDesktopOrLaptop:
-      buttonPositioning = { left: "-7%", top: "94%" };
-      break;
-    case fullScreen && isMobileLarge:
-      buttonPositioning = { left: "-15%", top: "59%" };
-      break;
-    case fullScreen && isIphoneX:
-      buttonPositioning = { left: "-15%", top: "58%" };
-      break;
-    case fullScreen && isMobileSmall:
-      buttonPositioning = { left: "-17%", top: "59%" };
-      break;
-    default:
-      break;
+  if (fullScreen) {
+    switch (true) {
+      case isMobileSmallLandscape:
+        buttonPositioning = { left: "-17%", top: "87%" };
+        break;
+      case isHugeScreen:
+        buttonPositioning = { left: "-8%", top: "95.5%" };
+        break;
+      case isDesktopOrLaptop:
+        buttonPositioning = { left: "-7%", top: "94%" };
+        break;
+      case isMobileLarge:
+        buttonPositioning = { left: "-15%", top: "59%" };
+        break;
+      case isIphoneX:
+        buttonPositioning = { left: "-15%", top: "58%" };
+        break;
+      case isMobileSmall:
+        buttonPositioning = { left: "-15%", top: "59%" };
+        break;
+      default:
+        break;
+    }
   }
 
-  console.log(isIphoneX, buttonPositioning);
+  console.log({
+    isMobileSmallLandscape,
+    isHugeScreen,
+    isDesktopOrLaptop,
+    isMobileLarge,
+    isIphoneX,
+    isMobileSmall,
+  });
 
   const containerStyle = fullScreen ? { height: "100%", width: "100%" } : {};
   const barClassName = fullScreen ? "bar-fullscreen" : "bar";
