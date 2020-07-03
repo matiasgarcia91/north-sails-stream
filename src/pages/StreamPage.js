@@ -50,24 +50,28 @@ const StreamPage = () => {
     query: "(min-device-width: 1224px) and (min-device-height: 755px)",
   });
   const isTablet = useMediaQuery({
-    query: "(min-device-width: 768px)",
+    query: "(min-device-width: 768px) and (min-device-height: 1000px)",
   });
 
   const isIphoneX = useMediaQuery({
     query: "(min-device-width: 375px) and (min-device-height: 800px)",
   });
   const isMobileLarge = useMediaQuery({
-    query: "(min-device-width: 414px)",
+    query: "(min-device-width: 414px) and (min-device-height: 700px)",
   });
   const isMobileSmall = useMediaQuery({
     query:
       "(min-device-width: 375px) and (min-device-height: 650px) and (max-device-height: 720px)",
   });
   const isMobileSmallLandscape = useMediaQuery({
-    query: "(min-device-height: 375px) and (min-device-width: 660px)",
+    query:
+      "(min-device-height: 375px) and (max-device-width: 800px) and (min-device-width: 660px)",
   });
   const isMobileBigLandscape = useMediaQuery({
     query: "(min-device-height: 414px) and (min-device-width: 730px)",
+  });
+  const isIphoneXLandscape = useMediaQuery({
+    query: "(min-device-width: 800px) and (min-device-height: 375px)",
   });
 
   const classes = useStyles();
@@ -106,7 +110,10 @@ const StreamPage = () => {
         buttonPositioning = { left: "-15%", top: "88%" };
         break;
       case isMobileSmallLandscape:
-        buttonPositioning = { left: "-10%", top: "87%" };
+        buttonPositioning = { left: "-10%", top: "86%" };
+        break;
+      case isIphoneXLandscape:
+        buttonPositioning = { left: "-20%", top: "87%" };
         break;
       case isMobileLarge:
         buttonPositioning = { left: "-15%", top: "59.5%" };
