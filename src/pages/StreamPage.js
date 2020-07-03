@@ -82,6 +82,11 @@ const StreamPage = () => {
   // }, [permission, fullName, history]);
 
   const onButtonClick = () => {
+    if (fullScreen) {
+      document.webkitCancelFullScreen();
+    } else {
+      document.getElementById("el-portador").webkitRequestFullScreen();
+    }
     setFullScreen(!fullScreen);
   };
 
@@ -89,10 +94,10 @@ const StreamPage = () => {
   if (fullScreen) {
     switch (true) {
       case isHugeScreen:
-        buttonPositioning = { left: "-7%", top: "95.5%" };
+        buttonPositioning = { left: "-4%", top: "96%" };
         break;
       case isDesktopOrLaptop:
-        buttonPositioning = { left: "-7%", top: "94%" };
+        buttonPositioning = { left: "-4%", top: "91%" };
         break;
       case isTablet:
         buttonPositioning = { left: "-10%", top: "66.5%" };
@@ -101,7 +106,7 @@ const StreamPage = () => {
         buttonPositioning = { left: "-15%", top: "88%" };
         break;
       case isMobileSmallLandscape:
-        buttonPositioning = { left: "-17%", top: "87%" };
+        buttonPositioning = { left: "-10%", top: "87%" };
         break;
       case isMobileLarge:
         buttonPositioning = { left: "-15%", top: "59.5%" };
@@ -140,7 +145,7 @@ const StreamPage = () => {
         backgroundImage: "url(" + require("../images/stream.jpg") + ")",
       }}
     >
-      <div className='center-it' style={containerStyle}>
+      <div className='center-it' style={containerStyle} id='el-portador'>
         <span className={`${barClassName}`}>
           {fullName} - {email}
         </span>
