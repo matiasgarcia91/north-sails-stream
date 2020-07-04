@@ -50,3 +50,20 @@ export const adminLogin = (email, password, history) => async dispatch => {
     console.error(e.message);
   }
 };
+
+export const getStreamCode = () => async dispatch => {
+  try {
+    const response = await axios.get("/url");
+    const {
+      data: { url },
+    } = response;
+    dispatch(setVideoCode(url));
+  } catch (e) {
+    console.error(e.message);
+  }
+};
+
+export const setVideoCode = code => ({
+  type: "SET_VIDEO_CODE",
+  payload: code,
+});

@@ -6,7 +6,11 @@ import LoginPage from "./pages/LoginPage";
 import AdminLogin from "./pages/AdminLogin";
 import AdminPage from "./pages/AdminPage";
 import DisconnectPage from "./pages/DisconnectedPage";
-import { saveSocketId, abortConnection } from "./store/user/actions";
+import {
+  saveSocketId,
+  abortConnection,
+  getStreamCode,
+} from "./store/user/actions";
 import "./App.css";
 import login from "./login.jpg";
 import { HEROKU_URL } from "./constants";
@@ -19,6 +23,7 @@ function App() {
   console.log(login);
   useEffect(() => {
     const socket = socketIOClient(HEROKU_URL);
+    dispatch(getStreamCode());
     console.log(socket);
     socket.on("connect", () => {
       dispatch(saveSocketId(socket.id));

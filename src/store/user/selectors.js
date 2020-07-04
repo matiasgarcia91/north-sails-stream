@@ -10,3 +10,5 @@ export const getAdminPermission = state => ({
 });
 
 export const getError = state => state.user.error;
+
+export const streamCode = state => state.user.streamCode;
