@@ -3,6 +3,7 @@ const initialState = {
   socketId: null,
   admin: false,
   error: null,
+  streamCode: null,
 };
 
 export default function (state = initialState, action) {
@@ -12,9 +13,20 @@ export default function (state = initialState, action) {
     case "LOGIN":
       return { ...state, ...action.payload, permission: true };
     case "LOGIN_ERROR":
-      return { ...initialState, error: action.payload };
+      return {
+        ...initialState,
+        error: action.payload,
+        streamCode: state.streamCode,
+      };
     case "DISCONNECT":
-      return { socketId: state.socketId, permission: false, admin: false };
+      return {
+        ...state,
+        socketId: state.socketId,
+        permission: false,
+        admin: false,
+      };
+    case "SET_VIDEO_CODE":
+      return { ...state, streamCode: action.payload };
     default:
       return state;
   }

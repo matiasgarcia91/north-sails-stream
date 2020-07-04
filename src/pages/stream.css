@@ -227,6 +227,11 @@
     height: 60%;
     width: 90%;
   }
+  .bar {
+    top: 56%;
+    left: 25%;
+    font-size: 30px;
+  }
 }
 
 /* huge screens */
@@ -240,5 +245,10 @@
   .center-it {
     height: 60%;
     width: 90%;
+  }
+  .bar {
+    top: 56%;
+    left: 25%;
+    font-size: 30px;
   }
 }

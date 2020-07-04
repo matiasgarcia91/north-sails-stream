@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { getStreamPermissionAndName } from "../store/user/selectors";
+import {
+  getStreamPermissionAndName,
+  streamCode,
+} from "../store/user/selectors";
 import IframeResizer from "iframe-resizer-react";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
@@ -39,6 +42,7 @@ const StreamPage = () => {
   const { permission, fullName, email } = useSelector(
     getStreamPermissionAndName
   );
+  const streamId = useSelector(streamCode);
   const history = useHistory();
   const [fullScreen, setFullScreen] = useState(false);
 
@@ -128,16 +132,16 @@ const StreamPage = () => {
     }
   }
 
-  // console.log({
-  //   isHugeScreen,
-  //   isDesktopOrLaptop,
-  //   isMobileLarge,
-  //   isIphoneX,
-  //   isMobileSmall,
-  //   isMobileSmallLandscape,
-  //   isMobileBigLandscape,
-  //   isTablet,
-  // });
+  console.log({
+    isHugeScreen,
+    isDesktopOrLaptop,
+    isMobileLarge,
+    isIphoneX,
+    isMobileSmall,
+    isMobileSmallLandscape,
+    isMobileBigLandscape,
+    isTablet,
+  });
 
   const containerStyle = fullScreen ? { height: "100%", width: "100%" } : {};
 
@@ -150,12 +154,11 @@ const StreamPage = () => {
     >
       <div className='center-it' style={containerStyle} id='el-portador'>
         <span className='bar'>
-          {fullName} <br />
-          {email}
+          {fullName}-{email}
         </span>
         <IframeResizer
           log
-          src='https://player.vimeo.com/video/431795434'
+          src={`https://player.vimeo.com/video/${streamId}?title=0`}
           style={{
             width: "100%",
             minWidth: "100%",
