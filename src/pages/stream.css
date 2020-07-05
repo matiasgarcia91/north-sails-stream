@@ -94,9 +94,12 @@
 @media (min-device-width: 375px) and (min-device-height: 800px) {
   .button {
     position: relative;
-    top: 56%;
+    top: 62%;
     left: -18%;
     z-index: 2;
+  }
+  .center-it {
+    width: 100%;
   }
   .bar {
     top: 52%;
@@ -163,7 +166,7 @@
 /* IphoneX landscape */
 @media (min-device-width: 800px) and (min-device-height: 375px) {
   .center-it {
-    height: 60%;
+    height: 80%;
     width: 90%;
     display: flex;
     flex-direction: row;
@@ -171,8 +174,8 @@
   }
   .button {
     position: relative;
-    top: 79%;
-    left: -30%;
+    top: 84%;
+    left: -20%;
     z-index: 2;
   }
   .bar {
