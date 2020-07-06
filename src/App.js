@@ -44,7 +44,7 @@ function App() {
         <Route path='/admin' component={AdminLogin} />
         <Route path='/' component={LoginPage} />
       </Switch>
-      <LiveChat license={12033240} />
+      <LiveChat license={12058494} />
     </div>
   );
 }

@@ -6,6 +6,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: url(../images/stream-desktop.jpg);
+}
+
+@media (max-device-width: 450px) {
+  .stream-page {
+    background-image: url(../images/stream-mobile.jpg);
+  }
 }
 
 .frame {

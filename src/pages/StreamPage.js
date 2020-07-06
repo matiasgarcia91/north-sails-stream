@@ -88,13 +88,19 @@ const StreamPage = () => {
     }
   }, [permission, fullName, history]);
 
+  const ua = window.navigator.userAgent;
+  const isIphone = ua.indexOf("iPhone") !== -1 && ua.indexOf("Safari") !== -1;
+
   const onButtonClick = () => {
-    if (fullScreen) {
-      document.webkitCancelFullScreen();
+    if (isIphone) {
     } else {
-      document.getElementById("el-portador").webkitRequestFullScreen();
+      if (fullScreen) {
+        document.webkitCancelFullScreen();
+      } else {
+        document.getElementById("el-portador").webkitRequestFullScreen();
+      }
+      setFullScreen(!fullScreen);
     }
-    setFullScreen(!fullScreen);
   };
 
   let buttonPositioning = {};
@@ -146,12 +152,7 @@ const StreamPage = () => {
   const containerStyle = fullScreen ? { height: "100%", width: "100%" } : {};
 
   return (
-    <div
-      className='stream-page'
-      style={{
-        backgroundImage: "url(" + require("../images/stream.jpg") + ")",
-      }}
-    >
+    <div className='stream-page'>
       <div className='center-it' style={containerStyle} id='el-portador'>
         <span className='bar'>
           {fullName}-{email}
@@ -167,23 +168,25 @@ const StreamPage = () => {
           }}
           frameBorder='0'
         />
-        <Button
-          variant='contained'
-          className={`button`}
-          style={buttonPositioning}
-          classes={{
-            contained: isDesktopOrLaptop
-              ? classes.button
-              : classes.buttonMobile,
-          }}
-          onClick={onButtonClick}
-        >
-          {fullScreen ? (
-            <FullscreenExitIcon fontSize='medium' />
-          ) : (
-            <FullscreenIcon fontSize='medium' />
-          )}
-        </Button>
+        {!isIphone && (
+          <Button
+            variant='contained'
+            className={`button`}
+            style={buttonPositioning}
+            classes={{
+              contained: isDesktopOrLaptop
+                ? classes.button
+                : classes.buttonMobile,
+            }}
+            onClick={onButtonClick}
+          >
+            {fullScreen ? (
+              <FullscreenExitIcon fontSize='medium' />
+            ) : (
+              <FullscreenIcon fontSize='medium' />
+            )}
+          </Button>
+        )}
       </div>
     </div>
   );
