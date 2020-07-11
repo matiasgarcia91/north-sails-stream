@@ -65,13 +65,7 @@ const LoginPage = () => {
     : "../images/login-desktop.jpg";
 
   return (
-    <div
-      className='login'
-      // style={{
-      //   backgroundImage: "url(" + require("../images/login-desktop.jpg") + ")",
-      //   backgroundSize: "cover",
-      // }}
-    >
+    <div className='login'>
       <div style={{ flex: 0.5 }} />
       <div
         style={{
