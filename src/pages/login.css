@@ -1,12 +1,19 @@
 .login {
   height: 100%;
-  background-image: url(../images/login.jpg);
+  background-image: url(../images/login-desktop.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+@media (max-device-width: 450px) {
+  .login {
+    background-image: url(../images/login-mobile.jpg);
+  }
 }
 
 .form-fields {
