@@ -15,7 +15,13 @@ export const loginError = message => ({
   payload: message,
 });
 
+export const setVideoCode = code => ({
+  type: "SET_VIDEO_CODE",
+  payload: code,
+});
+
 export const abortConnection = () => ({ type: "DISCONNECT" });
+export const endStream = () => ({ type: "STREAM_END" });
 
 export const login = (email, password, history) => async (
   dispatch,
@@ -32,8 +38,8 @@ export const login = (email, password, history) => async (
     dispatch(loginSuccess(data));
     history.push("/stream");
   } catch (e) {
-    dispatch(loginError("Invalid credentials"));
-    console.error(e.message);
+    console.log(e.response.data);
+    dispatch(loginError(e.response.data));
   }
 };
 
@@ -62,8 +68,3 @@ export const getStreamCode = () => async dispatch => {
     console.error(e.message);
   }
 };
-
-export const setVideoCode = code => ({
-  type: "SET_VIDEO_CODE",
-  payload: code,
-});

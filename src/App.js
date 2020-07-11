@@ -10,6 +10,7 @@ import {
   saveSocketId,
   abortConnection,
   getStreamCode,
+  endStream,
 } from "./store/user/actions";
 import "./App.css";
 import login from "./login.jpg";
@@ -30,21 +31,30 @@ function App() {
     });
 
     socket.on("kick-out", data => {
-      console.log("other connection");
       dispatch(abortConnection());
+      console.log(data);
+    });
+
+    socket.on("end-stream", data => {
+      console.log("end stream");
+      dispatch(endStream());
       console.log(data);
     });
   }, [dispatch]);
   return (
     <div className='App' id='app'>
       <Switch>
+        <Route
+          path='/.well-known/pki-validation/FC61FEA307B4D860FA7DEB6D0455C584.txt'
+          onEnter={() => window.location.reload()}
+        />
         <Route path='/stream' component={StreamPage} />
         <Route path='/disconnected' component={DisconnectPage} />
         <Route path='/admin/edit' component={AdminPage} />
         <Route path='/admin' component={AdminLogin} />
         <Route path='/' component={LoginPage} />
       </Switch>
-      <LiveChat license={12033240} />
+      <LiveChat license={12058494} />
     </div>
   );
 }
