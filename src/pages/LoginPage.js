@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { useMediaQuery } from "react-responsive";
 
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -45,10 +44,6 @@ const LoginPage = () => {
   const history = useHistory();
   const error = useSelector(getError);
 
-  const isMobile = useMediaQuery({
-    query: "(max-device-width: 450px)",
-  });
-
   const classes = useStyles();
 
   console.log(classes.button.root);
@@ -59,10 +54,6 @@ const LoginPage = () => {
     dispatch(login(email, password, history));
     console.log(email, password);
   };
-
-  const backgroundUrl = isMobile
-    ? "../images/login-mobile.jpg"
-    : "../images/login-desktop.jpg";
 
   return (
     <div className='login'>

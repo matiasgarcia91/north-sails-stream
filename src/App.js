@@ -50,7 +50,7 @@ function App() {
         <Route path='/disconnected' component={DisconnectPage} />
         <Route path='/' component={LoginPage} />
       </Switch>
-      <LiveChat license={12058494} />
+      <LiveChat license={12275319} />
     </div>
   );
 }
