@@ -30,8 +30,8 @@ export const login = (email, password, history) => async (
   const { socketId } = getState().user;
   try {
     const response = await axios.post("/login", {
-      email,
-      password,
+      email: email.trim(),
+      password: password.trim(),
       socketId,
     });
     const { data } = response;
