@@ -1,31 +1,14 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { CSVLink } from "react-csv";
 
 import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import AccountsTab from "./Tabs/AccountsTab";
-import ExtraSettingsTab from "./Tabs/ExtraSettings";
+import SystemSettingsTab from "./Tabs/SystemSettings";
 import ResetTab from "./Tabs/ResetTab";
-
-import { uploadCSV } from "../../store/admin/actions";
-import { isLoading, createdAccounts } from "../../store/admin/selectors";
 
 import "./Admin.css";
 
-import { makeStyles } from "@material-ui/core/styles";
-
-const useStyles = makeStyles({
-  textFields: {
-    marginLeft: 20,
-  },
-});
-
 const Admin = () => {
   const [activeTab, setActiveTab] = useState(0);
-  const accounts = useSelector(createdAccounts);
-  const classes = useStyles();
 
   const TabBar = () => (
     <div className='tab-bar'>
@@ -50,7 +33,7 @@ const Admin = () => {
           onClick={() => setActiveTab(1)}
           variant={activeTab === 1 && "contained"}
         >
-          Extra Setting
+          System Settings
         </Button>
       </div>
       <div className='tab-bar-cell'>
@@ -70,7 +53,7 @@ const Admin = () => {
       case 0:
         return <AccountsTab />;
       case 1:
-        return <ExtraSettingsTab />;
+        return <SystemSettingsTab />;
       case 2:
         return <ResetTab />;
       default:

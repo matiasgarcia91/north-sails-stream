@@ -5,6 +5,8 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
+import { getSystemSettings } from "../../../store/admin/selectors";
+
 import "../Admin.css";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -15,9 +17,11 @@ const useStyles = makeStyles({
   },
 });
 
-const ExtraSettings = () => {
-  const [livechat, setLivechat] = useState("");
-  const [streamUrl, setStreamUrl] = useState("");
+const SystemSettings = () => {
+  const settings = useSelector(getSystemSettings);
+  const [livechat, setLivechat] = useState(settings.livechat);
+  const [streamUrl, setStreamUrl] = useState(settings.streamUrl);
+  const [apiUrl, setApiUrl] = useState(settings.apiUrl);
   const classes = useStyles();
   return (
     <div
@@ -40,8 +44,30 @@ const ExtraSettings = () => {
         <div style={{ display: "flex" }}>
           <TextField
             variant='filled'
+            name='apiUrl'
+            label='API url'
+            type='text'
+            fullWidth
+            margin='dense'
+            value={apiUrl}
+            classes={{ root: classes.textFields }}
+            onChange={e => setApiUrl(e.target.value)}
+          />
+          <div style={{ marginLeft: 30, marginTop: 15 }}>
+            <Button
+              variant='contained'
+              color='primary'
+              onClick={() => console.log("update settings")}
+            >
+              Update
+            </Button>
+          </div>
+        </div>
+        <div style={{ display: "flex" }}>
+          <TextField
+            variant='filled'
             name='livechat'
-            label='Update Livechat Id'
+            label='Livechat Id'
             type='number'
             fullWidth
             margin='dense'
@@ -63,7 +89,7 @@ const ExtraSettings = () => {
           <TextField
             variant='filled'
             name='streamUrl'
-            label='Update Stream Url'
+            label='Stream Vimeo Id'
             type='text'
             fullWidth
             margin='dense'
@@ -80,9 +106,10 @@ const ExtraSettings = () => {
               Update
             </Button>
           </div>
+          <div></div>
         </div>
       </div>
     </div>
   );
 };
-export default ExtraSettings;
+export default SystemSettings;
