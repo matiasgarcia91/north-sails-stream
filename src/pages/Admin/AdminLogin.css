@@ -1,6 +1,6 @@
 .admin-login {
   height: 100%;
-  background-image: url(../images/stream-desktop.jpg);
+  background-image: url(../../images/stream-desktop.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -12,7 +12,7 @@
 
 @media (max-device-width: 450px) {
   .admin-login {
-    background-image: url(../images/stream-mobile.jpg);
+    background-image: url(../../images/stream-mobile.jpg);
   }
 }
 

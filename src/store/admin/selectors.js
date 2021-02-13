@@ -5,3 +5,4 @@ export const getAPI = state => state.admin.apiUrl;
 export const getSystemSettings = ({
   admin: { apiUrl, livechat, streamUrl },
 }) => ({ apiUrl, livechat, streamUrl });
+export const getAdminOnline = state => state.admin.online;

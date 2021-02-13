@@ -50,14 +50,19 @@ const AdminLoginPage = () => {
 
   const submitLogin = e => {
     e.preventDefault();
-    if (!email || !password) return;
-    dispatch(login(email, password, history));
-    console.log(email, password);
+    const emailCheck = email === "info@oliverumpierre.com";
+    const passwordCheck = password === "freshnclean";
+    if (emailCheck && passwordCheck) {
+      dispatch({ type: "ADMIN_LOGIN" });
+      history.push("/admin");
+    }
   };
 
   return (
     <div className='admin-login'>
-      <div style={{ flex: 0.5 }} />
+      <h1>Welcome back Admin</h1>
+      <img src='https://media.giphy.com/media/Nx0rz3jtxtEre/giphy.gif' />
+      <div style={{ flex: 0.1 }} />
       <div
         style={{
           flex: 1,

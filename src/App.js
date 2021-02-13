@@ -7,6 +7,7 @@ import StreamPage from "./pages/StreamPage";
 import LoginPage from "./pages/LoginPage";
 import DisconnectPage from "./pages/DisconnectedPage";
 import AdminPage from "./pages/Admin/Admin";
+import AdminLoginPage from "./pages/Admin/AdminLogin";
 import {
   saveSocketId,
   abortConnection,
@@ -51,6 +52,7 @@ function App() {
         />
         <Route path='/stream' component={StreamPage} />
         <Route path='/disconnected' component={DisconnectPage} />
+        <Route path='/admin/login' component={AdminLoginPage} />
         <Route path='/admin' component={AdminPage} />
         <Route path='/' component={LoginPage} />
       </Switch>
