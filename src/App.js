@@ -15,6 +15,8 @@ import {
   endStream,
 } from "./store/user/actions";
 import { HEROKU_URL } from "./constants";
+import { useSelector } from "react-redux";
+import { getSystemSettings } from "./store/admin/selectors";
 
 import login from "./login.jpg";
 import "./App.css";
@@ -23,6 +25,7 @@ import socketIOClient from "socket.io-client";
 
 function App() {
   const dispatch = useDispatch();
+  const systemPreferences = useSelector(getSystemSettings);
   console.log(login);
   useEffect(() => {
     const socket = socketIOClient(HEROKU_URL);
@@ -56,7 +59,7 @@ function App() {
         <Route path='/admin' component={AdminPage} />
         <Route path='/' component={LoginPage} />
       </Switch>
-      <LiveChat license={12519093} />
+      <LiveChat license={systemPreferences.livechat} />
     </div>
   );
 }
