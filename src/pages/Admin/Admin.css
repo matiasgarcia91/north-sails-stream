@@ -24,3 +24,18 @@
 .form-button {
   margin-top: 10px;
 }
+
+.download:link,
+.download:visited {
+  background-color: #3671f4;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.download:hover,
+.download:active {
+  background-color: #00b9ff;
+}

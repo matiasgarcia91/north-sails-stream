@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { CSVLink } from "react-csv";
 
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -56,6 +57,8 @@ const Admin = () => {
     setIsFilePicked(true);
   };
 
+  const createCSV = () => {};
+
   if (loading) {
     return (
       <div className='admin'>
@@ -102,6 +105,17 @@ const Admin = () => {
               }}
             >
               <h2>Accounts Created! 🚀🚀</h2>
+              <div style={{ display: "flex", marginBottom: 20 }}>
+                <label style={{ paddingRight: 15, paddingTop: 7 }}>
+                  Download CSV
+                </label>
+
+                <div>
+                  <CSVLink className='download' data={accounts}>
+                    Download
+                  </CSVLink>
+                </div>
+              </div>
             </div>
             <div
               style={{
