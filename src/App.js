@@ -1,19 +1,22 @@
 import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import LiveChat from "react-livechat";
+
 import StreamPage from "./pages/StreamPage";
 import LoginPage from "./pages/LoginPage";
 import DisconnectPage from "./pages/DisconnectedPage";
+import AdminPage from "./pages/Admin/Admin";
 import {
   saveSocketId,
   abortConnection,
   getStreamCode,
   endStream,
 } from "./store/user/actions";
-import "./App.css";
-import login from "./login.jpg";
 import { HEROKU_URL } from "./constants";
-import LiveChat from "react-livechat";
+
+import login from "./login.jpg";
+import "./App.css";
 
 import socketIOClient from "socket.io-client";
 
@@ -48,9 +51,10 @@ function App() {
         />
         <Route path='/stream' component={StreamPage} />
         <Route path='/disconnected' component={DisconnectPage} />
+        <Route path='/admin' component={AdminPage} />
         <Route path='/' component={LoginPage} />
       </Switch>
-      <LiveChat license={12275319} />
+      <LiveChat license={12519093} />
     </div>
   );
 }

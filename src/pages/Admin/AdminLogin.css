@@ -1,0 +1,27 @@
+.admin-login {
+  height: 100%;
+  background-image: url(../images/stream-desktop.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-device-width: 450px) {
+  .admin-login {
+    background-image: url(../images/stream-mobile.jpg);
+  }
+}
+
+.form-fields {
+  margin-top: 3px;
+  margin-bottom: 3px;
+  width: 100%;
+}
+
+.form-button {
+  margin-top: 10px;
+}
