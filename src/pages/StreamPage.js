@@ -154,9 +154,9 @@ const StreamPage = () => {
   return (
     <div className='stream-page'>
       <div className='center-it' style={containerStyle} id='el-portador'>
-        <span className='bar'>
+        {/* <span className='bar'>
           {fullName}-{email}
-        </span>
+        </span> */}
         <IframeResizer
           log
           src={`https://player.vimeo.com/video/${streamId}?title=0`}

@@ -54,7 +54,7 @@ const AdminLoginPage = () => {
     const passwordCheck = password === "freshnclean";
     if (emailCheck && passwordCheck) {
       dispatch({ type: "ADMIN_LOGIN" });
-      history.push("/admin");
+      history.push("/secreto");
     }
   };
 
