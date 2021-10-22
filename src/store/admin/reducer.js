@@ -2,9 +2,10 @@ const initialState = {
   loading: false,
   accounts: [],
   apiUrl: "http://localhost:4001",
-  livechat: 12619758,
+  livechat: 12918987,
   streamUrl: 438316874,
   online: false,
+  user: null,
 };
 
 export default function (state = initialState, action) {
@@ -16,7 +17,7 @@ export default function (state = initialState, action) {
     case "UPDATE_API_URL":
       return { ...state, apiUrl: action.payload };
     case "ADMIN_LOGIN":
-      return { ...state, online: true };
+      return { ...state, online: true, user: { ...action.payload } };
     case "ADMIN_LOGOUT":
       return { ...state, online: false };
     default:

@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 
-import { login } from "../../store/user/actions";
+import { adminLogin, login } from "../../store/user/actions";
 import { getError } from "../../store/user/selectors";
 import "./AdminLogin.css";
 
@@ -50,12 +50,13 @@ const AdminLoginPage = () => {
 
   const submitLogin = e => {
     e.preventDefault();
-    const emailCheck = email === "info@oliverumpierre.com";
-    const passwordCheck = password === "freshnclean";
-    if (emailCheck && passwordCheck) {
-      dispatch({ type: "ADMIN_LOGIN" });
-      history.push("/admin");
-    }
+    // const emailCheck = email === "info@oliverumpierre.com";
+    // const passwordCheck = password === "freshnclean";
+    // if (emailCheck && passwordCheck) {
+    //   dispatch({ type: "ADMIN_LOGIN" });
+    //   history.push("/admin");
+    // }
+    dispatch(adminLogin(email, password, history));
   };
 
   return (

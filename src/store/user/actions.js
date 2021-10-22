@@ -23,25 +23,23 @@ export const setVideoCode = code => ({
 export const abortConnection = () => ({ type: "DISCONNECT" });
 export const endStream = () => ({ type: "STREAM_END" });
 
-export const login = (email, password, history) => async (
-  dispatch,
-  getState
-) => {
-  const { socketId } = getState().user;
-  try {
-    const response = await axios.post("/login", {
-      email: email.trim(),
-      password: password.trim(),
-      socketId,
-    });
-    const { data } = response;
-    dispatch(loginSuccess(data));
-    history.push("/stream");
-  } catch (e) {
-    console.log(e.response.data);
-    dispatch(loginError(e.response.data));
-  }
-};
+export const login =
+  (email, password, history) => async (dispatch, getState) => {
+    const { socketId } = getState().user;
+    try {
+      const response = await axios.post("/login", {
+        email: email.trim(),
+        password: password.trim(),
+        socketId,
+      });
+      const { data } = response;
+      dispatch(loginSuccess(data));
+      history.push("/stream");
+    } catch (e) {
+      console.log(e.response.data);
+      dispatch(loginError(e.response.data));
+    }
+  };
 
 export const adminLogin = (email, password, history) => async dispatch => {
   try {
@@ -49,9 +47,8 @@ export const adminLogin = (email, password, history) => async dispatch => {
       email,
       password,
     });
-    const { data } = response;
-    dispatch(loginSuccess(data));
-    history.push("/admin/edit");
+    dispatch({ type: "ADMIN_LOGIN", payload: response.data });
+    history.push("/admin");
   } catch (e) {
     console.error(e.message);
   }
