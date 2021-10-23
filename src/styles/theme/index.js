@@ -21,8 +21,8 @@ const theme = {
     extraBold: 900,
   },
   fonts: {
-    heading: `'Noto Sans', serif`,
-    body: `'Noto Sans', serif`,
+    heading: `'Varela Round', serif`,
+    body: `'Lato', serif`,
   },
   fontSizes: {
     1.25: space["1.25"],

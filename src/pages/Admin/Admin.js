@@ -7,7 +7,7 @@ import SystemSettingsTab from "./Tabs/SystemSettings";
 import ResetTab from "./Tabs/ResetTab";
 
 import { getAdminOnline } from "../../store/admin/selectors";
-import { AdminLayout, Button } from "../../components";
+import { AdminLayout, Button, Card, Heading } from "../../components";
 
 const Admin = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -57,7 +57,7 @@ const Admin = () => {
       <div style={{ display: "flex" }}>
         <div style={{ flex: 1 }} />
         <div style={{ flex: 1 }}>
-          <h1>🚀 Oliverg's Settings Hub 🚀</h1>
+          <Heading variant="h1">🚀 Oliverg's Settings Hub 🚀</Heading>
         </div>
         <div
           style={{
@@ -67,13 +67,11 @@ const Admin = () => {
             alignItems: "center",
             marginRight: 20,
           }}
-        >
-          <Button onClick={() => dispatch({ type: "ADMIN_LOGOUT" })}>
-            Logout
-          </Button>
-        </div>
+        ></div>
       </div>
-      <div style={{ marginTop: 40 }}>{tabToRender()}</div>
+      <Card>
+        <div style={{ marginTop: 40 }}>{tabToRender()}</div>
+      </Card>
     </AdminLayout>
   );
 };
