@@ -35,29 +35,29 @@ function App() {
       dispatch(saveSocketId(socket.id));
     });
 
-    socket.on("kick-out", data => {
+    socket.on("kick-out", (data) => {
       dispatch(abortConnection());
       console.log(data);
     });
 
-    socket.on("end-stream", data => {
+    socket.on("end-stream", (data) => {
       console.log("end stream");
       dispatch(endStream());
       console.log(data);
     });
   }, [dispatch]);
   return (
-    <div className='App' id='app'>
+    <div className="App" id="app">
       <Switch>
         <Route
-          path='/.well-known/pki-validation/FC61FEA307B4D860FA7DEB6D0455C584.txt'
+          path="/.well-known/pki-validation/FC61FEA307B4D860FA7DEB6D0455C584.txt"
           onEnter={() => window.location.reload()}
         />
-        <Route path='/stream' component={StreamPage} />
-        <Route path='/disconnected' component={DisconnectPage} />
-        <Route path='/admin/login' component={AdminLoginPage} />
-        <Route path='/admin' component={AdminPage} />
-        <Route path='/' component={LoginPage} />
+        <Route path="/stream" component={StreamPage} />
+        <Route path="/disconnected" component={DisconnectPage} />
+        <Route path="/admin/login" component={AdminLoginPage} />
+        <Route path="/admin" component={AdminPage} />
+        <Route path="/" component={LoginPage} />
       </Switch>
       <LiveChat license={systemPreferences.livechat} />
     </div>
