@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { ReactComponent as Logo } from "../Icons/Logo.svg";
 import { ReactComponent as Accounts } from "../Icons/Accounts.svg";
 import { ReactComponent as Settings } from "../Icons/Settings.svg";
+import oliPng from "../../images/oliflows.png";
 
 const SideBar = styled.div`
   height: 100%;
@@ -9,17 +9,13 @@ const SideBar = styled.div`
   background-color: ${(p) => p.theme.colors.white};
 `;
 
-const LogoCont = styled.div`
-  height: 80px;
-  width: 80px;
-  background-color: ${(p) => p.theme.colors.primary};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  svg {
-    width: 30px;
-  }
+const Logo = styled.div`
+  width: 60px;
+  height: 60px;
+  background-image: url(${oliPng});
+  background-position: center;
+  background-size: contain;
+  filter: invert(100%);
 `;
 
 const NavButton = styled.button`
@@ -37,9 +33,19 @@ const NavButton = styled.button`
 export const Navigation = () => {
   return (
     <SideBar>
-      <LogoCont>
+      <div
+        style={{
+          background:
+            "linear-gradient(140deg, rgba(0,232,175,1) 35%, rgba(0,177,254,1) 100%)",
+          height: "80px",
+          width: "80px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <Logo />
-      </LogoCont>
+      </div>
       <NavButton>
         <Accounts />
       </NavButton>

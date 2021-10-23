@@ -2,8 +2,8 @@ import space from "./space";
 
 const theme = {
   colors: {
-    primary: "#323353",
-    secondary: "#9B51E0",
+    primary: "#00e8af",
+    secondary: "#00b1fe",
     transparent: "rgba(255, 255, 255, 0);",
     white: "#ffffff",
     black: "#34393E",
