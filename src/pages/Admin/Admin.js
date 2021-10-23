@@ -15,9 +15,9 @@ const Admin = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   if (!online) history.push("/admin/login");
-  // }, [online, history]);
+  useEffect(() => {
+    if (!online) history.push("/admin/login");
+  }, [online, history]);
 
   // const TabBar = () => (
   //   <div className="tab-bar">

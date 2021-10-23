@@ -34,7 +34,6 @@ const NavButton = styled.button`
 `;
 
 export const Navigation = ({ setActiveTab, activeTab }) => {
-  console.log(activeTab);
   return (
     <SideBar>
       <div

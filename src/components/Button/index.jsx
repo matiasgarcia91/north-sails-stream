@@ -27,9 +27,9 @@ const StyledButton = styled.button`
   ${variant({ variants })}
 `;
 
-export const Button = ({ children, variant = "primary" }) => {
+export const Button = ({ children, variant = "primary", ...props }) => {
   return (
-    <StyledButton variant={variant}>
+    <StyledButton variant={variant} {...props}>
       {/* <Icon as="span" className="button-background" icon={ButtonIcon} /> */}
       {children}
     </StyledButton>
