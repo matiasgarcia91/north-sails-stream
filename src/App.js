@@ -11,12 +11,13 @@ import AdminLoginPage from "./pages/Admin/AdminLogin";
 import {
   saveSocketId,
   abortConnection,
-  getStreamCode,
+  getEvent,
   endStream,
 } from "./store/user/actions";
 import { HEROKU_URL } from "./constants";
 import { useSelector } from "react-redux";
 import { getSystemSettings } from "./store/admin/selectors";
+import { getLivechatId } from "./store/user/selectors";
 
 import login from "./login.jpg";
 import "./App.css";
@@ -25,41 +26,41 @@ import socketIOClient from "socket.io-client";
 
 function App() {
   const dispatch = useDispatch();
-  const systemPreferences = useSelector(getSystemSettings);
+  const livechatId = useSelector(getLivechatId);
   console.log(login);
   useEffect(() => {
     const socket = socketIOClient(HEROKU_URL);
-    dispatch(getStreamCode());
+    dispatch(getEvent());
     console.log(socket);
     socket.on("connect", () => {
       dispatch(saveSocketId(socket.id));
     });
 
-    socket.on("kick-out", (data) => {
+    socket.on("kick-out", data => {
       dispatch(abortConnection());
       console.log(data);
     });
 
-    socket.on("end-stream", (data) => {
+    socket.on("end-stream", data => {
       console.log("end stream");
       dispatch(endStream());
       console.log(data);
     });
   }, [dispatch]);
   return (
-    <div className="App" id="app">
+    <div className='App' id='app'>
       <Switch>
         <Route
-          path="/.well-known/pki-validation/FC61FEA307B4D860FA7DEB6D0455C584.txt"
+          path='/.well-known/pki-validation/FC61FEA307B4D860FA7DEB6D0455C584.txt'
           onEnter={() => window.location.reload()}
         />
-        <Route path="/stream" component={StreamPage} />
-        <Route path="/disconnected" component={DisconnectPage} />
-        <Route path="/admin/login" component={AdminLoginPage} />
-        <Route path="/admin" component={AdminPage} />
-        <Route path="/" component={LoginPage} />
+        <Route path='/stream' component={StreamPage} />
+        <Route path='/disconnected' component={DisconnectPage} />
+        <Route path='/admin/login' component={AdminLoginPage} />
+        <Route path='/admin' component={AdminPage} />
+        <Route path='/' component={LoginPage} />
       </Switch>
-      <LiveChat license={systemPreferences.livechat} />
+      {livechatId && <LiveChat license={Number(livechatId)} />}
     </div>
   );
 }

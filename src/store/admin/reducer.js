@@ -1,9 +1,7 @@
 const initialState = {
   loading: false,
   accounts: [],
-  apiUrl: "http://localhost:4001",
-  livechat: 12918987,
-  streamUrl: 438316874,
+  event: null,
   online: false,
   user: null,
 };
@@ -14,10 +12,12 @@ export default function (state = initialState, action) {
       return { ...state, loading: true };
     case "ACCOUNTS_CREATED":
       return { ...state, accounts: action.payload, loading: false };
-    case "UPDATE_API_URL":
-      return { ...state, apiUrl: action.payload };
+    case "admin/USER_LIST": {
+      return { ...state, accounts: action.payload, loading: false };
+    }
     case "ADMIN_LOGIN":
-      return { ...state, online: true, user: { ...action.payload } };
+      const { user, event } = action.payload;
+      return { ...state, online: true, user, event };
     case "ADMIN_LOGOUT":
       return { ...state, online: false };
     default:
