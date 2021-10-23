@@ -3,7 +3,7 @@ const initialState = {
   socketId: null,
   streamEnded: false,
   error: null,
-  streamCode: null,
+  event: null,
 };
 
 export default function (state = initialState, action) {
@@ -33,8 +33,8 @@ export default function (state = initialState, action) {
         admin: false,
         streamEnded: true,
       };
-    case "SET_VIDEO_CODE":
-      return { ...state, streamCode: action.payload };
+    case "SET_EVENT":
+      return { ...state, event: action.payload };
     default:
       return state;
   }

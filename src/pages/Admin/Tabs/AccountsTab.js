@@ -26,6 +26,8 @@ const Admin = () => {
   const [selectedFile, setSelectedFile] = useState();
   const [isFilePicked, setIsFilePicked] = useState(false);
 
+  const [uploadBulk, setUploadBulk] = useState(false);
+
   const dispatch = useDispatch();
   const loading = useSelector(isLoading);
   const accounts = useSelector(createdAccounts);
@@ -72,41 +74,20 @@ const Admin = () => {
         alignItems: "flex-start",
       }}
     >
-      {accounts ? (
-        <>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              marginLeft: 50,
-              width: "100%",
-            }}
-          >
-            <h2>Accounts Created! 🚀🚀</h2>
-            <div style={{ display: "flex", marginBottom: 20 }}>
-              <label style={{ paddingRight: 15, paddingTop: 7 }}>
-                Download CSV
-              </label>
-
-              <div>
-                <CSVLink className='download' data={accounts}>
-                  Download
-                </CSVLink>
-              </div>
-            </div>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              width: "100%",
-              justifyContent: "center",
-            }}
-          >
-            <AccountsTable accounts={accounts} />
-          </div>
-        </>
-      ) : (
-        <>
+      <Button
+        variant='contained'
+        color='primary'
+        onClick={() => setUploadBulk(!uploadBulk)}
+      >
+        Input Bulk
+      </Button>
+      {uploadBulk && (
+        <div
+          style={{
+            marginTop: 20,
+            marginBottom: 20,
+          }}
+        >
           <div
             style={{
               display: "flex",
@@ -165,6 +146,40 @@ const Admin = () => {
                 Submit
               </Button>
             </div>
+          </div>
+          {domain && `backup0@${domain}.com`}
+        </div>
+      )}
+      {accounts && (
+        <>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              marginLeft: 50,
+              width: "100%",
+            }}
+          >
+            <div style={{ display: "flex", marginBottom: 20 }}>
+              <label style={{ paddingRight: 15, paddingTop: 7 }}>
+                Download CSV
+              </label>
+
+              <div>
+                <CSVLink className='download' data={accounts}>
+                  Download
+                </CSVLink>
+              </div>
+            </div>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              width: "100%",
+              justifyContent: "center",
+            }}
+          >
+            <AccountsTable accounts={accounts} />
           </div>
         </>
       )}

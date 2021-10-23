@@ -7,6 +7,7 @@ import SystemSettingsTab from "./Tabs/SystemSettings";
 import ResetTab from "./Tabs/ResetTab";
 
 import { getAdminOnline } from "../../store/admin/selectors";
+import { fetchUserAccounts } from "../../store/admin/actions";
 import { AdminLayout, Button, Card, Heading } from "../../components";
 
 const Admin = () => {
@@ -16,6 +17,7 @@ const Admin = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(fetchUserAccounts());
     if (!online) history.push("/admin/login");
   }, [online, history]);
 
@@ -57,7 +59,7 @@ const Admin = () => {
       <div style={{ display: "flex" }}>
         <div style={{ flex: 1 }} />
         <div style={{ flex: 1 }}>
-          <Heading variant="h1">🚀 Oliverg's Settings Hub 🚀</Heading>
+          <Heading variant='h1'>🚀 Oliverg's Settings Hub 🚀</Heading>
         </div>
         <div
           style={{
