@@ -7,8 +7,7 @@ import SystemSettingsTab from "./Tabs/SystemSettings";
 import ResetTab from "./Tabs/ResetTab";
 
 import { getAdminOnline } from "../../store/admin/selectors";
-import "./Admin.css";
-import { Button } from "../../components";
+import { AdminLayout, Button } from "../../components";
 
 const Admin = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -32,9 +31,7 @@ const Admin = () => {
           borderRight: "2px solid lightblue",
         }}
       >
-        <Button variant={activeTab === 1 && "contained"}>
-          System Settings
-        </Button>
+        <Button variant="outline">System Settings</Button>
       </div>
       <div className="tab-bar-cell">
         <Button onClick={() => setActiveTab(2)}>Reset Database</Button>
@@ -56,7 +53,7 @@ const Admin = () => {
   };
 
   return (
-    <div className="admin">
+    <AdminLayout>
       <div style={{ display: "flex" }}>
         <div style={{ flex: 1 }} />
         <div style={{ flex: 1 }}>
@@ -78,7 +75,7 @@ const Admin = () => {
       </div>
       <TabBar />
       <div style={{ marginTop: 40 }}>{tabToRender()}</div>
-    </div>
+    </AdminLayout>
   );
 };
 
