@@ -1,7 +1,7 @@
 html {
   margin: 0;
   height: 100%;
-  font-family: "NotoSans-Regular";
+  font-family: "Lato";
 }
 html,
 body,
@@ -12,7 +12,7 @@ body,
 
 body {
   margin: 0;
-  font-family: "Noto Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Lato", -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
