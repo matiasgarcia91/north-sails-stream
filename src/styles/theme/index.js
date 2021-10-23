@@ -52,7 +52,7 @@ const theme = {
     ...space,
   },
   sizes: {
-    maxWidth: 1260,
+    maxWidth: "1260px",
   },
   breakpoints: ["768px", "992px", "1024px", "1280px"],
   radii: {
