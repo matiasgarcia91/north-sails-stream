@@ -25,12 +25,16 @@ const NavButton = styled.button`
   justify-content: center;
   align-items: center;
 
+  background-color: ${({ activeTab, theme }) =>
+    activeTab ? theme.colors.grey100 : theme.colors.transparent};
+
   svg {
     width: 24px;
   }
 `;
 
-export const Navigation = () => {
+export const Navigation = ({ setActiveTab, activeTab }) => {
+  console.log(activeTab);
   return (
     <SideBar>
       <div
@@ -46,10 +50,12 @@ export const Navigation = () => {
       >
         <Logo />
       </div>
-      <NavButton>
+
+      <NavButton onClick={() => setActiveTab(0)} activeTab={activeTab === 0}>
         <Accounts />
       </NavButton>
-      <NavButton>
+
+      <NavButton onClick={() => setActiveTab(1)} activeTab={activeTab === 1}>
         <Settings />
       </NavButton>
     </SideBar>

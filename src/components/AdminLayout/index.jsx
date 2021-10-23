@@ -16,10 +16,10 @@ const Content = styled.div`
   margin: 0 auto;
 `;
 
-export const AdminLayout = ({ children }) => {
+export const AdminLayout = ({ setActiveTab, activeTab, children }) => {
   return (
     <Container>
-      <Navigation />
+      <Navigation setActiveTab={setActiveTab} activeTab={activeTab} />
       <Content>{children}</Content>
     </Container>
   );
