@@ -4,9 +4,12 @@ import { variant } from "styled-system";
 
 const variants = {
   primary: {
-    backgroundColor: "primary",
+    backgroundColor: "grey800",
   },
   secondary: {
+    backgroundColor: "primary",
+  },
+  warning: {
     backgroundColor: "secondary",
   },
   outline: {

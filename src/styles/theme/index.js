@@ -40,7 +40,6 @@ const theme = {
     10: space["9"],
     20: space["20"],
     root: space["1.75"],
-    heading: space["4"],
   },
   lineHeights: {
     normal: 1,

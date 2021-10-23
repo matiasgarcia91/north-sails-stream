@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { getAdminUser } from "../../store/admin/selectors";
+import { getAdminUser } from "../../../store/admin/selectors";
 import { Navigation } from "./Navigation";
-import { Text } from "../Text";
-import { ReactComponent as ChevronDown } from "../Icons/ChevronDown.svg";
-import { Card } from "..";
+import { Text } from "../../common/Text";
+import { ReactComponent as ChevronDown } from "../../common/Icons/ChevronDown.svg";
+import { Card } from "../../common/Card";
 
 const Container = styled.div`
   width: 100%;

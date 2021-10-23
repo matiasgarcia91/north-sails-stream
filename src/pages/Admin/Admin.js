@@ -56,24 +56,7 @@ const Admin = () => {
 
   return (
     <AdminLayout setActiveTab={setActiveTab} activeTab={activeTab}>
-      <div style={{ display: "flex" }}>
-        <div style={{ flex: 1 }} />
-        <div style={{ flex: 1 }}>
-          <Heading variant='h1'>🚀 Oliverg's Settings Hub 🚀</Heading>
-        </div>
-        <div
-          style={{
-            flex: 1,
-            display: "flex",
-            justifyContent: "flex-end",
-            alignItems: "center",
-            marginRight: 20,
-          }}
-        ></div>
-      </div>
-      <Card>
-        <div style={{ marginTop: 40 }}>{tabToRender()}</div>
-      </Card>
+      {tabToRender()}
     </AdminLayout>
   );
 };

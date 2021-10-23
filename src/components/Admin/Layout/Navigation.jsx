@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { ReactComponent as Accounts } from "../Icons/Accounts.svg";
-import { ReactComponent as Settings } from "../Icons/Settings.svg";
-import oliPng from "../../images/oliflows.png";
+import { ReactComponent as Accounts } from "../../common/Icons/Accounts.svg";
+import { ReactComponent as Settings } from "../../common/Icons/Settings.svg";
+import oliPng from "../../../images/oliflows.png";
 
 const SideBar = styled.div`
   height: 100%;

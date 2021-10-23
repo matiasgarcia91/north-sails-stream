@@ -3,16 +3,16 @@ import { variant } from "styled-system";
 
 export const variants = {
   h1: {
-    fontSize: ["heading"],
+    fontSize: "32px",
   },
   h2: {
-    fontSize: ["28px", 8],
+    fontSize: "24px",
   },
   h3: {
-    fontSize: ["28px", 6],
+    fontSize: "24px",
   },
   h4: {
-    fontSize: [3, "36px"],
+    fontSize: "24px",
   },
   h5: {
     fontSize: [2, 3],
@@ -24,7 +24,7 @@ export const variants = {
 
 export const Heading = styled.div`
   font-family: ${(p) => p.theme.fonts.heading};
-  font-weight: ${(p) => p.theme.fontWeights.extraBold};
+  /* font-weight: ${(p) => p.theme.fontWeights.extraBold}; */
   color: ${(p) => p.theme.colors.grey900};
 
   ${variant({ variants })}
