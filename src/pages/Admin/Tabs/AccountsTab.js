@@ -5,7 +5,7 @@ import { CSVLink } from "react-csv";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import AccountsTable from "./AccountsTable";
+import AccountsTable from "../../../components/Admin/AccountsTable";
 
 import { uploadCSV } from "../../../store/admin/actions";
 import { isLoading, createdAccounts } from "../../../store/admin/selectors";
@@ -13,6 +13,7 @@ import { isLoading, createdAccounts } from "../../../store/admin/selectors";
 import "../Admin.css";
 
 import { makeStyles } from "@material-ui/core/styles";
+import { Card } from "../../../components";
 
 const useStyles = makeStyles({
   textFields: {
@@ -37,32 +38,10 @@ const Admin = () => {
     dispatch(uploadCSV(selectedFile, dummies, domain));
   };
 
-  const fileSelectHandler = event => {
+  const fileSelectHandler = (event) => {
     setSelectedFile(event.target.files[0]);
     setIsFilePicked(true);
   };
-
-  if (loading) {
-    return (
-      <>
-        <div
-          style={{
-            flex: 1,
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "flex-start",
-            alignItems: "flex-start",
-          }}
-        >
-          <div
-            style={{ display: "flex", justifyContent: "center", width: "100%" }}
-          >
-            <CircularProgress />
-          </div>
-        </div>
-      </>
-    );
-  }
 
   return (
     <div
@@ -75,8 +54,8 @@ const Admin = () => {
       }}
     >
       <Button
-        variant='contained'
-        color='primary'
+        variant="contained"
+        color="primary"
         onClick={() => setUploadBulk(!uploadBulk)}
       >
         Input Bulk
@@ -97,7 +76,7 @@ const Admin = () => {
           >
             <div style={{ display: "flex" }}>
               <label style={{ marginRight: 20 }}>Select CSV file</label>
-              <input type='file' name='file' onChange={fileSelectHandler} />
+              <input type="file" name="file" onChange={fileSelectHandler} />
               {isFilePicked ? (
                 <div>
                   <span>Filename: {selectedFile.name}</span>
@@ -113,33 +92,33 @@ const Admin = () => {
           </div>
           <div style={{ display: "flex", marginTop: 10, marginLeft: 30 }}>
             <TextField
-              variant='filled'
-              name='dummies'
-              label='# of Backups'
-              type='number'
+              variant="filled"
+              name="dummies"
+              label="# of Backups"
+              type="number"
               fullWidth
-              size='small'
-              margin='dense'
+              size="small"
+              margin="dense"
               value={dummies}
               classes={{ root: classes.textFields }}
-              onChange={e => setDummies(e.target.value)}
+              onChange={(e) => setDummies(e.target.value)}
             />
             <TextField
-              variant='filled'
-              name='domain'
-              label='Backup Domain'
-              type='text'
+              variant="filled"
+              name="domain"
+              label="Backup Domain"
+              type="text"
               fullWidth
-              size='small'
-              margin='dense'
+              size="small"
+              margin="dense"
               value={domain}
               classes={{ root: classes.textFields }}
-              onChange={e => setDomain(e.target.value)}
+              onChange={(e) => setDomain(e.target.value)}
             />
             <div style={{ marginLeft: 30, marginTop: 15 }}>
               <Button
-                variant='contained'
-                color='primary'
+                variant="contained"
+                color="primary"
                 onClick={uploadFile}
                 disabled={!isFilePicked}
               >
@@ -151,7 +130,7 @@ const Admin = () => {
         </div>
       )}
       {accounts && (
-        <>
+        <Card>
           <div
             style={{
               display: "flex",
@@ -166,7 +145,7 @@ const Admin = () => {
               </label>
 
               <div>
-                <CSVLink className='download' data={accounts}>
+                <CSVLink className="download" data={accounts}>
                   Download
                 </CSVLink>
               </div>
@@ -181,7 +160,7 @@ const Admin = () => {
           >
             <AccountsTable accounts={accounts} />
           </div>
-        </>
+        </Card>
       )}
     </div>
   );

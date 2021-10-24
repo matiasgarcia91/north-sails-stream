@@ -9,7 +9,6 @@ import { Card } from "../../common/Card";
 
 const Container = styled.div`
   width: 100%;
-  overflow: hidden;
   background-color: ${(p) => p.theme.colors.grey50};
   display: flex;
 `;
@@ -17,6 +16,7 @@ const Container = styled.div`
 const Content = styled.div`
   width: 100%;
   padding-top: 96px;
+  padding-bottom: 96px;
   max-width: ${(p) => p.theme.sizes.maxWidth};
   margin: 0 auto;
   display: flex;
