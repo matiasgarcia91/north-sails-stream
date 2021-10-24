@@ -1,4 +1,4 @@
-import { useMemo, forwardRef, useRef, useEffect } from "react";
+import { useMemo, forwardRef, useRef, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useTable, useRowSelect, usePagination } from "react-table";
 import styled from "styled-components";
@@ -11,6 +11,8 @@ import {
 import { ReactComponent as Refresh } from "../../common/Icons/Refresh.svg";
 import { Spinner } from "../../common/Spinner";
 import { Pagination } from "./Pagination";
+import { ReactComponent as EyeClosed } from "../../common/Icons/EyeClosed.svg";
+import { ReactComponent as EyeOpen } from "../../common/Icons/EyeOpen.svg";
 
 const Table = styled.table`
   width: 100%;
@@ -72,6 +74,7 @@ const IndeterminateCheckbox = forwardRef(({ indeterminate, ...rest }, ref) => {
 
 export default function DataTable() {
   const dispatch = useDispatch();
+  const [seePassword, setSeePassword] = useState(false);
 
   const columns = useMemo(
     () => [
@@ -162,15 +165,33 @@ export default function DataTable() {
           pageIndex={pageIndex}
         />
       </div>
+
       <Table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
             <HeaderRow {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
-                <HeaderCell {...column.getHeaderProps()}>
-                  {column.render("Header")}
-                </HeaderCell>
-              ))}
+              {headerGroup.headers.map((column) => {
+                return (
+                  <HeaderCell {...column.getHeaderProps()}>
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      {column.render("Header")}
+                      {column.id === "password" && (
+                        <Button
+                          variant="unstyled"
+                          onClick={() => setSeePassword(!seePassword)}
+                          style={{
+                            height: "20px",
+                            width: "20px",
+                            marginLeft: "8px",
+                          }}
+                        >
+                          {seePassword ? <EyeClosed /> : <EyeOpen />}
+                        </Button>
+                      )}
+                    </div>
+                  </HeaderCell>
+                );
+              })}
             </HeaderRow>
           ))}
         </thead>
@@ -183,7 +204,11 @@ export default function DataTable() {
                   {row.cells.map((cell) => {
                     return (
                       <Cell {...cell.getCellProps()}>
-                        {cell.render("Cell")}
+                        {cell.column.id === "password"
+                          ? seePassword
+                            ? cell.render("Cell")
+                            : "********"
+                          : cell.render("Cell")}
                       </Cell>
                     );
                   })}
@@ -193,6 +218,7 @@ export default function DataTable() {
           </tbody>
         )}
       </Table>
+
       {isLoading && (
         <div
           style={{
