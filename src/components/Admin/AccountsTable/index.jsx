@@ -202,14 +202,27 @@ export default function DataTable() {
               return (
                 <Row {...row.getRowProps()}>
                   {row.cells.map((cell) => {
+                    const getContent = (cell) => {
+                      switch (cell.column.id) {
+                        case "password":
+                          return (
+                            <div>
+                              {seePassword ? cell.render("Cell") : "*******"}
+                            </div>
+                          );
+                        case "admin":
+                          return <div>{cell.value && "yes"}</div>;
+                        case "emailSent":
+                          return <div>{cell.value && "yes"}</div>;
+                        case "hasLoggedIn":
+                          return <div>{cell.value && "yes"}</div>;
+                        default:
+                          return <div>{cell.render("Cell")}</div>;
+                      }
+                    };
+
                     return (
-                      <Cell {...cell.getCellProps()}>
-                        {cell.column.id === "password"
-                          ? seePassword
-                            ? cell.render("Cell")
-                            : "********"
-                          : cell.render("Cell")}
-                      </Cell>
+                      <Cell {...cell.getCellProps()}>{getContent(cell)}</Cell>
                     );
                   })}
                 </Row>
