@@ -4,9 +4,12 @@ const initialState = {
   event: null,
   online: false,
   user: null,
+  loadingState: {
+    eventForm: false,
+  },
 };
 
-export default function (state = initialState, action) {
+export default function reducer(state = initialState, action) {
   switch (action.type) {
     case "UPLOADING":
       return { ...state, loading: true };
@@ -20,6 +23,21 @@ export default function (state = initialState, action) {
       return { ...state, online: true, user, event };
     case "ADMIN_LOGOUT":
       return { ...state, online: false };
+    case "UPDATING_SETTINGS":
+      return {
+        ...state,
+        loadingState: { ...state.loadingState, eventForm: true },
+      };
+    case "UPDATED/SETTINGS": {
+      return {
+        ...state,
+        loadingState: {
+          ...state.loadingState,
+          eventForm: false,
+        },
+        event: action.payload,
+      };
+    }
     default:
       return state;
   }

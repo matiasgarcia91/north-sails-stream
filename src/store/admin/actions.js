@@ -5,7 +5,7 @@ export const uploadCSV =
     try {
       const uploadingStarted = () => ({ type: "UPLOADING" });
 
-      const accountsCreated = (accounts) => ({
+      const accountsCreated = accounts => ({
         type: "ACCOUNTS_CREATED",
         payload: accounts,
       });
@@ -40,9 +40,35 @@ export const fetchUserAccounts = () => async (dispatch, getState) => {
         authorization: `Bearer ${token}`,
       },
     });
-    console.log("this is the one", response.data);
     dispatch({ type: "admin/USER_LIST", payload: response.data });
   } catch (e) {
     console.log(e.message);
   }
 };
+
+export const updateEventSettings =
+  streamEvent => async (dispatch, getState) => {
+    try {
+      dispatch({ type: "UPDATING_SETTINGS" });
+      console.log("in action", streamEvent);
+      const { token } = getState().admin.user;
+      const response = await axios.patch(
+        "/admin/event",
+        { streamEvent },
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      console.log("event updated", response.data);
+
+      dispatch({
+        type: "UPDATED/SETTINGS",
+        payload: response.data.streamEvent,
+      });
+    } catch (e) {
+      console.log(e.message);
+    }
+  };

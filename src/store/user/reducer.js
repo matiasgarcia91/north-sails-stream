@@ -6,7 +6,7 @@ const initialState = {
   event: null,
 };
 
-export default function (state = initialState, action) {
+export default function reducer(state = initialState, action) {
   switch (action.type) {
     case "SOCKET_ID":
       return { ...state, socketId: action.payload };
