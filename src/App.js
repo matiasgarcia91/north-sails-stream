@@ -16,10 +16,8 @@ import {
 } from "./store/user/actions";
 import { HEROKU_URL } from "./constants";
 import { useSelector } from "react-redux";
-import { getSystemSettings } from "./store/admin/selectors";
 import { getLivechatId } from "./store/user/selectors";
 
-import login from "./login.jpg";
 import "./App.css";
 
 import socketIOClient from "socket.io-client";
@@ -27,7 +25,7 @@ import socketIOClient from "socket.io-client";
 function App() {
   const dispatch = useDispatch();
   const livechatId = useSelector(getLivechatId);
-  console.log(login);
+
   useEffect(() => {
     const socket = socketIOClient(HEROKU_URL);
     dispatch(getEvent());
@@ -47,6 +45,7 @@ function App() {
       console.log(data);
     });
   }, [dispatch]);
+
   return (
     <div className='App' id='app'>
       <Switch>

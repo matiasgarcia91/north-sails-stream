@@ -23,9 +23,9 @@ export const variants = {
 };
 
 export const Heading = styled.div`
-  font-family: ${(p) => p.theme.fonts.heading};
-  /* font-weight: ${(p) => p.theme.fontWeights.extraBold}; */
-  color: ${(p) => p.theme.colors.grey900};
+  font-family: ${p => p.theme.fonts.heading};
+  font-weight: ${p => p.theme.fontWeights.extraBold};
+  color: ${p => p.theme.colors.grey900};
 
   ${variant({ variants })}
 `;

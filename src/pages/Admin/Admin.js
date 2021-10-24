@@ -8,7 +8,7 @@ import ResetTab from "./Tabs/ResetTab";
 
 import { getAdminOnline } from "../../store/admin/selectors";
 import { fetchUserAccounts } from "../../store/admin/actions";
-import { AdminLayout } from "../../components";
+import { AdminLayout, Heading } from "../../components";
 
 const Admin = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -19,7 +19,7 @@ const Admin = () => {
   useEffect(() => {
     dispatch(fetchUserAccounts());
     if (!online) history.push("/admin/login");
-  }, [online, history]);
+  }, [online, history, dispatch]);
 
   const tabToRender = () => {
     switch (activeTab) {
