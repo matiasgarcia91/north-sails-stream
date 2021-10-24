@@ -3,12 +3,6 @@ html {
   height: 100%;
   font-family: "Lato";
 }
-html,
-body,
-#app,
-#app > div {
-  height: 100%;
-}
 
 body {
   margin: 0;

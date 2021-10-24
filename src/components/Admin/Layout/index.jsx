@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { getAdminUser } from "../../store/admin/selectors";
+import { getAdminUser } from "../../../store/admin/selectors";
 import { Navigation } from "./Navigation";
-import { Text } from "../Text";
-import { ReactComponent as ChevronDown } from "../Icons/ChevronDown.svg";
-import { Card } from "..";
+import { Text } from "../../common/Text";
+import { ReactComponent as ChevronDown } from "../../common/Icons/ChevronDown.svg";
+import { Card } from "../../common/Card";
 
 const Container = styled.div`
   width: 100%;
-  overflow: hidden;
   background-color: ${(p) => p.theme.colors.grey50};
   display: flex;
 `;
@@ -17,6 +16,7 @@ const Container = styled.div`
 const Content = styled.div`
   width: 100%;
   padding-top: 96px;
+  padding-bottom: 96px;
   max-width: ${(p) => p.theme.sizes.maxWidth};
   margin: 0 auto;
   display: flex;

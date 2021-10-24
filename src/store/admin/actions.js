@@ -5,7 +5,7 @@ export const uploadCSV =
     try {
       const uploadingStarted = () => ({ type: "UPLOADING" });
 
-      const accountsCreated = accounts => ({
+      const accountsCreated = (accounts) => ({
         type: "ACCOUNTS_CREATED",
         payload: accounts,
       });
@@ -40,7 +40,7 @@ export const fetchUserAccounts = () => async (dispatch, getState) => {
         authorization: `Bearer ${token}`,
       },
     });
-    console.log(response.data);
+    console.log("this is the one", response.data);
     dispatch({ type: "admin/USER_LIST", payload: response.data });
   } catch (e) {
     console.log(e.message);

@@ -5,6 +5,7 @@ const StyledDiv = styled.div`
   border-radius: 12px;
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.04);
   padding: 32px;
+  width: 100%;
 `;
 
 export const Card = ({ children, ...props }) => {

@@ -8,7 +8,7 @@ import ResetTab from "./Tabs/ResetTab";
 
 import { getAdminOnline } from "../../store/admin/selectors";
 import { fetchUserAccounts } from "../../store/admin/actions";
-import { AdminLayout, Button, Card, Heading } from "../../components";
+import { AdminLayout } from "../../components";
 
 const Admin = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -20,26 +20,6 @@ const Admin = () => {
     dispatch(fetchUserAccounts());
     if (!online) history.push("/admin/login");
   }, [online, history]);
-
-  // const TabBar = () => (
-  //   <div className="tab-bar">
-  //     <div className="tab-bar-cell">
-  //       <Button onClick={() => setActiveTab(0)}>Accounts</Button>
-  //     </div>
-  //     <div
-  //       className="tab-bar-cell"
-  //       style={{
-  //         borderLeft: "2px solid lightblue",
-  //         borderRight: "2px solid lightblue",
-  //       }}
-  //     >
-  //       <Button variant="outline">System Settings</Button>
-  //     </div>
-  //     <div className="tab-bar-cell">
-  //       <Button onClick={() => setActiveTab(2)}>Reset Database</Button>
-  //     </div>
-  //   </div>
-  // );
 
   const tabToRender = () => {
     switch (activeTab) {
@@ -56,24 +36,7 @@ const Admin = () => {
 
   return (
     <AdminLayout setActiveTab={setActiveTab} activeTab={activeTab}>
-      <div style={{ display: "flex" }}>
-        <div style={{ flex: 1 }} />
-        <div style={{ flex: 1 }}>
-          <Heading variant='h1'>🚀 Oliverg's Settings Hub 🚀</Heading>
-        </div>
-        <div
-          style={{
-            flex: 1,
-            display: "flex",
-            justifyContent: "flex-end",
-            alignItems: "center",
-            marginRight: 20,
-          }}
-        ></div>
-      </div>
-      <Card>
-        <div style={{ marginTop: 40 }}>{tabToRender()}</div>
-      </Card>
+      {tabToRender()}
     </AdminLayout>
   );
 };
