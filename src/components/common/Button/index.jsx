@@ -25,10 +25,14 @@ const StyledButton = styled.button`
   padding: 8px;
   min-width: 160px;
   border-radius: 6px;
+  height: 40px;
   color: ${(p) => p.theme.colors.white};
   font-weight: ${(p) => p.theme.fontWeights.bold};
   font-size: ${(p) => p.theme.fontSizes[2]};
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   ${variant({ variants })}
 `;

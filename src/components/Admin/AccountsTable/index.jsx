@@ -10,6 +10,7 @@ import {
 } from "../../../store/admin/selectors";
 import { ReactComponent as Refresh } from "../../common/Icons/Refresh.svg";
 import { Spinner } from "../../common/Spinner";
+import { Pagination } from "./Pagination";
 
 const Table = styled.table`
   width: 100%;
@@ -138,7 +139,13 @@ export default function DataTable() {
 
   return (
     <div style={{ width: "100%" }}>
-      <div style={{ display: "flex" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          width: "100%",
+        }}
+      >
         <Button
           variant="unstyled"
           onClick={refetch}
@@ -146,6 +153,14 @@ export default function DataTable() {
         >
           <Refresh />
         </Button>
+        <Pagination
+          canPreviousPage={canPreviousPage}
+          canNextPage={canNextPage}
+          pageCount={pageCount}
+          nextPage={nextPage}
+          previousPage={previousPage}
+          pageIndex={pageIndex}
+        />
       </div>
       <Table {...getTableProps()}>
         <thead>
