@@ -1,10 +1,14 @@
 import styled from "styled-components";
 import { Button, Text } from "../..";
+import { ReactComponent as ChevronLeft } from "../../common/Icons/ChevronLeft.svg";
+import { ReactComponent as ChevronRight } from "../../common/Icons/ChevronRight.svg";
 
 const NavButton = styled(Button).attrs(() => ({ variant: "unstyled" }))`
-  padding: 8px;
   background-color: ${({ theme }) => theme.colors.grey100};
   margin-right: 8px;
+  color: ${({ theme }) => theme.colors.grey800};
+  height: 24px;
+  width: 24px;
 `;
 
 export const Pagination = ({
@@ -17,11 +21,15 @@ export const Pagination = ({
 }) => {
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
-      <NavButton onClick={previousPage}>Prev</NavButton>
+      <NavButton onClick={previousPage}>
+        <ChevronLeft style={{ height: "20px", width: "20px" }} />
+      </NavButton>
       <Text style={{ marginRight: "8px" }}>
         {pageIndex + 1} of {pageCount}
       </Text>
-      <NavButton onClick={nextPage}>next</NavButton>
+      <NavButton onClick={nextPage}>
+        <ChevronRight style={{ height: "20px", width: "20px" }} />
+      </NavButton>
     </div>
   );
 };

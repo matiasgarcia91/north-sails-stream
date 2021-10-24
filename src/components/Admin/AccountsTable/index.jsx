@@ -145,16 +145,34 @@ export default function DataTable() {
       <div
         style={{
           display: "flex",
-          justifyContent: "space-between",
+          justifyContent: "end",
+          alignItems: "center",
           width: "100%",
         }}
       >
         <Button
-          variant="unstyled"
+          variant="secondary"
           onClick={refetch}
-          style={{ width: "24px", height: "24px" }}
+          style={{
+            width: "40px",
+            height: "40px",
+            marginRight: "16px",
+            borderRadius: "50%",
+            minWidth: "0px",
+          }}
         >
-          <Refresh />
+          <div
+            style={{
+              width: "24px",
+              height: "24px",
+              color: "#00e8af",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Refresh />
+          </div>
         </Button>
         <Pagination
           canPreviousPage={canPreviousPage}
