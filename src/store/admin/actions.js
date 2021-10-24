@@ -33,7 +33,7 @@ export const uploadCSV =
 
 export const fetchUserAccounts = () => async (dispatch, getState) => {
   try {
-    // dispatch({ type: "UPLOADING" });
+    dispatch({ type: "UPLOADING" });
     const { token } = getState().admin.user;
     const response = await axios.get("/admin/users", {
       headers: {
@@ -41,7 +41,7 @@ export const fetchUserAccounts = () => async (dispatch, getState) => {
       },
     });
     console.log(response.data);
-    // dispatch({ type: "admin/USER_LIST", payload: response.data });
+    dispatch({ type: "admin/USER_LIST", payload: response.data });
   } catch (e) {
     console.log(e.message);
   }
