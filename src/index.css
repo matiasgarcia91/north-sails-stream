@@ -1,6 +1,5 @@
 html {
   margin: 0;
-  height: 100%;
   font-family: "Lato";
 }
 
@@ -9,8 +8,6 @@ body {
   font-family: "Lato", -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  height: 100%;
 }
 
 code {
