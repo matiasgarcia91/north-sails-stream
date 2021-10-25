@@ -9,6 +9,7 @@ import { Card } from "../../common/Card";
 
 const Container = styled.div`
   width: 100%;
+  min-height: 100%;
   background-color: ${(p) => p.theme.colors.grey50};
   display: flex;
 `;

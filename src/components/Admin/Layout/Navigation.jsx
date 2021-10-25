@@ -3,10 +3,15 @@ import { ReactComponent as Accounts } from "../../common/Icons/Accounts.svg";
 import { ReactComponent as Settings } from "../../common/Icons/Settings.svg";
 import oliPng from "../../../images/oliflows.png";
 
-const SideBar = styled.div`
-  height: 100%;
+const Nav = styled.div`
   width: 80px;
   background-color: ${(p) => p.theme.colors.white};
+  border-radius: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
 `;
 
 const Logo = styled.div`
@@ -19,14 +24,20 @@ const Logo = styled.div`
 `;
 
 const NavButton = styled.button`
-  height: 80px;
-  width: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+  margin-bottom: 14px;
 
   background-color: ${({ activeTab, theme }) =>
-    activeTab ? theme.colors.grey100 : theme.colors.transparent};
+    activeTab ? theme.colors.green100 : theme.colors.transparent};
+
+  :last-child {
+    margin-bottom: 0px;
+  }
 
   svg {
     width: 24px;
@@ -35,7 +46,14 @@ const NavButton = styled.button`
 
 export const Navigation = ({ setActiveTab, activeTab }) => {
   return (
-    <SideBar>
+    <div
+      style={{
+        position: "sticky",
+        top: "20px",
+        left: "24px",
+        alignSelf: "flex-start",
+      }}
+    >
       <div
         style={{
           background:
@@ -45,18 +63,22 @@ export const Navigation = ({ setActiveTab, activeTab }) => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          borderRadius: "50%",
+          marginBottom: "24px",
         }}
       >
         <Logo />
       </div>
 
-      <NavButton onClick={() => setActiveTab(0)} activeTab={activeTab === 0}>
-        <Accounts />
-      </NavButton>
+      <Nav>
+        <NavButton onClick={() => setActiveTab(0)} activeTab={activeTab === 0}>
+          <Accounts />
+        </NavButton>
 
-      <NavButton onClick={() => setActiveTab(1)} activeTab={activeTab === 1}>
-        <Settings />
-      </NavButton>
-    </SideBar>
+        <NavButton onClick={() => setActiveTab(1)} activeTab={activeTab === 1}>
+          <Settings />
+        </NavButton>
+      </Nav>
+    </div>
   );
 };

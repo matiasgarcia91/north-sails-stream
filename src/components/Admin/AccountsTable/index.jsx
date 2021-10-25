@@ -138,7 +138,12 @@ export default function DataTable() {
     }
   );
 
-  console.log("selected rows", selectedRowIds, selectedFlatRows);
+  const doSomething = () => {
+    const selectedAccountIDs = selectedFlatRows?.map(
+      (row) => row?.original?.id
+    );
+    console.log(selectedAccountIDs);
+  };
 
   return (
     <div style={{ width: "100%" }}>
