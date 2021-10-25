@@ -9,6 +9,7 @@ import {
 import { updateEventSettings } from "../../../../store/admin/actions";
 
 import { Card, Heading, Input, Checkbox, Button } from "../../../../components";
+import { ReactComponent as EyeOpen } from "../../../../components/common/Icons/EyeOpen.svg";
 
 const FieldSeparator = styled.div`
   margin-top: 12px;
@@ -55,44 +56,46 @@ const EventDetailsForm = () => {
         >
           Event Settings
         </Heading>
-        {loadingState.eventForm ? (
-          <div>SPINNNEERRRR</div>
-        ) : (
-          <>
-            <FieldSeparator />
-            <Input
-              onChange={onFormChange}
-              label='Event name'
-              value={eventForm.name}
-              name='name'
-            />
-            <FieldSeparator />
-            <Input
-              onChange={onFormChange}
-              label='Livechat ID'
-              value={eventForm.livechatId}
-              name='livechatId'
-            />
-            <FieldSeparator />
-            <Input
-              onChange={onFormChange}
-              label='Stream Vimeo ID'
-              value={eventForm.streamUrl}
-              name='streamUrl'
-            />
-            <FieldSeparator />
-            <Checkbox
-              label='Watermark active'
-              checked={eventForm.watermark}
-              onChange={onFormChange}
-              name='watermark'
-            />
-            <FieldSeparator />
-            <Button variant='primary' onClick={onEventUpdate}>
-              Update
-            </Button>
-          </>
-        )}
+        <FieldSeparator />
+        <Input
+          onChange={onFormChange}
+          label='Event name'
+          value={eventForm.name}
+          name='name'
+          disabled={loadingState.eventForm}
+        />
+        <FieldSeparator />
+        <Input
+          onChange={onFormChange}
+          label='Livechat ID'
+          value={eventForm.livechatId}
+          name='livechatId'
+          disabled={loadingState.eventForm}
+        />
+        <FieldSeparator />
+        <Input
+          onChange={onFormChange}
+          label='Stream Vimeo ID'
+          value={eventForm.streamUrl}
+          name='streamUrl'
+          disabled={loadingState.eventForm}
+        />
+        <FieldSeparator />
+        <Checkbox
+          label='Watermark active'
+          checked={eventForm.watermark}
+          onChange={onFormChange}
+          name='watermark'
+          disabled={loadingState.eventForm}
+        />
+        <FieldSeparator />
+        <Button
+          variant='primary'
+          onClick={onEventUpdate}
+          loading={loadingState.eventForm}
+        >
+          Update
+        </Button>
       </div>
     </Card>
   );

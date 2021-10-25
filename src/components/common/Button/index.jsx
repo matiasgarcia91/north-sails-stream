@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { variant } from "styled-system";
 
+import { Spinner } from "../../../components";
+
 const variants = {
   primary: {
     backgroundColor: "primary",
@@ -26,9 +28,9 @@ const StyledButton = styled.button`
   min-width: 160px;
   border-radius: 6px;
   height: 40px;
-  color: ${(p) => p.theme.colors.white};
-  font-weight: ${(p) => p.theme.fontWeights.bold};
-  font-size: ${(p) => p.theme.fontSizes[2]};
+  color: ${p => p.theme.colors.white};
+  font-weight: ${p => p.theme.fontWeights.bold};
+  font-size: ${p => p.theme.fontSizes[2]};
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -38,10 +40,27 @@ const StyledButton = styled.button`
 `;
 
 export const Button = ({ children, variant = "primary", ...props }) => {
+  const spinnerColor = variant === "secondary" ? "#00e8af" : "white";
+  const Icon = props.icon;
   return (
     <StyledButton variant={variant} {...props}>
-      {/* <Icon as="span" className="button-background" icon={ButtonIcon} /> */}
-      {children}
+      {props.loading ? (
+        <Spinner color={spinnerColor} size={16} style={{ marginBottom: 3 }} />
+      ) : (
+        <>
+          {children}{" "}
+          {Icon && (
+            <Icon
+              style={{
+                marginLeft: 5,
+                height: 20,
+                width: 20,
+                color: spinnerColor,
+              }}
+            />
+          )}
+        </>
+      )}
     </StyledButton>
   );
 };

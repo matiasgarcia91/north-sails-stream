@@ -6,13 +6,15 @@ import TextField from "@material-ui/core/TextField";
 import AccountsTable from "../../../components/Admin/AccountsTable";
 
 import { uploadCSV } from "../../../store/admin/actions";
-import { isLoading, createdAccounts } from "../../../store/admin/selectors";
+import { createdAccounts } from "../../../store/admin/selectors";
 
 import "../Admin.css";
 
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Card, Heading, Text } from "../../../components";
 import { Divider } from "../../../components/common/Divider";
+
+import { ReactComponent as EyeOpen } from "../../../components/common/Icons/EyeOpen.svg";
 
 const useStyles = makeStyles({
   textFields: {
@@ -29,7 +31,6 @@ const Admin = () => {
   const [uploadBulk, setUploadBulk] = useState(false);
 
   const dispatch = useDispatch();
-  const loading = useSelector(isLoading);
   const accounts = useSelector(createdAccounts);
   const classes = useStyles();
 
@@ -37,14 +38,14 @@ const Admin = () => {
     dispatch(uploadCSV(selectedFile, dummies, domain));
   };
 
-  const fileSelectHandler = (event) => {
+  const fileSelectHandler = event => {
     setSelectedFile(event.target.files[0]);
     setIsFilePicked(true);
   };
 
   return (
     <div>
-      <Heading variant="h1">Accounts</Heading>
+      <Heading variant='h1'>Accounts</Heading>
       <Divider />
       <Text
         style={{ fontWeight: "bold", color: "#A8A7B4", marginBottom: "40px" }}
@@ -73,7 +74,7 @@ const Admin = () => {
               >
                 <div style={{ display: "flex" }}>
                   <label style={{ marginRight: 20 }}>Select CSV file</label>
-                  <input type="file" name="file" onChange={fileSelectHandler} />
+                  <input type='file' name='file' onChange={fileSelectHandler} />
                   {isFilePicked ? (
                     <div>
                       <span>Filename: {selectedFile.name}</span>
@@ -89,33 +90,33 @@ const Admin = () => {
               </div>
               <div style={{ display: "flex", marginTop: 10, marginLeft: 30 }}>
                 <TextField
-                  variant="filled"
-                  name="dummies"
-                  label="# of Backups"
-                  type="number"
+                  variant='filled'
+                  name='dummies'
+                  label='# of Backups'
+                  type='number'
                   fullWidth
-                  size="small"
-                  margin="dense"
+                  size='small'
+                  margin='dense'
                   value={dummies}
                   classes={{ root: classes.textFields }}
-                  onChange={(e) => setDummies(e.target.value)}
+                  onChange={e => setDummies(e.target.value)}
                 />
                 <TextField
-                  variant="filled"
-                  name="domain"
-                  label="Backup Domain"
-                  type="text"
+                  variant='filled'
+                  name='domain'
+                  label='Backup Domain'
+                  type='text'
                   fullWidth
-                  size="small"
-                  margin="dense"
+                  size='small'
+                  margin='dense'
                   value={domain}
                   classes={{ root: classes.textFields }}
-                  onChange={(e) => setDomain(e.target.value)}
+                  onChange={e => setDomain(e.target.value)}
                 />
                 <div style={{ marginLeft: 30, marginTop: 15 }}>
                   <Button
-                    variant="contained"
-                    color="primary"
+                    variant='contained'
+                    color='primary'
                     onClick={uploadFile}
                     disabled={!isFilePicked}
                   >
@@ -131,7 +132,7 @@ const Admin = () => {
               data={accounts}
               style={{ color: "inherit", textDecoration: "none" }}
             >
-              <Button variant="secondary">Download CSV</Button>
+              <Button variant='secondary'>Download CSV</Button>
             </CSVLink>
           )}
         </div>
