@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-import { Card } from "../../../../components";
-import EventDetailsForm from "./EventDetailsForm";
+import { Card } from "../../../components";
+import EventDetailsForm from "../../../components/Admin/EventDetailsForm";
 
-import "../../Admin.css";
+import "../Admin.css";
 
 const SystemSettings = () => {
   const StyledDiv = styled.div`

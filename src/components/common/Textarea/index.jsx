@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-const StyledInput = styled.input`
+const StyledTextarea = styled.textarea`
   width: 100%;
   padding: 8px;
-  height: 32px;
-  max-height: 32px;
+  min-height: 160px;
   border-radius: 6px;
   border: 1px solid ${p => p.theme.colors.grey200};
   background: #faf9fd;
   font-family: inherit;
+  box-sizing: border-box;
   &:hover,
   &:focus {
     border: 1px solid ${p => p.theme.colors.primary};
@@ -19,28 +19,27 @@ const StyledInput = styled.input`
 
 const StyledDiv = styled.div`
   display: flex;
-  max-width: 350px;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 170px;
 `;
 
 const StyledLabel = styled.label`
+  margin-bottom: 12px;
   font-weight: 700;
   color: ${p => p.theme.colors.grey400};
-  text-align: left;
   font-size: 16px;
 `;
 
-export const Checkbox = ({ children, variant = "primary", ...props }) => {
+export const Textarea = ({ children, variant = "primary", ...props }) => {
   return (
     <StyledDiv>
-      <div>
-        <StyledLabel>{props.label}</StyledLabel>
-      </div>
-      <StyledDiv style={{ maxHeight: 32, minWidth: 28, marginLeft: 20 }}>
-        <StyledInput variant={variant} {...props} type='checkbox'>
+      <StyledLabel>{props.label}</StyledLabel>
+      <StyledDiv style={{ height: 32, width: "100%" }}>
+        <StyledTextarea variant={variant} {...props}>
           {/* <Icon as="span" className="button-background" icon={ButtonIcon} /> */}
           {children}
-        </StyledInput>
+        </StyledTextarea>
       </StyledDiv>
     </StyledDiv>
   );

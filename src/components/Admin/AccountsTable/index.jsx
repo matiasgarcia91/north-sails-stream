@@ -3,14 +3,20 @@ import { useSelector, useDispatch } from "react-redux";
 import { useTable, useRowSelect, usePagination } from "react-table";
 import styled from "styled-components";
 import { Dialog } from "@reach/dialog";
+
 import { Button, Spinner, Select } from "../..";
-import { fetchUserAccounts } from "../../../store/admin/actions";
+import {
+  fetchUserAccounts,
+  sendEmailCampaign,
+} from "../../../store/admin/actions";
 import {
   createdAccounts,
-  isLoading as loadingSelector,
+  getAdminLoadingState,
 } from "../../../store/admin/selectors";
-import { ReactComponent as Refresh } from "../../common/Icons/Refresh.svg";
 import { Pagination } from "./Pagination";
+import { EmailContent } from "./EmailContent";
+
+import { ReactComponent as Refresh } from "../../common/Icons/Refresh.svg";
 import { ReactComponent as EyeClosed } from "../../common/Icons/EyeClosed.svg";
 import { ReactComponent as EyeOpen } from "../../common/Icons/EyeOpen.svg";
 import "@reach/dialog/styles.css";
@@ -92,7 +98,7 @@ export default function DataTable() {
     []
   );
 
-  const isLoading = useSelector(loadingSelector);
+  const isLoading = useSelector(getAdminLoadingState);
   const accounts = useSelector(createdAccounts);
 
   const refetch = () => {
@@ -141,8 +147,11 @@ export default function DataTable() {
     }
   );
 
-  const sendEmails = () => {
+  const sendEmail = ({ content, subject, all }) => {
     const selectedAccountIds = selectedFlatRows?.map(row => row?.original?.id);
+    dispatch(
+      sendEmailCampaign({ content, subject, all, userIds: selectedAccountIds })
+    );
   };
 
   const openModal = content => {
@@ -151,6 +160,7 @@ export default function DataTable() {
     } else {
       console.log("delete");
     }
+
     setModalOpen(true);
   };
 
@@ -161,7 +171,14 @@ export default function DataTable() {
 
   return (
     <div style={{ width: "100%", marginTop: 20 }}>
-      <Dialog isOpen={isModalOpen}>Hola</Dialog>
+      <Dialog isOpen={isModalOpen}>
+        <EmailContent
+          selected={selectedFlatRows}
+          closeModal={() => setModalOpen(false)}
+          sendEmail={sendEmail}
+          isLoading={isLoading.emailForm}
+        />
+      </Dialog>
       <div
         style={{
           display: "flex",
@@ -250,7 +267,7 @@ export default function DataTable() {
             </HeaderRow>
           ))}
         </thead>
-        {!isLoading && (
+        {!isLoading.accounts && (
           <tbody {...getTableBodyProps()}>
             {page.map(row => {
               prepareRow(row);
@@ -287,7 +304,7 @@ export default function DataTable() {
         )}
       </Table>
 
-      {isLoading && (
+      {isLoading.accounts && (
         <div
           style={{
             height: "1120px",

@@ -12,7 +12,7 @@ export const variants = {
     fontSize: "24px",
   },
   h4: {
-    fontSize: "24px",
+    fontSize: "16px",
   },
   h5: {
     fontSize: [2, 3],

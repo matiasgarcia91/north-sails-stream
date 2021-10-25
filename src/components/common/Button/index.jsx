@@ -16,6 +16,10 @@ const variants = {
   warning: {
     backgroundColor: "secondary",
   },
+  disabled: {
+    backgroundColor: "grey200",
+    color: "grey400",
+  },
   unstyled: {
     color: "grey800",
     padding: 0,

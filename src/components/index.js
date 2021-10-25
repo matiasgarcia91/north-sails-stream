@@ -7,3 +7,4 @@ export * from "./common/Input";
 export * from "./common/Checkbox";
 export * from "./common/Spinner";
 export * from "./common/Select";
+export * from "./common/Textarea";

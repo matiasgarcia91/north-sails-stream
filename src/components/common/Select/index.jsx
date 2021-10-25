@@ -12,31 +12,7 @@ const variants = {
     borderColor: "primary",
     color: "primary",
   },
-  warning: {
-    backgroundColor: "secondary",
-  },
-  unstyled: {
-    color: "grey800",
-    padding: 0,
-    minWidth: 0,
-  },
 };
-
-const StyledSelect = styled.div`
-  /* padding: 8px;
-  border-radius: 6px;
-  height: 40px;
-  min-width: 146px;
-  color: ${p => p.theme.colors.white};
-  font-weight: ${p => p.theme.fontWeights.bold};
-  font-size: ${p => p.theme.fontSizes[2]};
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  ${variant({ variants })} */
-`;
 
 const DropDownContainer = styled.div`
   padding: 8px;
@@ -61,7 +37,13 @@ const Main = styled.div`
   align-items: flex-start;
   z-index: 10;
 `;
-const DropDownList = styled("ul")`
+
+const ListContainer = styled.div`
+  position: relative;
+  display: ${p => (p.isOpen ? "inherit" : "none")};
+`;
+
+const DropDownList = styled.ul`
   padding: 0;
   margin: 0;
   min-width: 160px;
@@ -78,12 +60,7 @@ const DropDownList = styled("ul")`
   }
 `;
 
-const ListContainer = styled.div`
-  position: relative;
-  display: ${p => (p.isOpen ? "inherit" : "none")};
-`;
-
-const ListItem = styled("li")`
+const ListItem = styled.li`
   list-style: none;
   margin-bottom: 0.8em;
   cursor: pointer;
@@ -91,6 +68,11 @@ const ListItem = styled("li")`
 
 export const Select = ({ children, variant = "primary", ...props }) => {
   const [open, setOpen] = useState(false);
+
+  const onSelectClick = handler => {
+    handler();
+    setOpen(false);
+  };
   return (
     <Main>
       <DropDownContainer variant={variant} onClick={() => setOpen(!open)}>
@@ -100,18 +82,12 @@ export const Select = ({ children, variant = "primary", ...props }) => {
       <ListContainer isOpen={open}>
         <DropDownList>
           {props.options.map(opt => (
-            <ListItem onClick={opt.handler}>{opt.label}</ListItem>
+            <ListItem onClick={() => onSelectClick(opt.handler)}>
+              {opt.label}
+            </ListItem>
           ))}
         </DropDownList>
       </ListContainer>
     </Main>
   );
 };
-
-// {/* <StyledDiv style={{ height: 32, width: "100%" }} variant={variant}>
-// <StyledSelect variant={variant} {...props}>
-//   {/* <Icon as="span" className="button-background" icon={ButtonIcon} /> */}
-//   {children}
-//   <ChevronDown style={{ height: 12, width: 12, marginLeft: 20 }} />
-// </StyledSelect>
-// </StyledDiv> */}
