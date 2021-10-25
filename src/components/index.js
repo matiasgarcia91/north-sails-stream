@@ -6,3 +6,4 @@ export * from "./common/Card";
 export * from "./common/Input";
 export * from "./common/Checkbox";
 export * from "./common/Spinner";
+export * from "./common/Select";
