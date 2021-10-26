@@ -33,6 +33,8 @@ const variants = {
 
 const StyledButton = styled.button`
   padding: 8px;
+  padding-left: 24px;
+  padding-right: 24px;
   min-width: 160px;
   border-radius: 6px;
   height: 40px;
@@ -60,7 +62,7 @@ export const Button = ({ children, variant = "primary", ...props }) => {
           {Icon && (
             <Icon
               style={{
-                marginLeft: 5,
+                marginLeft: 8,
                 height: 20,
                 width: 20,
                 color: spinnerColor,
