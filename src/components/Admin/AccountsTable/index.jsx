@@ -21,6 +21,7 @@ import { ReactComponent as EyeOpen } from "../../common/Icons/EyeOpen.svg";
 import { ReactComponent as AddAccount } from "../../common/Icons/AddAccount.svg";
 
 import { TableButton } from "../TableButton";
+import { NewRow } from "./NewRow";
 
 const Table = styled.table`
   width: 100%;
@@ -282,27 +283,8 @@ export default function DataTable() {
 
         {!isLoading?.accounts && (
           <tbody {...getTableBodyProps()}>
-            {addingRow && (
-              <Row>
-                <Cell />
-                {columns.map((column) => {
-                  const getCellContent = (col) => {
-                    switch (col.accessor) {
-                      case "fullName":
-                        return <div>name</div>;
-                      case "email":
-                        return <div>email</div>;
-                      case "admin":
-                        return <div>select</div>;
-                      default:
-                        return;
-                    }
-                  };
+            {addingRow && <NewRow Row={Row} Cell={Cell} columns={columns} />}
 
-                  return <Cell>{getCellContent(column)}</Cell>;
-                })}
-              </Row>
-            )}
             {page?.map((row) => {
               prepareRow(row);
               return (
