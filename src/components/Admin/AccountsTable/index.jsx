@@ -18,7 +18,9 @@ import { SendEmailModal } from "./SendEmailModal";
 import { ReactComponent as Refresh } from "../../common/Icons/Refresh.svg";
 import { ReactComponent as EyeClosed } from "../../common/Icons/EyeClosed.svg";
 import { ReactComponent as EyeOpen } from "../../common/Icons/EyeOpen.svg";
-import "@reach/dialog/styles.css";
+import { ReactComponent as AddAccount } from "../../common/Icons/AddAccount.svg";
+
+import { TableButton } from "../TableButton";
 
 const Table = styled.table`
   width: 100%;
@@ -188,7 +190,8 @@ export default function DataTable() {
           width: "100%",
         }}
       >
-        <div>
+        <div style={{ display: "flex" }}>
+          <TableButton icon={AddAccount} style={{ marginRight: "15px" }} />
           <Select options={dropDownOptions}>
             {selectedFlatRows.length
               ? `${selectedFlatRows.length} Bulk Actions`

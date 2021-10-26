@@ -50,7 +50,7 @@ const StyledButton = styled.button`
 `;
 
 export const Button = ({ children, variant = "primary", ...props }) => {
-  const spinnerColor = variant === "secondary" ? "#00e8af" : "white";
+  const spinnerColor = variant === "secondary" ? "#00e8af" : "currentColor";
   const Icon = props.icon;
   return (
     <StyledButton variant={variant} {...props}>
@@ -62,9 +62,9 @@ export const Button = ({ children, variant = "primary", ...props }) => {
           {Icon && (
             <Icon
               style={{
-                marginLeft: 8,
-                height: 20,
-                width: 20,
+                marginLeft: children && 8,
+                height: children ? 20 : 24,
+                width: children ? 20 : 24,
                 color: spinnerColor,
               }}
             />
