@@ -14,6 +14,8 @@ import { UploadAccountsModal } from "../../../components/Admin/AccountsTable/Upl
 import { ReactComponent as Upload } from "../../../components/common/Icons/Upload.svg";
 import { ReactComponent as Download } from "../../../components/common/Icons/Download.svg";
 
+import "@reach/dialog/styles.css";
+
 const Admin = () => {
   const [isModalOpen, setModalOpen] = useState(false);
 
