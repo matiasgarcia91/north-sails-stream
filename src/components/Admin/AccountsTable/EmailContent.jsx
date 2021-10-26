@@ -16,12 +16,15 @@ export const EmailContent = ({
   closeModal,
   sendEmail,
   isLoading,
+  totalRows,
 }) => {
   const [toAll, setToAll] = useState(false);
   const [subject, setSubject] = useState("");
   const [content, setContent] = useState("");
 
-  const buttonDisabled = !subject || !content;
+  const buttonDisabled =
+    !subject || !content || (selected.length === 0 && !toAll);
+
   return (
     <div>
       <div
@@ -66,7 +69,7 @@ export const EmailContent = ({
 
         <div>
           <Heading variant={"h4"} style={{ marginBottom: 30 }}>
-            Selected Accounts: {selected.length}
+            Selected Accounts: {toAll ? totalRows : selected.length}
           </Heading>
         </div>
       </div>

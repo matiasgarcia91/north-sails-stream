@@ -186,6 +186,7 @@ export default function DataTable() {
           closeModal={() => setModalOpen(false)}
           sendEmail={sendEmail}
           isLoading={isLoading.emailForm}
+          totalRows={accounts?.length}
         />
       </Dialog>
       <div
@@ -249,8 +250,8 @@ export default function DataTable() {
 
       <Table {...getTableProps()}>
         <thead>
-          {headerGroups.map((headerGroup) => (
-            <HeaderRow {...headerGroup.getHeaderGroupProps()}>
+          {headerGroups?.map((headerGroup) => (
+            <HeaderRow {...headerGroup?.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => {
                 return (
                   <HeaderCell {...column.getHeaderProps()}>
@@ -276,9 +277,10 @@ export default function DataTable() {
             </HeaderRow>
           ))}
         </thead>
-        {!isLoading.accounts && (
+
+        {!isLoading?.accounts && (
           <tbody {...getTableBodyProps()}>
-            {page.map((row) => {
+            {page?.map((row) => {
               prepareRow(row);
               return (
                 <Row {...row.getRowProps()}>
@@ -313,7 +315,7 @@ export default function DataTable() {
         )}
       </Table>
 
-      {isLoading.accounts && (
+      {isLoading?.accounts && (
         <div
           style={{
             height: "1120px",
