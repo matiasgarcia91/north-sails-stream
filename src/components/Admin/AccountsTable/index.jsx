@@ -86,15 +86,18 @@ export default function DataTable() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState("");
 
+  const [addingRow, setAddingRow] = useState(false);
+
   const columns = useMemo(
     () => [
       { accessor: "id", Header: "ID" },
       { accessor: "fullName", Header: "Full Name" },
       { accessor: "email", Header: "Email" },
       { accessor: "password", Header: "Password" },
-      { accessor: "admin", Header: "Admin" },
+      { accessor: "admin", Header: "Role" },
       { accessor: "emailSent", Header: "Email sent" },
       { accessor: "hasLoggedIn", Header: "Has logged in" },
+      { accessor: "actions", Header: "Actions" },
     ],
     []
   );
@@ -191,7 +194,11 @@ export default function DataTable() {
         }}
       >
         <div style={{ display: "flex" }}>
-          <TableButton icon={AddAccount} style={{ marginRight: "15px" }} />
+          <TableButton
+            icon={AddAccount}
+            style={{ marginRight: "15px" }}
+            onClick={() => setAddingRow(!addingRow)}
+          />
           <Select options={dropDownOptions}>
             {selectedFlatRows.length
               ? `${selectedFlatRows.length} Bulk Actions`
@@ -275,6 +282,27 @@ export default function DataTable() {
 
         {!isLoading?.accounts && (
           <tbody {...getTableBodyProps()}>
+            {addingRow && (
+              <Row>
+                <Cell />
+                {columns.map((column) => {
+                  const getCellContent = (col) => {
+                    switch (col.accessor) {
+                      case "fullName":
+                        return <div>name</div>;
+                      case "email":
+                        return <div>email</div>;
+                      case "admin":
+                        return <div>select</div>;
+                      default:
+                        return;
+                    }
+                  };
+
+                  return <Cell>{getCellContent(column)}</Cell>;
+                })}
+              </Row>
+            )}
             {page?.map((row) => {
               prepareRow(row);
               return (
@@ -289,7 +317,7 @@ export default function DataTable() {
                             </div>
                           );
                         case "admin":
-                          return <div>{cell.value && "yes"}</div>;
+                          return <div>{cell.value && "Admin"}</div>;
                         case "emailSent":
                           return <div>{cell.value && "yes"}</div>;
                         case "hasLoggedIn":
@@ -298,7 +326,7 @@ export default function DataTable() {
                           return <div>{cell.render("Cell")}</div>;
                       }
                     };
-
+                    console.log(cell);
                     return (
                       <Cell {...cell.getCellProps()}>{getContent(cell)}</Cell>
                     );
