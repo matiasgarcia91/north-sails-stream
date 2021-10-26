@@ -38,8 +38,8 @@ const useStyles = makeStyles({
 });
 
 const AdminLoginPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("matiasigarcia91@gmail.com");
+  const [password, setPassword] = useState("freshnclean");
   const dispatch = useDispatch();
   const history = useHistory();
   const error = useSelector(getError);

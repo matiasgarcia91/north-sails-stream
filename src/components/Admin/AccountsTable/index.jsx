@@ -2,17 +2,24 @@ import { useMemo, forwardRef, useRef, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useTable, useRowSelect, usePagination } from "react-table";
 import styled from "styled-components";
-import { Button } from "../..";
-import { fetchUserAccounts } from "../../../store/admin/actions";
+import { Dialog } from "@reach/dialog";
+
+import { Button, Spinner, Select } from "../..";
+import {
+  fetchUserAccounts,
+  sendEmailCampaign,
+} from "../../../store/admin/actions";
 import {
   createdAccounts,
-  isLoading as loadingSelector,
+  getAdminLoadingState,
 } from "../../../store/admin/selectors";
-import { ReactComponent as Refresh } from "../../common/Icons/Refresh.svg";
-import { Spinner } from "../../common/Spinner";
 import { Pagination } from "./Pagination";
+import { EmailContent } from "./EmailContent";
+
+import { ReactComponent as Refresh } from "../../common/Icons/Refresh.svg";
 import { ReactComponent as EyeClosed } from "../../common/Icons/EyeClosed.svg";
 import { ReactComponent as EyeOpen } from "../../common/Icons/EyeOpen.svg";
+import "@reach/dialog/styles.css";
 
 const Table = styled.table`
   width: 100%;
@@ -67,7 +74,7 @@ const IndeterminateCheckbox = forwardRef(({ indeterminate, ...rest }, ref) => {
 
   return (
     <>
-      <input type="checkbox" ref={resolvedRef} {...rest} />
+      <input type='checkbox' ref={resolvedRef} {...rest} />
     </>
   );
 });
@@ -75,6 +82,8 @@ const IndeterminateCheckbox = forwardRef(({ indeterminate, ...rest }, ref) => {
 export default function DataTable() {
   const dispatch = useDispatch();
   const [seePassword, setSeePassword] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState("");
 
   const columns = useMemo(
     () => [
@@ -89,7 +98,7 @@ export default function DataTable() {
     []
   );
 
-  const isLoading = useSelector(loadingSelector);
+  const isLoading = useSelector(getAdminLoadingState);
   const accounts = useSelector(createdAccounts);
 
   const refetch = () => {
@@ -118,8 +127,8 @@ export default function DataTable() {
     { columns, data, initialState: { pageSize: 20 } },
     usePagination,
     useRowSelect,
-    (hooks) => {
-      hooks.visibleColumns.push((columns) => [
+    hooks => {
+      hooks.visibleColumns.push(columns => [
         {
           id: "selection",
           Header: ({ getToggleAllRowsSelectedProps }) => (
@@ -138,69 +147,109 @@ export default function DataTable() {
     }
   );
 
-  const doSomething = () => {
-    const selectedAccountIDs = selectedFlatRows?.map(
-      (row) => row?.original?.id
+  const sendEmail = ({ content, subject, all }) => {
+    const selectedAccountIds = selectedFlatRows?.map(row => row?.original?.id);
+    dispatch(
+      sendEmailCampaign({ content, subject, all, userIds: selectedAccountIds })
     );
-    console.log(selectedAccountIDs);
   };
 
+  const openModal = content => {
+    if ("email") {
+      console.log("email");
+    } else {
+      console.log("delete");
+    }
+
+    setModalOpen(true);
+  };
+
+  const dropDownOptions = [
+    { label: "Send Emails", handler: () => openModal("email") },
+    { label: "Delete Users", handler: () => openModal("delete") },
+  ];
+
   return (
-    <div style={{ width: "100%" }}>
+    <div style={{ width: "100%", marginTop: 20 }}>
+      <Dialog isOpen={isModalOpen}>
+        <EmailContent
+          selected={selectedFlatRows}
+          closeModal={() => setModalOpen(false)}
+          sendEmail={sendEmail}
+          isLoading={isLoading.emailForm}
+        />
+      </Dialog>
       <div
         style={{
           display: "flex",
-          justifyContent: "end",
+          justifyContent: "space-between",
           alignItems: "center",
           width: "100%",
         }}
       >
-        <Button
-          variant="secondary"
-          onClick={refetch}
+        <div>
+          <Select options={dropDownOptions}>
+            {selectedFlatRows.length
+              ? `${selectedFlatRows.length} Bulk Actions`
+              : "Bulk Actions"}
+          </Select>
+        </div>
+
+        <div
           style={{
-            width: "40px",
-            height: "40px",
-            marginRight: "16px",
-            borderRadius: "50%",
-            minWidth: "0px",
+            display: "flex",
+            justifyContent: "end",
+            alignItems: "center",
+            width: "100%",
           }}
         >
-          <div
+          <Button
+            variant='secondary'
+            onClick={refetch}
             style={{
-              width: "24px",
-              height: "24px",
-              color: "#00e8af",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
+              width: "40px",
+              height: "40px",
+              marginRight: "16px",
+              borderRadius: "50%",
+              minWidth: "0px",
             }}
           >
-            <Refresh />
-          </div>
-        </Button>
-        <Pagination
-          canPreviousPage={canPreviousPage}
-          canNextPage={canNextPage}
-          pageCount={pageCount}
-          nextPage={nextPage}
-          previousPage={previousPage}
-          pageIndex={pageIndex}
-        />
+            <div
+              style={{
+                width: "24px",
+                height: "24px",
+                color: "#00e8af",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Refresh />
+            </div>
+          </Button>
+          <Pagination
+            canPreviousPage={canPreviousPage}
+            canNextPage={canNextPage}
+            pageCount={pageCount}
+            nextPage={nextPage}
+            previousPage={previousPage}
+            pageIndex={pageIndex}
+          />
+        </div>
       </div>
 
       <Table {...getTableProps()}>
         <thead>
-          {headerGroups.map((headerGroup) => (
+          {headerGroups.map(headerGroup => (
             <HeaderRow {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => {
+              {headerGroup.headers.map(column => {
                 return (
                   <HeaderCell {...column.getHeaderProps()}>
                     <div style={{ display: "flex", alignItems: "center" }}>
                       {column.render("Header")}
                       {column.id === "password" && (
                         <Button
-                          variant="unstyled"
+                          variant='unstyled'
                           onClick={() => setSeePassword(!seePassword)}
                           style={{
                             height: "20px",
@@ -218,14 +267,14 @@ export default function DataTable() {
             </HeaderRow>
           ))}
         </thead>
-        {!isLoading && (
+        {!isLoading.accounts && (
           <tbody {...getTableBodyProps()}>
-            {page.map((row) => {
+            {page.map(row => {
               prepareRow(row);
               return (
                 <Row {...row.getRowProps()}>
-                  {row.cells.map((cell) => {
-                    const getContent = (cell) => {
+                  {row.cells.map(cell => {
+                    const getContent = cell => {
                       switch (cell.column.id) {
                         case "password":
                           return (
@@ -255,7 +304,7 @@ export default function DataTable() {
         )}
       </Table>
 
-      {isLoading && (
+      {isLoading.accounts && (
         <div
           style={{
             height: "1120px",

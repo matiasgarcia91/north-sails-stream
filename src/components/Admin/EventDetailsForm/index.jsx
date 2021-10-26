@@ -5,11 +5,10 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   getAdminEvent,
   getAdminLoadingState,
-} from "../../../../store/admin/selectors";
-import { updateEventSettings } from "../../../../store/admin/actions";
+} from "../../../store/admin/selectors";
+import { updateEventSettings } from "../../../store/admin/actions";
 
-import { Card, Heading, Input, Checkbox, Button } from "../../../../components";
-import { ReactComponent as EyeOpen } from "../../../../components/common/Icons/EyeOpen.svg";
+import { Card, Heading, Input, Checkbox, Button } from "../..";
 
 const FieldSeparator = styled.div`
   margin-top: 12px;
