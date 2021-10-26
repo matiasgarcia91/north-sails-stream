@@ -2,7 +2,6 @@ import { useMemo, forwardRef, useRef, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useTable, useRowSelect, usePagination } from "react-table";
 import styled from "styled-components";
-import { Dialog } from "@reach/dialog";
 
 import { Button, Spinner, Select } from "../..";
 import {
@@ -14,12 +13,15 @@ import {
   getAdminLoadingState,
 } from "../../../store/admin/selectors";
 import { Pagination } from "./Pagination";
-import { EmailContent } from "./EmailContent";
+import { SendEmailModal } from "./SendEmailModal";
 
 import { ReactComponent as Refresh } from "../../common/Icons/Refresh.svg";
 import { ReactComponent as EyeClosed } from "../../common/Icons/EyeClosed.svg";
 import { ReactComponent as EyeOpen } from "../../common/Icons/EyeOpen.svg";
-import "@reach/dialog/styles.css";
+import { ReactComponent as AddAccount } from "../../common/Icons/AddAccount.svg";
+
+import { TableButton } from "../TableButton";
+import { NewRow } from "./NewRow";
 
 const Table = styled.table`
   width: 100%;
@@ -74,7 +76,7 @@ const IndeterminateCheckbox = forwardRef(({ indeterminate, ...rest }, ref) => {
 
   return (
     <>
-      <input type='checkbox' ref={resolvedRef} {...rest} />
+      <input type="checkbox" ref={resolvedRef} {...rest} />
     </>
   );
 });
@@ -85,15 +87,18 @@ export default function DataTable() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState("");
 
+  const [addingRow, setAddingRow] = useState(false);
+
   const columns = useMemo(
     () => [
       { accessor: "id", Header: "ID" },
       { accessor: "fullName", Header: "Full Name" },
       { accessor: "email", Header: "Email" },
       { accessor: "password", Header: "Password" },
-      { accessor: "admin", Header: "Admin" },
+      { accessor: "admin", Header: "Role" },
       { accessor: "emailSent", Header: "Email sent" },
       { accessor: "hasLoggedIn", Header: "Has logged in" },
+      { accessor: "actions", Header: "Actions" },
     ],
     []
   );
@@ -127,8 +132,8 @@ export default function DataTable() {
     { columns, data, initialState: { pageSize: 20 } },
     usePagination,
     useRowSelect,
-    hooks => {
-      hooks.visibleColumns.push(columns => [
+    (hooks) => {
+      hooks.visibleColumns.push((columns) => [
         {
           id: "selection",
           Header: ({ getToggleAllRowsSelectedProps }) => (
@@ -148,13 +153,15 @@ export default function DataTable() {
   );
 
   const sendEmail = ({ content, subject, all }) => {
-    const selectedAccountIds = selectedFlatRows?.map(row => row?.original?.id);
+    const selectedAccountIds = selectedFlatRows?.map(
+      (row) => row?.original?.id
+    );
     dispatch(
       sendEmailCampaign({ content, subject, all, userIds: selectedAccountIds })
     );
   };
 
-  const openModal = content => {
+  const openModal = (content) => {
     if ("email") {
       console.log("email");
     } else {
@@ -170,15 +177,15 @@ export default function DataTable() {
   ];
 
   return (
-    <div style={{ width: "100%", marginTop: 20 }}>
-      <Dialog isOpen={isModalOpen}>
-        <EmailContent
-          selected={selectedFlatRows}
-          closeModal={() => setModalOpen(false)}
-          sendEmail={sendEmail}
-          isLoading={isLoading.emailForm}
-        />
-      </Dialog>
+    <div style={{ marginTop: 20 }}>
+      <SendEmailModal
+        isOpen={isModalOpen}
+        selected={selectedFlatRows}
+        closeModal={() => setModalOpen(false)}
+        sendEmail={sendEmail}
+        isLoading={isLoading.emailForm}
+        totalRows={accounts?.length}
+      />
       <div
         style={{
           display: "flex",
@@ -187,7 +194,12 @@ export default function DataTable() {
           width: "100%",
         }}
       >
-        <div>
+        <div style={{ display: "flex" }}>
+          <TableButton
+            icon={AddAccount}
+            style={{ marginRight: "15px" }}
+            onClick={() => setAddingRow(!addingRow)}
+          />
           <Select options={dropDownOptions}>
             {selectedFlatRows.length
               ? `${selectedFlatRows.length} Bulk Actions`
@@ -204,7 +216,7 @@ export default function DataTable() {
           }}
         >
           <Button
-            variant='secondary'
+            variant="secondary"
             onClick={refetch}
             style={{
               width: "40px",
@@ -212,6 +224,7 @@ export default function DataTable() {
               marginRight: "16px",
               borderRadius: "50%",
               minWidth: "0px",
+              padding: "0px",
             }}
           >
             <div
@@ -240,16 +253,16 @@ export default function DataTable() {
 
       <Table {...getTableProps()}>
         <thead>
-          {headerGroups.map(headerGroup => (
-            <HeaderRow {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map(column => {
+          {headerGroups?.map((headerGroup) => (
+            <HeaderRow {...headerGroup?.getHeaderGroupProps()}>
+              {headerGroup.headers.map((column) => {
                 return (
                   <HeaderCell {...column.getHeaderProps()}>
                     <div style={{ display: "flex", alignItems: "center" }}>
                       {column.render("Header")}
                       {column.id === "password" && (
                         <Button
-                          variant='unstyled'
+                          variant="unstyled"
                           onClick={() => setSeePassword(!seePassword)}
                           style={{
                             height: "20px",
@@ -267,14 +280,17 @@ export default function DataTable() {
             </HeaderRow>
           ))}
         </thead>
-        {!isLoading.accounts && (
+
+        {!isLoading?.accounts && (
           <tbody {...getTableBodyProps()}>
-            {page.map(row => {
+            {addingRow && <NewRow Row={Row} Cell={Cell} columns={columns} />}
+
+            {page?.map((row) => {
               prepareRow(row);
               return (
                 <Row {...row.getRowProps()}>
-                  {row.cells.map(cell => {
-                    const getContent = cell => {
+                  {row.cells.map((cell) => {
+                    const getContent = (cell) => {
                       switch (cell.column.id) {
                         case "password":
                           return (
@@ -283,7 +299,7 @@ export default function DataTable() {
                             </div>
                           );
                         case "admin":
-                          return <div>{cell.value && "yes"}</div>;
+                          return <div>{cell.value && "Admin"}</div>;
                         case "emailSent":
                           return <div>{cell.value && "yes"}</div>;
                         case "hasLoggedIn":
@@ -292,7 +308,7 @@ export default function DataTable() {
                           return <div>{cell.render("Cell")}</div>;
                       }
                     };
-
+                    console.log(cell);
                     return (
                       <Cell {...cell.getCellProps()}>{getContent(cell)}</Cell>
                     );
@@ -304,7 +320,7 @@ export default function DataTable() {
         )}
       </Table>
 
-      {isLoading.accounts && (
+      {isLoading?.accounts && (
         <div
           style={{
             height: "1120px",

@@ -7,13 +7,13 @@ const StyledInput = styled.input`
   height: 32px;
   max-height: 32px;
   border-radius: 6px;
-  border: 1px solid ${p => p.theme.colors.grey200};
+  border: 1px solid ${(p) => p.theme.colors.grey200};
   background: #faf9fd;
   font-family: inherit;
   box-sizing: border-box;
   &:hover,
   &:focus {
-    border: 1px solid ${p => p.theme.colors.primary};
+    border: 1px solid ${(p) => p.theme.colors.primary};
     outline: none;
   }
 `;
@@ -28,14 +28,14 @@ const StyledDiv = styled.div`
 const StyledLabel = styled.label`
   margin-bottom: 12px;
   font-weight: 700;
-  color: ${p => p.theme.colors.grey400};
+  color: ${(p) => p.theme.colors.grey400};
   font-size: 16px;
 `;
 
 export const Input = ({ children, variant = "primary", ...props }) => {
   return (
     <StyledDiv>
-      <StyledLabel>{props.label}</StyledLabel>
+      {props.label && <StyledLabel>{props.label}</StyledLabel>}
       <StyledDiv style={{ height: 32, width: "100%" }}>
         <StyledInput variant={variant} {...props}>
           {/* <Icon as="span" className="button-background" icon={ButtonIcon} /> */}

@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 
 const StyledTextarea = styled.textarea`
@@ -6,13 +5,14 @@ const StyledTextarea = styled.textarea`
   padding: 8px;
   min-height: 160px;
   border-radius: 6px;
-  border: 1px solid ${p => p.theme.colors.grey200};
+  border: 1px solid ${(p) => p.theme.colors.grey200};
   background: #faf9fd;
   font-family: inherit;
   box-sizing: border-box;
+  resize: vertical;
   &:hover,
   &:focus {
-    border: 1px solid ${p => p.theme.colors.primary};
+    border: 1px solid ${(p) => p.theme.colors.primary};
     outline: none;
   }
 `;
@@ -27,7 +27,7 @@ const StyledDiv = styled.div`
 const StyledLabel = styled.label`
   margin-bottom: 12px;
   font-weight: 700;
-  color: ${p => p.theme.colors.grey400};
+  color: ${(p) => p.theme.colors.grey400};
   font-size: 16px;
 `;
 

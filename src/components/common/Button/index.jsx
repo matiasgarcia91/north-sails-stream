@@ -17,8 +17,12 @@ const variants = {
     backgroundColor: "secondary",
   },
   disabled: {
-    backgroundColor: "grey200",
-    color: "grey400",
+    backgroundColor: "grey50",
+    color: "grey200",
+    border: "1px solid",
+    borderColor: "grey100",
+    fontWeight: "regular",
+    cursor: "not-allowed",
   },
   unstyled: {
     color: "grey800",
@@ -29,12 +33,14 @@ const variants = {
 
 const StyledButton = styled.button`
   padding: 8px;
+  padding-left: 24px;
+  padding-right: 24px;
   min-width: 160px;
   border-radius: 6px;
   height: 40px;
-  color: ${p => p.theme.colors.white};
-  font-weight: ${p => p.theme.fontWeights.bold};
-  font-size: ${p => p.theme.fontSizes[2]};
+  color: ${(p) => p.theme.colors.white};
+  font-weight: ${(p) => p.theme.fontWeights.bold};
+  font-size: ${(p) => p.theme.fontSizes[2]};
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -44,7 +50,7 @@ const StyledButton = styled.button`
 `;
 
 export const Button = ({ children, variant = "primary", ...props }) => {
-  const spinnerColor = variant === "secondary" ? "#00e8af" : "white";
+  const spinnerColor = variant === "secondary" ? "#00e8af" : "currentColor";
   const Icon = props.icon;
   return (
     <StyledButton variant={variant} {...props}>
@@ -52,13 +58,13 @@ export const Button = ({ children, variant = "primary", ...props }) => {
         <Spinner color={spinnerColor} size={16} style={{ marginBottom: 3 }} />
       ) : (
         <>
-          {children}{" "}
+          {children}
           {Icon && (
             <Icon
               style={{
-                marginLeft: 5,
-                height: 20,
-                width: 20,
+                marginLeft: children && 8,
+                height: children ? 20 : 24,
+                width: children ? 20 : 24,
                 color: spinnerColor,
               }}
             />
