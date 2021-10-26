@@ -17,8 +17,12 @@ const variants = {
     backgroundColor: "secondary",
   },
   disabled: {
-    backgroundColor: "grey200",
-    color: "grey400",
+    backgroundColor: "grey50",
+    color: "grey200",
+    border: "1px solid",
+    borderColor: "grey100",
+    fontWeight: "regular",
+    cursor: "not-allowed",
   },
   unstyled: {
     color: "grey800",
@@ -32,9 +36,9 @@ const StyledButton = styled.button`
   min-width: 160px;
   border-radius: 6px;
   height: 40px;
-  color: ${p => p.theme.colors.white};
-  font-weight: ${p => p.theme.fontWeights.bold};
-  font-size: ${p => p.theme.fontSizes[2]};
+  color: ${(p) => p.theme.colors.white};
+  font-weight: ${(p) => p.theme.fontWeights.bold};
+  font-size: ${(p) => p.theme.fontSizes[2]};
   cursor: pointer;
   display: flex;
   align-items: center;
