@@ -33,9 +33,11 @@ const Admin = () => {
           <Button onClick={() => setModalOpen(!isModalOpen)}>
             Upload accounts
           </Button>
-          <Dialog isOpen={isModalOpen}>
-            <UploadAccountsModal />
-          </Dialog>
+
+          <UploadAccountsModal
+            isOpen={isModalOpen}
+            closeModal={() => setModalOpen(false)}
+          />
 
           {accounts && (
             <CSVLink

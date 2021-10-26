@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import { Checkbox, Heading, Input, Textarea, Text, Button } from "../..";
 import { ReactComponent as Close } from "../../common/Icons/Close.svg";
+import { Modal } from "../../common/Modal";
 
 const placeholderText = `Hello!
 
@@ -17,6 +18,7 @@ export const SendEmailModal = ({
   sendEmail,
   isLoading,
   totalRows,
+  isOpen,
 }) => {
   const [toAll, setToAll] = useState(false);
   const [subject, setSubject] = useState("");
@@ -26,7 +28,7 @@ export const SendEmailModal = ({
     !subject || !content || (selected.length === 0 && !toAll);
 
   return (
-    <div>
+    <Modal isOpen={isOpen}>
       <div
         style={{
           display: "flex",
@@ -103,6 +105,6 @@ export const SendEmailModal = ({
       >
         Send
       </Button>
-    </div>
+    </Modal>
   );
 };

@@ -2,7 +2,6 @@ import { useMemo, forwardRef, useRef, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useTable, useRowSelect, usePagination } from "react-table";
 import styled from "styled-components";
-import { Dialog } from "@reach/dialog";
 
 import { Button, Spinner, Select } from "../..";
 import {
@@ -173,22 +172,14 @@ export default function DataTable() {
 
   return (
     <div style={{ width: "100%", marginTop: 20 }}>
-      <Dialog
+      <SendEmailModal
         isOpen={isModalOpen}
-        style={{
-          borderRadius: "10px",
-          boxShadow: "0px 0px 6px rgba(0, 0, 0, 0.04)",
-          padding: "32px",
-        }}
-      >
-        <SendEmailModal
-          selected={selectedFlatRows}
-          closeModal={() => setModalOpen(false)}
-          sendEmail={sendEmail}
-          isLoading={isLoading.emailForm}
-          totalRows={accounts?.length}
-        />
-      </Dialog>
+        selected={selectedFlatRows}
+        closeModal={() => setModalOpen(false)}
+        sendEmail={sendEmail}
+        isLoading={isLoading.emailForm}
+        totalRows={accounts?.length}
+      />
       <div
         style={{
           display: "flex",

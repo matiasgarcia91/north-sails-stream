@@ -5,7 +5,8 @@ import styled from "styled-components";
 
 import { Heading, Button } from "../..";
 import { uploadCSV } from "../../../store/admin/actions";
-import { ReactComponent as ChevronDown } from "../../common/Icons/ChevronDown.svg";
+import { Modal } from "../../common/Modal";
+import { ReactComponent as Close } from "../../common/Icons/Close.svg";
 
 const StyledDiv = styled.div`
   display: flex;
@@ -14,7 +15,7 @@ const StyledDiv = styled.div`
   align-items: center;
 `;
 
-export const UploadAccountsModal = ({ closeModal }) => {
+export const UploadAccountsModal = ({ closeModal, isOpen }) => {
   const dispatch = useDispatch();
   const [dummies, setDummies] = useState("");
   const [domain, setDomain] = useState("");
@@ -31,14 +32,21 @@ export const UploadAccountsModal = ({ closeModal }) => {
   };
 
   return (
-    <StyledDiv>
+    <Modal isOpen={isOpen}>
       <div
-        style={{ display: "flex", justifyContent: "flex-end", width: "100%" }}
-        onClick={closeModal}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          marginBottom: "32px",
+        }}
       >
-        <ChevronDown style={{ width: 10, height: 10 }} />
+        <Heading variant={"h2"}>Upload accounts</Heading>
+        <Button onClick={closeModal} variant="unstyled">
+          <Close style={{ width: "32px", height: "32px" }} />
+        </Button>
       </div>
-      <Heading variant={"h2"}>Email</Heading>
+
       <div>
         <div
           style={{
@@ -106,6 +114,6 @@ export const UploadAccountsModal = ({ closeModal }) => {
           {domain && `backup0@${domain}.com`}
         </div>
       </div>
-    </StyledDiv>
+    </Modal>
   );
 };
