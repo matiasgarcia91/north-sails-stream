@@ -10,8 +10,9 @@ import "../Admin.css";
 
 import { Button, Card, Heading, Text } from "../../../components";
 import { Divider } from "../../../components/common/Divider";
-import Dialog from "@reach/dialog";
 import { UploadAccountsModal } from "../../../components/Admin/AccountsTable/UploadAccountsModal";
+import { ReactComponent as Upload } from "../../../components/common/Icons/Upload.svg";
+import { ReactComponent as Download } from "../../../components/common/Icons/Download.svg";
 
 const Admin = () => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -29,8 +30,8 @@ const Admin = () => {
       </Text>
 
       <Card>
-        <div style={{ display: "flex" }}>
-          <Button onClick={() => setModalOpen(!isModalOpen)}>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <Button onClick={() => setModalOpen(!isModalOpen)} icon={Upload}>
             Upload accounts
           </Button>
 
@@ -44,7 +45,9 @@ const Admin = () => {
               data={accounts}
               style={{ color: "inherit", textDecoration: "none" }}
             >
-              <Button variant="secondary">Download CSV</Button>
+              <Button variant="secondary" icon={Download}>
+                Download CSV
+              </Button>
             </CSVLink>
           )}
         </div>

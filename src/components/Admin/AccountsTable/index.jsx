@@ -171,7 +171,7 @@ export default function DataTable() {
   ];
 
   return (
-    <div style={{ width: "100%", marginTop: 20 }}>
+    <div style={{ marginTop: 20 }}>
       <SendEmailModal
         isOpen={isModalOpen}
         selected={selectedFlatRows}
@@ -213,6 +213,7 @@ export default function DataTable() {
               marginRight: "16px",
               borderRadius: "50%",
               minWidth: "0px",
+              padding: "0px",
             }}
           >
             <div

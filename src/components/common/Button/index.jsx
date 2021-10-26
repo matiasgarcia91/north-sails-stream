@@ -58,7 +58,7 @@ export const Button = ({ children, variant = "primary", ...props }) => {
         <Spinner color={spinnerColor} size={16} style={{ marginBottom: 3 }} />
       ) : (
         <>
-          {children}{" "}
+          {children}
           {Icon && (
             <Icon
               style={{
