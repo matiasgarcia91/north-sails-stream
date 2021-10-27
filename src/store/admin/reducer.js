@@ -7,6 +7,7 @@ const initialState = {
     accounts: false,
     eventForm: false,
     emailForm: false,
+    addUser: false,
   },
 };
 
@@ -57,6 +58,13 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         loadingState: { ...state.loadingState, emailForm: false },
+      };
+
+    case "USER_ADDED":
+      return {
+        ...state,
+        loadingState: { ...state.loadingState, addUser: false },
+        accounts: [...state.accounts, action.payload],
       };
     default:
       return state;

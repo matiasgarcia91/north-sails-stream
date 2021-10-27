@@ -48,7 +48,7 @@ const Main = styled.div`
   max-width: 152px;
   flex-direction: column;
   align-items: flex-start;
-  z-index: 10;
+  /* z-index: 10; */
 `;
 
 const ListContainer = styled.div`

@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import { Button, Input, Select } from "../..";
+import { useDispatch, useSelector } from "react-redux";
+import { Button, Input, Select, Spinner } from "../..";
+import { addUser } from "../../../store/admin/actions";
 import { getAdminLoadingState } from "../../../store/admin/selectors";
 import { ReactComponent as Save } from "../../common/Icons/Save.svg";
 
-export const NewRow = ({ Row, Cell, columns }) => {
+export const NewRow = ({ Row, Cell, columns, setAddingRow }) => {
+  const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("user");
@@ -18,8 +20,9 @@ export const NewRow = ({ Row, Cell, columns }) => {
   ];
 
   const submit = ({ name, email, role }) => {
-    const newUser = { name, email, admin: role === "admin" };
-    console.log(newUser);
+    const newUser = { fullName: name, email, admin: role === "admin" };
+    dispatch(addUser(newUser));
+    setAddingRow(false);
   };
 
   return (
@@ -55,14 +58,27 @@ export const NewRow = ({ Row, Cell, columns }) => {
             case "actions":
               return (
                 <div style={{ display: "flex" }}>
-                  <Button variant="unstyled" onClick={submit}>
-                    <Save
-                      style={{
-                        height: "20px",
-                        width: "20px",
-                        color: "#00e8af",
-                      }}
-                    />
+                  <Button
+                    variant="unstyled"
+                    onClick={() => submit({ name, email, role })}
+                  >
+                    {isLoading.addUser ? (
+                      <Spinner
+                        style={{
+                          height: "20px",
+                          width: "20px",
+                          color: "#00e8af",
+                        }}
+                      />
+                    ) : (
+                      <Save
+                        style={{
+                          height: "20px",
+                          width: "20px",
+                          color: "#00e8af",
+                        }}
+                      />
+                    )}
                   </Button>
                 </div>
               );

@@ -1,6 +1,6 @@
 import { useMemo, forwardRef, useRef, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useTable, useRowSelect, usePagination } from "react-table";
+import { useTable, useRowSelect, usePagination, useSortBy } from "react-table";
 import styled from "styled-components";
 
 import { Button, Spinner, Select } from "../..";
@@ -129,11 +129,16 @@ export default function DataTable() {
     setPageSize,
     state: { pageIndex, pageSize, selectedRowIds },
   } = useTable(
-    { columns, data, initialState: { pageSize: 20 } },
+    {
+      columns,
+      data,
+      initialState: { pageSize: 20, sortBy: [{ id: "id", desc: true }] },
+    },
+    useSortBy,
     usePagination,
     useRowSelect,
     (hooks) => {
-      hooks.visibleColumns.push((columns) => [
+      hooks?.visibleColumns?.push((columns) => [
         {
           id: "selection",
           Header: ({ getToggleAllRowsSelectedProps }) => (
@@ -201,8 +206,8 @@ export default function DataTable() {
             onClick={() => setAddingRow(!addingRow)}
           />
           <Select options={dropDownOptions}>
-            {selectedFlatRows.length
-              ? `${selectedFlatRows.length} Bulk Actions`
+            {selectedFlatRows?.length
+              ? `${selectedFlatRows?.length} Bulk Actions`
               : "Bulk Actions"}
           </Select>
         </div>
@@ -255,12 +260,14 @@ export default function DataTable() {
         <thead>
           {headerGroups?.map((headerGroup) => (
             <HeaderRow {...headerGroup?.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => {
+              {headerGroup?.headers.map((column) => {
                 return (
-                  <HeaderCell {...column.getHeaderProps()}>
+                  <HeaderCell
+                    {...column?.getHeaderProps(column.getSortByToggleProps())}
+                  >
                     <div style={{ display: "flex", alignItems: "center" }}>
-                      {column.render("Header")}
-                      {column.id === "password" && (
+                      {column?.render("Header")}
+                      {column?.id === "password" && (
                         <Button
                           variant="unstyled"
                           onClick={() => setSeePassword(!seePassword)}
@@ -283,34 +290,40 @@ export default function DataTable() {
 
         {!isLoading?.accounts && (
           <tbody {...getTableBodyProps()}>
-            {addingRow && <NewRow Row={Row} Cell={Cell} columns={columns} />}
+            {addingRow && (
+              <NewRow
+                Row={Row}
+                Cell={Cell}
+                columns={columns}
+                setAddingRow={setAddingRow}
+              />
+            )}
 
             {page?.map((row) => {
               prepareRow(row);
               return (
                 <Row {...row.getRowProps()}>
-                  {row.cells.map((cell) => {
+                  {row?.cells?.map((cell) => {
                     const getContent = (cell) => {
-                      switch (cell.column.id) {
+                      switch (cell?.column?.id) {
                         case "password":
                           return (
                             <div>
-                              {seePassword ? cell.render("Cell") : "*******"}
+                              {seePassword ? cell?.render("Cell") : "*******"}
                             </div>
                           );
                         case "admin":
-                          return <div>{cell.value && "Admin"}</div>;
+                          return <div>{cell?.value && "Admin"}</div>;
                         case "emailSent":
-                          return <div>{cell.value && "yes"}</div>;
+                          return <div>{cell?.value && "yes"}</div>;
                         case "hasLoggedIn":
-                          return <div>{cell.value && "yes"}</div>;
+                          return <div>{cell?.value && "yes"}</div>;
                         default:
-                          return <div>{cell.render("Cell")}</div>;
+                          return <div>{cell?.render("Cell")}</div>;
                       }
                     };
-                    console.log(cell);
                     return (
-                      <Cell {...cell.getCellProps()}>{getContent(cell)}</Cell>
+                      <Cell {...cell?.getCellProps()}>{getContent(cell)}</Cell>
                     );
                   })}
                 </Row>
