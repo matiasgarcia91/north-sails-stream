@@ -1,11 +1,11 @@
 import axios from "../axios";
 
-const setLoading = which => ({ type: "SET_LOADING", payload: which });
+const setLoading = (which) => ({ type: "SET_LOADING", payload: which });
 
 export const uploadCSV =
   (selectedFile, amountOfDummies, domain) => async (dispatch, getState) => {
     try {
-      const accountsCreated = accounts => ({
+      const accountsCreated = (accounts) => ({
         type: "ACCOUNTS_CREATED",
         payload: accounts,
       });
@@ -47,7 +47,7 @@ export const fetchUserAccounts = () => async (dispatch, getState) => {
 };
 
 export const updateEventSettings =
-  streamEvent => async (dispatch, getState) => {
+  (streamEvent) => async (dispatch, getState) => {
     try {
       dispatch(setLoading("eventForm"));
       console.log("in action", streamEvent);
@@ -94,6 +94,31 @@ export const sendEmailCampaign =
       dispatch({
         type: "EMAIL_SENT",
         payload: response.data.streamEvent,
+      });
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+
+export const addUser =
+  ({ fullName, email, admin }) =>
+  async (dispatch, getState) => {
+    try {
+      dispatch(setLoading("addUser"));
+
+      const { token } = getState().admin.user;
+
+      const body = { fullName, email, admin };
+
+      const response = await axios.post("/admin/users", body, {
+        headers: { authorization: `Bearer ${token}` },
+      });
+
+      console.log("user added", response.data);
+
+      dispatch({
+        type: "USER_ADDED",
+        payload: response.data,
       });
     } catch (e) {
       console.log(e.message);

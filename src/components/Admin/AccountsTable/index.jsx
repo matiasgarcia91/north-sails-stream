@@ -133,7 +133,7 @@ export default function DataTable() {
     usePagination,
     useRowSelect,
     (hooks) => {
-      hooks.visibleColumns.push((columns) => [
+      hooks?.visibleColumns?.push((columns) => [
         {
           id: "selection",
           Header: ({ getToggleAllRowsSelectedProps }) => (
@@ -201,8 +201,8 @@ export default function DataTable() {
             onClick={() => setAddingRow(!addingRow)}
           />
           <Select options={dropDownOptions}>
-            {selectedFlatRows.length
-              ? `${selectedFlatRows.length} Bulk Actions`
+            {selectedFlatRows?.length
+              ? `${selectedFlatRows?.length} Bulk Actions`
               : "Bulk Actions"}
           </Select>
         </div>
@@ -255,12 +255,12 @@ export default function DataTable() {
         <thead>
           {headerGroups?.map((headerGroup) => (
             <HeaderRow {...headerGroup?.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => {
+              {headerGroup?.headers.map((column) => {
                 return (
-                  <HeaderCell {...column.getHeaderProps()}>
+                  <HeaderCell {...column?.getHeaderProps()}>
                     <div style={{ display: "flex", alignItems: "center" }}>
-                      {column.render("Header")}
-                      {column.id === "password" && (
+                      {column?.render("Header")}
+                      {column?.id === "password" && (
                         <Button
                           variant="unstyled"
                           onClick={() => setSeePassword(!seePassword)}
@@ -283,34 +283,40 @@ export default function DataTable() {
 
         {!isLoading?.accounts && (
           <tbody {...getTableBodyProps()}>
-            {addingRow && <NewRow Row={Row} Cell={Cell} columns={columns} />}
+            {addingRow && (
+              <NewRow
+                Row={Row}
+                Cell={Cell}
+                columns={columns}
+                setAddingRow={setAddingRow}
+              />
+            )}
 
             {page?.map((row) => {
               prepareRow(row);
               return (
                 <Row {...row.getRowProps()}>
-                  {row.cells.map((cell) => {
+                  {row?.cells?.map((cell) => {
                     const getContent = (cell) => {
-                      switch (cell.column.id) {
+                      switch (cell?.column?.id) {
                         case "password":
                           return (
                             <div>
-                              {seePassword ? cell.render("Cell") : "*******"}
+                              {seePassword ? cell?.render("Cell") : "*******"}
                             </div>
                           );
                         case "admin":
-                          return <div>{cell.value && "Admin"}</div>;
+                          return <div>{cell?.value && "Admin"}</div>;
                         case "emailSent":
-                          return <div>{cell.value && "yes"}</div>;
+                          return <div>{cell?.value && "yes"}</div>;
                         case "hasLoggedIn":
-                          return <div>{cell.value && "yes"}</div>;
+                          return <div>{cell?.value && "yes"}</div>;
                         default:
-                          return <div>{cell.render("Cell")}</div>;
+                          return <div>{cell?.render("Cell")}</div>;
                       }
                     };
-                    console.log(cell);
                     return (
-                      <Cell {...cell.getCellProps()}>{getContent(cell)}</Cell>
+                      <Cell {...cell?.getCellProps()}>{getContent(cell)}</Cell>
                     );
                   })}
                 </Row>
