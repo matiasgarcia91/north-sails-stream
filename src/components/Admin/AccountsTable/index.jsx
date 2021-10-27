@@ -1,6 +1,6 @@
 import { useMemo, forwardRef, useRef, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useTable, useRowSelect, usePagination } from "react-table";
+import { useTable, useRowSelect, usePagination, useSortBy } from "react-table";
 import styled from "styled-components";
 
 import { Button, Spinner, Select } from "../..";
@@ -129,7 +129,12 @@ export default function DataTable() {
     setPageSize,
     state: { pageIndex, pageSize, selectedRowIds },
   } = useTable(
-    { columns, data, initialState: { pageSize: 20 } },
+    {
+      columns,
+      data,
+      initialState: { pageSize: 20, sortBy: [{ id: "id", desc: true }] },
+    },
+    useSortBy,
     usePagination,
     useRowSelect,
     (hooks) => {
@@ -257,7 +262,9 @@ export default function DataTable() {
             <HeaderRow {...headerGroup?.getHeaderGroupProps()}>
               {headerGroup?.headers.map((column) => {
                 return (
-                  <HeaderCell {...column?.getHeaderProps()}>
+                  <HeaderCell
+                    {...column?.getHeaderProps(column.getSortByToggleProps())}
+                  >
                     <div style={{ display: "flex", alignItems: "center" }}>
                       {column?.render("Header")}
                       {column?.id === "password" && (
