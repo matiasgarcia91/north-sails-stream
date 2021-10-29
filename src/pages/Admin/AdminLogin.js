@@ -38,8 +38,8 @@ const useStyles = makeStyles({
 });
 
 const AdminLoginPage = () => {
-  const [email, setEmail] = useState("matiasigarcia91@gmail.com");
-  const [password, setPassword] = useState("freshnclean");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
   const error = useSelector(getError);
@@ -48,7 +48,7 @@ const AdminLoginPage = () => {
 
   console.log(classes.button.root);
 
-  const submitLogin = e => {
+  const submitLogin = (e) => {
     e.preventDefault();
     dispatch(adminLogin(email, password, history));
   };
@@ -99,7 +99,7 @@ const AdminLoginPage = () => {
                   root: classes.label,
                 },
               }}
-              onChange={e => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className='form-fields'>
@@ -123,7 +123,7 @@ const AdminLoginPage = () => {
               fullWidth
               helperText={error}
               value={password}
-              onChange={e => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <div className='form-button'>

@@ -42,7 +42,7 @@ export const UploadAccountsModal = ({ closeModal, isOpen }) => {
         }}
       >
         <Heading variant={"h2"}>Upload accounts</Heading>
-        <Button onClick={closeModal} variant="unstyled">
+        <Button onClick={closeModal} variant='unstyled'>
           <Close style={{ width: "32px", height: "32px" }} />
         </Button>
       </div>
@@ -63,7 +63,7 @@ export const UploadAccountsModal = ({ closeModal, isOpen }) => {
           >
             <div style={{ display: "flex" }}>
               <label style={{ marginRight: 20 }}>Select CSV file</label>
-              <input type="file" name="file" onChange={fileSelectHandler} />
+              <input type='file' name='file' onChange={fileSelectHandler} />
               {isFilePicked ? (
                 <div>
                   <span>Filename: {selectedFile.name}</span>
@@ -79,37 +79,36 @@ export const UploadAccountsModal = ({ closeModal, isOpen }) => {
           </div>
           <div style={{ display: "flex", marginTop: 10, marginLeft: 30 }}>
             <TextField
-              variant="filled"
-              name="dummies"
-              label="# of Backups"
-              type="number"
+              variant='filled'
+              name='dummies'
+              label='# of Backups'
+              type='number'
               fullWidth
-              size="small"
-              margin="dense"
+              size='small'
+              margin='dense'
               value={dummies}
               onChange={(e) => setDummies(e.target.value)}
             />
             <TextField
-              variant="filled"
-              name="domain"
-              label="Backup Domain"
-              type="text"
+              variant='filled'
+              name='domain'
+              label='Backup Domain'
+              type='text'
               fullWidth
-              size="small"
-              margin="dense"
+              size='small'
+              margin='dense'
               value={domain}
               onChange={(e) => setDomain(e.target.value)}
             />
-            <div style={{ marginLeft: 30, marginTop: 15 }}>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={uploadFile}
-                disabled={!isFilePicked}
-              >
-                Submit
-              </Button>
-            </div>
+          </div>
+          <div>
+            <Button
+              onClick={uploadFile}
+              disabled={!isFilePicked}
+              variant={!isFilePicked ? "disabled" : "primary"}
+            >
+              Submit
+            </Button>
           </div>
           {domain && `backup0@${domain}.com`}
         </div>

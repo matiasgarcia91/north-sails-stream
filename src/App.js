@@ -34,12 +34,12 @@ function App() {
       dispatch(saveSocketId(socket.id));
     });
 
-    socket.on("kick-out", data => {
+    socket.on("kick-out", (data) => {
       dispatch(abortConnection());
       console.log(data);
     });
 
-    socket.on("end-stream", data => {
+    socket.on("end-stream", (data) => {
       console.log("end stream");
       dispatch(endStream());
       console.log(data);
