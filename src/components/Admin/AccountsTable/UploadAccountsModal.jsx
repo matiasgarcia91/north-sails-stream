@@ -1,12 +1,11 @@
-import { TextField } from "@material-ui/core";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import styled from "styled-components";
 
 import { Heading, Button, Text, Input, Checkbox } from "../..";
 import { uploadCSV } from "../../../store/admin/actions";
 import { Modal } from "../../common/Modal";
 import { ReactComponent as Close } from "../../common/Icons/Close.svg";
-import styled from "styled-components";
 
 const Label = styled.label`
   margin-bottom: 12px;
@@ -61,7 +60,14 @@ export const UploadAccountsModal = ({ closeModal, isOpen }) => {
         }}
       >
         <Heading variant={"h2"}>Upload accounts</Heading>
-        <Button onClick={closeModal} variant="unstyled">
+        <Button
+          onClick={() => {
+            closeModal();
+            setSelectedFile();
+            setIsFilePicked(false);
+          }}
+          variant="unstyled"
+        >
           <Close style={{ width: "32px", height: "32px" }} />
         </Button>
       </div>
