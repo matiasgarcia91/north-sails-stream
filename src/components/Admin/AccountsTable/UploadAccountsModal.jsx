@@ -155,7 +155,13 @@ export const UploadAccountsModal = ({ closeModal, isOpen }) => {
         </div>
       )}
 
-      <Button onClick={uploadFile} disabled={!isFilePicked}>
+      <Button
+        onClick={() => {
+          uploadFile();
+          closeModal();
+        }}
+        disabled={!isFilePicked}
+      >
         Submit
       </Button>
     </Modal>
