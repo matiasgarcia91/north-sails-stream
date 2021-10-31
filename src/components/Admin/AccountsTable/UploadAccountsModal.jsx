@@ -66,7 +66,7 @@ export const UploadAccountsModal = ({ closeModal, isOpen }) => {
             setSelectedFile();
             setIsFilePicked(false);
           }}
-          variant="unstyled"
+          variant='unstyled'
         >
           <Close style={{ width: "32px", height: "32px" }} />
         </Button>
@@ -88,8 +88,8 @@ export const UploadAccountsModal = ({ closeModal, isOpen }) => {
         <FileInput>
           Choose file...
           <input
-            type="file"
-            name="file"
+            type='file'
+            name='file'
             onChange={fileSelectHandler}
             style={{ display: "none" }}
           />
@@ -119,7 +119,7 @@ export const UploadAccountsModal = ({ closeModal, isOpen }) => {
       >
         <Checkbox
           style={{ marginLeft: "0px" }}
-          variant="small"
+          variant='small'
           value={createBackups}
           onChange={() => setCreateBackups(!createBackups)}
         />
@@ -134,81 +134,23 @@ export const UploadAccountsModal = ({ closeModal, isOpen }) => {
             marginBottom: "32px",
           }}
         >
-<<<<<<< HEAD
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              marginLeft: 50,
-            }}
-          >
-            <div style={{ display: "flex" }}>
-              <label style={{ marginRight: 20 }}>Select CSV file</label>
-              <input type='file' name='file' onChange={fileSelectHandler} />
-              {isFilePicked ? (
-                <div>
-                  <span>Filename: {selectedFile.name}</span>
-                  <span style={{ marginLeft: 10 }}>
-                    Last Modified Date:{" "}
-                    {selectedFile.lastModifiedDate.toLocaleDateString()}
-                  </span>
-                </div>
-              ) : (
-                <span>Select a file to show details</span>
-              )}
-            </div>
-          </div>
-          <div style={{ display: "flex", marginTop: 10, marginLeft: 30 }}>
-            <TextField
-              variant='filled'
-              name='dummies'
-              label='# of Backups'
-              type='number'
-              fullWidth
-              size='small'
-              margin='dense'
-              value={dummies}
-              onChange={(e) => setDummies(e.target.value)}
-            />
-            <TextField
-              variant='filled'
-              name='domain'
-              label='Backup Domain'
-              type='text'
-              fullWidth
-              size='small'
-              margin='dense'
-=======
           <Input
-            label="# of Backups"
-            type="number"
+            label='# of Backups'
+            type='number'
             value={dummies}
             onChange={(e) => setDummies(e.target.value)}
             style={{ minWidth: "245px" }}
           />
           <div style={{ marginLeft: "24px" }}>
             <Input
-              label="Backup Domain"
->>>>>>> 532fd777527f88dee45161c907ef2aad4135691e
+              label='Backup Domain'
               value={domain}
               onChange={(e) => setDomain(e.target.value)}
               style={{ minWidth: "245px" }}
             />
-<<<<<<< HEAD
-          </div>
-          <div>
-            <Button
-              onClick={uploadFile}
-              disabled={!isFilePicked}
-              variant={!isFilePicked ? "disabled" : "primary"}
-            >
-              Submit
-            </Button>
-=======
             <div style={{ marginTop: "8px", color: "#6B6B86" }}>
               {domain && `Example: backup0@${domain}.com`}
             </div>
->>>>>>> 532fd777527f88dee45161c907ef2aad4135691e
           </div>
         </div>
       )}

@@ -76,7 +76,7 @@ const IndeterminateCheckbox = forwardRef(({ indeterminate, ...rest }, ref) => {
 
   return (
     <>
-      <input type="checkbox" ref={resolvedRef} {...rest} />
+      <input type='checkbox' ref={resolvedRef} {...rest} />
     </>
   );
 });
@@ -161,8 +161,14 @@ export default function DataTable() {
     const selectedAccountIds = selectedFlatRows?.map(
       (row) => row?.original?.id
     );
+    const parsedContent = content.replace(/(?:\r\n|\r|\n)/g, "<br />");
     dispatch(
-      sendEmailCampaign({ content, subject, all, userIds: selectedAccountIds })
+      sendEmailCampaign({
+        content: parsedContent,
+        subject,
+        all,
+        userIds: selectedAccountIds,
+      })
     );
   };
 
@@ -221,7 +227,7 @@ export default function DataTable() {
           }}
         >
           <Button
-            variant="secondary"
+            variant='secondary'
             onClick={refetch}
             style={{
               width: "40px",
@@ -272,7 +278,7 @@ export default function DataTable() {
                       {column?.render("Header")}
                       {column?.id === "password" && (
                         <Button
-                          variant="unstyled"
+                          variant='unstyled'
                           onClick={() => setSeePassword(!seePassword)}
                           style={{
                             height: "20px",

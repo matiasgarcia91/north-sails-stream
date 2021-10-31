@@ -38,7 +38,7 @@ export const SendEmailModal = ({
         }}
       >
         <Heading variant={"h2"}>Send e-mail</Heading>
-        <Button onClick={closeModal} variant="unstyled">
+        <Button onClick={closeModal} variant='unstyled'>
           <Close style={{ width: "32px", height: "32px" }} />
         </Button>
       </div>
@@ -56,7 +56,7 @@ export const SendEmailModal = ({
             Send to:
           </Heading>
           <Checkbox
-            label="All"
+            label='All'
             onChange={() => setToAll(true)}
             style={{ width: 18, height: 18, marginLeft: 45 }}
             checked={toAll}
@@ -78,14 +78,14 @@ export const SendEmailModal = ({
 
       <div style={{ width: "100%", marginBottom: "32px" }}>
         <Input
-          label="Subject"
-          placeholder="Your access code for North Sails Livestream"
+          label='Subject'
+          placeholder='Your access code for North Sails Livestream'
           value={subject}
           onChange={(e) => setSubject(e.target.value)}
         />
         <div style={{ height: 20 }} />
         <Textarea
-          label="Message"
+          label='Message'
           placeholder={placeholderText}
           value={content}
           onChange={(e) => setContent(e.target.value)}
