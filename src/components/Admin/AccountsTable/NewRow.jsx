@@ -27,7 +27,9 @@ export const NewRow = ({ Row, Cell, columns, setAddingRow }) => {
 
   return (
     <Row>
-      <Cell />
+      <Cell>
+        <input type="checkbox" disabled />
+      </Cell>
       {columns.map((column) => {
         const getCellContent = (col) => {
           switch (col.accessor) {
