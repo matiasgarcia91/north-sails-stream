@@ -261,10 +261,13 @@ export default function DataTable() {
           {headerGroups?.map((headerGroup) => (
             <HeaderRow {...headerGroup?.getHeaderGroupProps()}>
               {headerGroup?.headers.map((column) => {
+                const sort = column.id !== "password";
+                const headerProps = sort
+                  ? column?.getHeaderProps(column.getSortByToggleProps())
+                  : column.getHeaderProps();
+
                 return (
-                  <HeaderCell
-                    {...column?.getHeaderProps(column.getSortByToggleProps())}
-                  >
+                  <HeaderCell {...headerProps}>
                     <div style={{ display: "flex", alignItems: "center" }}>
                       {column?.render("Header")}
                       {column?.id === "password" && (
