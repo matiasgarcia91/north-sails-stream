@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { Button, Input, Select, Spinner } from "../..";
 import { addUser } from "../../../store/admin/actions";
-import { getAdminLoadingState } from "../../../store/admin/selectors";
+import { getAdminLoadingState, getError } from "../../../store/admin/selectors";
 import { ReactComponent as Save } from "../../common/Icons/Save.svg";
 
 export const NewRow = ({ Row, Cell, columns, setAddingRow }) => {
@@ -22,7 +23,8 @@ export const NewRow = ({ Row, Cell, columns, setAddingRow }) => {
   const submit = ({ name, email, role }) => {
     const newUser = { fullName: name, email, admin: role === "admin" };
     dispatch(addUser(newUser));
-    setAddingRow(false);
+
+    // setAddingRow(false);
   };
 
   return (
@@ -49,6 +51,7 @@ export const NewRow = ({ Row, Cell, columns, setAddingRow }) => {
                   placeholder="Email"
                   onChange={(e) => setEmail(e.target.value)}
                   value={email}
+                  type="email"
                 />
               );
             case "admin":

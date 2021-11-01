@@ -1,6 +1,10 @@
 import axios from "../axios";
 
 const setLoading = (which) => ({ type: "SET_LOADING", payload: which });
+const setError = ({ key, error }) => ({
+  type: "SET_ERROR",
+  payload: { key, error },
+});
 
 export const uploadCSV =
   (selectedFile, amountOfDummies, domain) => async (dispatch, getState) => {
@@ -104,6 +108,10 @@ export const addUser =
   ({ fullName, email, admin }) =>
   async (dispatch, getState) => {
     try {
+      dispatch({
+        type: "SET_ERROR",
+        payload: { key: "addUser", error: null },
+      });
       dispatch(setLoading("addUser"));
 
       const { token } = getState().admin.user;
@@ -122,5 +130,15 @@ export const addUser =
       });
     } catch (e) {
       console.log(e.message);
+      dispatch({
+        type: "SET_ERROR",
+        payload: { key: "addUser", error: e.message },
+      });
+      setTimeout(() => {
+        dispatch({
+          type: "SET_ERROR",
+          payload: { key: "addUser", error: null },
+        });
+      }, 1000);
     }
   };

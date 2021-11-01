@@ -2,6 +2,7 @@ import { useMemo, forwardRef, useRef, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useTable, useRowSelect, usePagination, useSortBy } from "react-table";
 import styled from "styled-components";
+import toast, { Toaster } from "react-hot-toast";
 
 import { Button, Spinner, Select } from "../..";
 import {
@@ -11,6 +12,7 @@ import {
 import {
   createdAccounts,
   getAdminLoadingState,
+  getError,
 } from "../../../store/admin/selectors";
 import { Pagination } from "./Pagination";
 import { SendEmailModal } from "./SendEmailModal";
@@ -76,7 +78,7 @@ const IndeterminateCheckbox = forwardRef(({ indeterminate, ...rest }, ref) => {
 
   return (
     <>
-      <input type='checkbox' ref={resolvedRef} {...rest} />
+      <input type="checkbox" ref={resolvedRef} {...rest} />
     </>
   );
 });
@@ -187,8 +189,17 @@ export default function DataTable() {
     { label: "Delete Users", handler: () => openModal("delete") },
   ];
 
+  const error = useSelector(getError);
+
+  useEffect(() => {
+    if (error.addUser) {
+      toast.error(error.addUser);
+    }
+  }, [error]);
+
   return (
     <div style={{ marginTop: 20 }}>
+      <Toaster position="bottom-center" />
       <SendEmailModal
         isOpen={isModalOpen}
         selected={selectedFlatRows}
@@ -227,7 +238,7 @@ export default function DataTable() {
           }}
         >
           <Button
-            variant='secondary'
+            variant="secondary"
             onClick={refetch}
             style={{
               width: "40px",
@@ -278,7 +289,7 @@ export default function DataTable() {
                       {column?.render("Header")}
                       {column?.id === "password" && (
                         <Button
-                          variant='unstyled'
+                          variant="unstyled"
                           onClick={() => setSeePassword(!seePassword)}
                           style={{
                             height: "20px",

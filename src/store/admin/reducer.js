@@ -9,6 +9,12 @@ const initialState = {
     emailForm: false,
     addUser: false,
   },
+  error: {
+    accounts: null,
+    eventForm: null,
+    emailForm: null,
+    addUser: null,
+  },
 };
 
 export default function reducer(state = initialState, action) {
@@ -18,6 +24,14 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         loadingState: { ...state.loadingState, [key]: true },
+      };
+    }
+    case "SET_ERROR": {
+      const key = action.payload.key;
+      return {
+        ...state,
+        error: { ...state.error, [key]: action.payload.error },
+        loadingState: { ...state.loadingState, [key]: false },
       };
     }
     case "ACCOUNTS_CREATED":
