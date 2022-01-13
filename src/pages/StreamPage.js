@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import {
   getStreamPermissionAndName,
   streamCode,
+  withWatermark,
 } from "../store/user/selectors";
 import IframeResizer from "iframe-resizer-react";
 import Button from "@material-ui/core/Button";
@@ -43,6 +44,7 @@ const StreamPage = () => {
     getStreamPermissionAndName
   );
   const streamId = useSelector(streamCode);
+  const hasWatermark = useSelector(withWatermark);
   const history = useHistory();
   const [fullScreen, setFullScreen] = useState(false);
 
@@ -154,9 +156,12 @@ const StreamPage = () => {
   return (
     <div className='stream-page'>
       <div className='center-it' style={containerStyle} id='el-portador'>
-        <span className='bar'>
-          {fullName}-{email}
-        </span>
+        {hasWatermark && (
+          <span className='bar'>
+            {fullName}-{email}
+          </span>
+        )}
+
         <IframeResizer
           log
           src={`https://player.vimeo.com/video/${streamId}?title=0`}

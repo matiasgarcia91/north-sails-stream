@@ -15,9 +15,9 @@ export const loginError = message => ({
   payload: message,
 });
 
-export const setVideoCode = code => ({
-  type: "SET_VIDEO_CODE",
-  payload: code,
+export const setEvent = event => ({
+  type: "SET_EVENT",
+  payload: event,
 });
 
 export const abortConnection = () => ({ type: "DISCONNECT" });
@@ -43,7 +43,7 @@ export const login =
 
 export const adminLogin = (email, password, history) => async dispatch => {
   try {
-    const response = await axios.post("/admin/login", {
+    const response = await axios.post("/login/admin", {
       email,
       password,
     });
@@ -54,13 +54,13 @@ export const adminLogin = (email, password, history) => async dispatch => {
   }
 };
 
-export const getStreamCode = () => async dispatch => {
+export const getEvent = () => async dispatch => {
   try {
-    const response = await axios.get("/url");
+    const response = await axios.get("/admin/event");
     const {
-      data: { url },
+      data: { event },
     } = response;
-    dispatch(setVideoCode(url));
+    dispatch(setEvent(event));
   } catch (e) {
     console.error(e.message);
   }

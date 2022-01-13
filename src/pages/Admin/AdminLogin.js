@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 
-import { adminLogin, login } from "../../store/user/actions";
+import { adminLogin } from "../../store/user/actions";
 import { getError } from "../../store/user/selectors";
 import "./AdminLogin.css";
 
@@ -48,21 +48,18 @@ const AdminLoginPage = () => {
 
   console.log(classes.button.root);
 
-  const submitLogin = e => {
+  const submitLogin = (e) => {
     e.preventDefault();
-    // const emailCheck = email === "info@oliverumpierre.com";
-    // const passwordCheck = password === "freshnclean";
-    // if (emailCheck && passwordCheck) {
-    //   dispatch({ type: "ADMIN_LOGIN" });
-    //   history.push("/admin");
-    // }
     dispatch(adminLogin(email, password, history));
   };
 
   return (
     <div className='admin-login'>
       <h1>Welcome back Admin</h1>
-      <img src='https://media.giphy.com/media/Nx0rz3jtxtEre/giphy.gif' />
+      <img
+        src='https://media.giphy.com/media/Nx0rz3jtxtEre/giphy.gif'
+        alt='obiwan'
+      />
       <div style={{ flex: 0.1 }} />
       <div
         style={{
@@ -102,7 +99,7 @@ const AdminLoginPage = () => {
                   root: classes.label,
                 },
               }}
-              onChange={e => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className='form-fields'>
@@ -126,7 +123,7 @@ const AdminLoginPage = () => {
               fullWidth
               helperText={error}
               value={password}
-              onChange={e => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <div className='form-button'>
