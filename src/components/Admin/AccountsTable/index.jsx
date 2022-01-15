@@ -78,7 +78,7 @@ const IndeterminateCheckbox = forwardRef(({ indeterminate, ...rest }, ref) => {
 
   return (
     <>
-      <input type="checkbox" ref={resolvedRef} {...rest} />
+      <input type='checkbox' ref={resolvedRef} {...rest} />
     </>
   );
 });
@@ -97,7 +97,7 @@ export default function DataTable() {
       { accessor: "email", Header: "Email" },
       { accessor: "password", Header: "Password" },
       { accessor: "admin", Header: "Role" },
-      { accessor: "emailSent", Header: "Email sent" },
+      { accessor: "emailSent", Header: "Emails sent" },
       { accessor: "emailOpened", Header: "Email opened" },
       { accessor: "hasLoggedIn", Header: "Has logged in" },
       { accessor: "actions", Header: "Actions" },
@@ -238,7 +238,7 @@ export default function DataTable() {
           }}
         >
           <Button
-            variant="secondary"
+            variant='secondary'
             onClick={refetch}
             style={{
               width: "40px",
@@ -289,7 +289,7 @@ export default function DataTable() {
                       {column?.render("Header")}
                       {column?.id === "password" && (
                         <Button
-                          variant="unstyled"
+                          variant='unstyled'
                           onClick={() => setSeePassword(!seePassword)}
                           style={{
                             height: "20px",
@@ -335,7 +335,7 @@ export default function DataTable() {
                         case "admin":
                           return <div>{cell?.value && "Admin"}</div>;
                         case "emailSent":
-                          return <div>{cell?.value && "yes"}</div>;
+                          return <div>{cell?.value}</div>;
                         case "emailOpened":
                           return <div>{cell?.value && "yes"}</div>;
                         case "hasLoggedIn":
