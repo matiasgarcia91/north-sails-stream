@@ -100,6 +100,33 @@ export const sendEmailCampaign =
     }
   };
 
+export const deleteUsers =
+  ({ userIds }) =>
+  async (dispatch, getState) => {
+    try {
+      dispatch(setLoading("deleteUsers"));
+
+      const { token } = getState().admin.user;
+
+      const body = { userIds };
+
+      console.log("body", body);
+
+      const response = await axios.put("/admin/users", body, {
+        headers: { authorization: `Bearer ${token}` },
+      });
+
+      console.log("users deleted", response.data);
+
+      dispatch({
+        type: "USERS_DELETED",
+        payload: userIds,
+      });
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+
 export const addUser =
   ({ fullName, email, admin }) =>
   async (dispatch, getState) => {
