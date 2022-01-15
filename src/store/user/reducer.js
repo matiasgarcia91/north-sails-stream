@@ -4,6 +4,7 @@ const initialState = {
   streamEnded: false,
   error: null,
   event: null,
+  confirmation: null,
 };
 
 export default function reducer(state = initialState, action) {
@@ -35,6 +36,8 @@ export default function reducer(state = initialState, action) {
       };
     case "SET_EVENT":
       return { ...state, event: action.payload };
+    case "SET_ACCESS_CODE":
+      return { ...state, confirmation: action.payload };
     default:
       return state;
   }

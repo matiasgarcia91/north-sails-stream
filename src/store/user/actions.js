@@ -1,21 +1,21 @@
 import axios from "../axios";
 
-export const saveSocketId = socketId => ({
+export const saveSocketId = (socketId) => ({
   type: "SOCKET_ID",
   payload: socketId,
 });
 
-export const loginSuccess = data => ({
+export const loginSuccess = (data) => ({
   type: "LOGIN",
   payload: { ...data },
 });
 
-export const loginError = message => ({
+export const loginError = (message) => ({
   type: "LOGIN_ERROR",
   payload: message,
 });
 
-export const setEvent = event => ({
+export const setEvent = (event) => ({
   type: "SET_EVENT",
   payload: event,
 });
@@ -41,7 +41,7 @@ export const login =
     }
   };
 
-export const adminLogin = (email, password, history) => async dispatch => {
+export const adminLogin = (email, password, history) => async (dispatch) => {
   try {
     const response = await axios.post("/login/admin", {
       email,
@@ -54,13 +54,30 @@ export const adminLogin = (email, password, history) => async dispatch => {
   }
 };
 
-export const getEvent = () => async dispatch => {
+export const getEvent = () => async (dispatch) => {
   try {
     const response = await axios.get("/admin/event");
     const {
       data: { event },
     } = response;
     dispatch(setEvent(event));
+  } catch (e) {
+    console.error(e.message);
+  }
+};
+
+export const setAccessCode = (accessCode) => ({
+  type: "SET_ACCESS_CODE",
+  payload: accessCode,
+});
+
+export const confirmAccount = (token) => async (dispatch) => {
+  try {
+    const response = await axios.patch("/auth/confirm/", { token });
+    const {
+      data: { confirmation },
+    } = response;
+    dispatch(setAccessCode(confirmation));
   } catch (e) {
     console.error(e.message);
   }

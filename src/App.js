@@ -8,6 +8,7 @@ import LoginPage from "./pages/LoginPage";
 import DisconnectPage from "./pages/DisconnectedPage";
 import AdminPage from "./pages/Admin/Admin";
 import AdminLoginPage from "./pages/Admin/AdminLogin";
+import ConfirmationPage from "./pages/ConfirmationPage";
 import {
   saveSocketId,
   abortConnection,
@@ -54,6 +55,7 @@ function App() {
           onEnter={() => window.location.reload()}
         />
         <Route path='/stream' component={StreamPage} />
+        <Route path='/confirmation/:token' component={ConfirmationPage} />
         <Route path='/disconnected' component={DisconnectPage} />
         <Route path='/admin/login' component={AdminLoginPage} />
         <Route path='/admin' component={AdminPage} />
