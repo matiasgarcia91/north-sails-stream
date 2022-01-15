@@ -8,6 +8,7 @@ const initialState = {
     eventForm: false,
     emailForm: false,
     addUser: false,
+    deleteUsers: false,
   },
 };
 
@@ -28,6 +29,14 @@ export default function reducer(state = initialState, action) {
           ...state.loadingState,
           accounts: false,
         },
+      };
+    case "USERS_DELETED":
+      return {
+        ...state,
+        accounts: state.accounts.filter(
+          (acc) => !action.payload.includes(acc.id)
+        ),
+        loadingState: { ...state.loadingState, deleteUsers: false },
       };
     case "admin/USER_LIST": {
       return {

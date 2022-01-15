@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 import { Button, Spinner, Select } from "../..";
 import {
+  deleteUsers,
   fetchUserAccounts,
   sendEmailCampaign,
 } from "../../../store/admin/actions";
@@ -22,6 +23,7 @@ import { ReactComponent as AddAccount } from "../../common/Icons/AddAccount.svg"
 
 import { TableButton } from "../TableButton";
 import { NewRow } from "./NewRow";
+import { DeleteAccountsModal } from "./DeleteAccountsModal";
 
 const Table = styled.table`
   width: 100%;
@@ -84,8 +86,7 @@ const IndeterminateCheckbox = forwardRef(({ indeterminate, ...rest }, ref) => {
 export default function DataTable() {
   const dispatch = useDispatch();
   const [seePassword, setSeePassword] = useState(false);
-  const [isModalOpen, setModalOpen] = useState(false);
-  const [modalContent, setModalContent] = useState("");
+  const [modalOpen, setModalOpen] = useState(null);
 
   const [addingRow, setAddingRow] = useState(false);
 
@@ -112,8 +113,6 @@ export default function DataTable() {
   };
 
   const data = useMemo(() => [...accounts], [accounts]);
-
-  console.log(data);
 
   const {
     getTableProps,
@@ -175,30 +174,39 @@ export default function DataTable() {
     );
   };
 
-  const openModal = (content) => {
-    if ("email") {
-      console.log("email");
-    } else {
-      console.log("delete");
-    }
+  const deleteAccounts = ({ userIds }) => {
+    dispatch(deleteUsers({ userIds }));
+  };
 
-    setModalOpen(true);
+  const openModal = (content) => {
+    if (content === "email") {
+      setModalOpen("email");
+    } else if (content === "deleteAccounts") {
+      setModalOpen("deleteAccounts");
+    }
   };
 
   const dropDownOptions = [
     { label: "Send Emails", handler: () => openModal("email") },
-    { label: "Delete Users", handler: () => openModal("delete") },
+    { label: "Delete Users", handler: () => openModal("deleteAccounts") },
   ];
 
   return (
     <div style={{ marginTop: 20 }}>
       <SendEmailModal
-        isOpen={isModalOpen}
+        isOpen={modalOpen === "email"}
         selected={selectedFlatRows}
-        closeModal={() => setModalOpen(false)}
+        closeModal={() => setModalOpen(null)}
         sendEmail={sendEmail}
         isLoading={isLoading.emailForm}
         totalRows={accounts?.length}
+      />
+      <DeleteAccountsModal
+        isOpen={modalOpen === "deleteAccounts"}
+        selected={selectedFlatRows}
+        closeModal={() => setModalOpen(null)}
+        deleteAccounts={deleteAccounts}
+        isLoading={isLoading.deleteUsers}
       />
       <div
         style={{
