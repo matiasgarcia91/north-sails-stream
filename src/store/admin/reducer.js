@@ -9,6 +9,7 @@ const initialState = {
     emailForm: false,
     addUser: false,
     deleteUsers: false,
+    resetDB: false,
   },
 };
 
@@ -74,6 +75,13 @@ export default function reducer(state = initialState, action) {
         ...state,
         loadingState: { ...state.loadingState, addUser: false },
         accounts: [...state.accounts, action.payload],
+      };
+
+    case "DB_RESET":
+      return {
+        ...state,
+        loadingState: { ...state.loadingState, resetDB: false },
+        accounts: [...action.payload],
       };
     default:
       return state;

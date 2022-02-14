@@ -8,3 +8,5 @@ export * from "./common/Checkbox";
 export * from "./common/Spinner";
 export * from "./common/Select";
 export * from "./common/Textarea";
+export * from "./common/Label";
+export * from "./common/Modal";

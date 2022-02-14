@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 
 import AccountsTab from "./Tabs/AccountsTab";
 import SystemSettingsTab from "./Tabs/SystemSettings";
-import ResetTab from "./Tabs/ResetTab";
 
 import { getAdminOnline } from "../../store/admin/selectors";
 import { fetchUserAccounts } from "../../store/admin/actions";
@@ -27,8 +26,6 @@ const Admin = () => {
         return <AccountsTab />;
       case 1:
         return <SystemSettingsTab />;
-      case 2:
-        return <ResetTab />;
       default:
         return <AccountsTab />;
     }
