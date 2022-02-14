@@ -7,7 +7,7 @@ import SystemSettingsTab from "./Tabs/SystemSettings";
 
 import { getAdminOnline } from "../../store/admin/selectors";
 import { fetchUserAccounts } from "../../store/admin/actions";
-import { AdminLayout, Heading } from "../../components";
+import { AdminLayout } from "../../components";
 
 const Admin = () => {
   const [activeTab, setActiveTab] = useState(0);

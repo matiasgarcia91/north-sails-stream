@@ -26,7 +26,7 @@ const EventDetailsForm = () => {
     if (event) setEventForm({ ...event });
   }, [event]);
 
-  const onFormChange = e => {
+  const onFormChange = (e) => {
     const isCheckbox = e.target.type === "checkbox";
     setEventForm({
       ...eventForm,
@@ -92,6 +92,7 @@ const EventDetailsForm = () => {
           variant='primary'
           onClick={onEventUpdate}
           loading={loadingState.eventForm}
+          style={{ marginTop: 30 }}
         >
           Update
         </Button>
