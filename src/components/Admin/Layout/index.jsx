@@ -16,7 +16,7 @@ const Container = styled.div`
 
 const Content = styled.div`
   width: 100%;
-  padding-top: 96px;
+  padding-top: 66px;
   padding-bottom: 96px;
   max-width: ${(p) => p.theme.sizes.maxWidth};
   margin: 0 auto;
@@ -79,8 +79,8 @@ export const AdminLayout = ({ setActiveTab, activeTab, children }) => {
             {user?.fullName}
           </Text>
           <ChevronDown
-            height="6px"
-            width="12px"
+            height='6px'
+            width='12px'
             style={{
               transform: showDropdown && "rotate(180deg)",
               transition: "transform 0.3s",

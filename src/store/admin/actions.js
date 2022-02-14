@@ -151,3 +151,26 @@ export const addUser =
       console.log(e.message);
     }
   };
+
+export const resetDatabase = () => async (dispatch, getState) => {
+  try {
+    dispatch(setLoading("resetDB"));
+
+    const { token } = getState().admin.user;
+
+    const response = await axios.post(
+      "/admin/reset-db",
+      {},
+      {
+        headers: { authorization: `Bearer ${token}` },
+      }
+    );
+
+    dispatch({
+      type: "DB_RESET",
+      payload: response.data.users,
+    });
+  } catch (e) {
+    console.log(e.message);
+  }
+};
