@@ -66,7 +66,7 @@ export const UploadAccountsModal = ({ closeModal, isOpen }) => {
             setSelectedFile();
             setIsFilePicked(false);
           }}
-          variant='unstyled'
+          variant="unstyled"
         >
           <Close style={{ width: "32px", height: "32px" }} />
         </Button>
@@ -88,8 +88,8 @@ export const UploadAccountsModal = ({ closeModal, isOpen }) => {
         <FileInput>
           Choose file...
           <input
-            type='file'
-            name='file'
+            type="file"
+            name="file"
             onChange={fileSelectHandler}
             style={{ display: "none" }}
           />
@@ -99,10 +99,6 @@ export const UploadAccountsModal = ({ closeModal, isOpen }) => {
           {isFilePicked ? (
             <div>
               <div>Filename: {selectedFile.name}</div>
-              <div>
-                Last Modified Date:{" "}
-                {selectedFile.lastModifiedDate.toLocaleDateString()}
-              </div>
             </div>
           ) : (
             <div>Select a file to show details</div>
@@ -119,7 +115,7 @@ export const UploadAccountsModal = ({ closeModal, isOpen }) => {
       >
         <Checkbox
           style={{ marginLeft: "0px" }}
-          variant='small'
+          variant="small"
           value={createBackups}
           onChange={() => setCreateBackups(!createBackups)}
         />
@@ -135,15 +131,15 @@ export const UploadAccountsModal = ({ closeModal, isOpen }) => {
           }}
         >
           <Input
-            label='# of Backups'
-            type='number'
+            label="# of Backups"
+            type="number"
             value={dummies}
             onChange={(e) => setDummies(e.target.value)}
             style={{ minWidth: "245px" }}
           />
           <div style={{ marginLeft: "24px" }}>
             <Input
-              label='Backup Domain'
+              label="Backup Domain"
               value={domain}
               onChange={(e) => setDomain(e.target.value)}
               style={{ minWidth: "245px" }}
