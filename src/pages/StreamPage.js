@@ -153,8 +153,8 @@ const StreamPage = () => {
 
         <IframeResizer
           log
-          // src={`https://player.vimeo.com/video/${streamId}?title=0`}
-          src={`https://player.vimeo.com/video/788725490?title=0`}
+          src={`https://player.vimeo.com/video/${streamId}?title=0`}
+          // src={`https://player.vimeo.com/video/788725490?title=0`}
           style={{
             width: "100%",
             minWidth: "100%",
