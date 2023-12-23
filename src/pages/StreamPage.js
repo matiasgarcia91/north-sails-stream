@@ -140,42 +140,32 @@ const StreamPage = () => {
     }
   }
 
-  console.log({
-    isHugeScreen,
-    isDesktopOrLaptop,
-    isMobileLarge,
-    isIphoneX,
-    isMobileSmall,
-    isMobileSmallLandscape,
-    isMobileBigLandscape,
-    isTablet,
-  });
-
   const containerStyle = fullScreen ? { height: "100%", width: "100%" } : {};
 
   return (
-    <div className='stream-page'>
-      <div className='center-it' style={containerStyle} id='el-portador'>
+    <div className="stream-page">
+      <div className="center-it" style={containerStyle} id="el-portador">
         {hasWatermark && (
-          <span className='bar'>
+          <span className="bar">
             {fullName}-{email}
           </span>
         )}
 
         <IframeResizer
           log
-          src={`https://player.vimeo.com/video/${streamId}?title=0`}
+          // src={`https://player.vimeo.com/video/${streamId}?title=0`}
+          src={`https://player.vimeo.com/video/788725490?title=0`}
           style={{
             width: "100%",
             minWidth: "100%",
             height: "100%",
             position: "relative",
           }}
-          frameBorder='0'
+          frameBorder="0"
         />
         {!isIphone && (
           <Button
-            variant='contained'
+            variant="contained"
             className={`button`}
             style={buttonPositioning}
             classes={{
@@ -186,9 +176,9 @@ const StreamPage = () => {
             onClick={onButtonClick}
           >
             {fullScreen ? (
-              <FullscreenExitIcon fontSize='medium' />
+              <FullscreenExitIcon fontSize="medium" />
             ) : (
-              <FullscreenIcon fontSize='medium' />
+              <FullscreenIcon fontSize="medium" />
             )}
           </Button>
         )}
