@@ -29,7 +29,7 @@
   font-size: 20px;
   font-family: Arial;
   opacity: 0.2;
-  max-width: 70vw;
+  max-width: 50vw;
 
   @media (min-width: 768px) {
     font-size: 40px;
@@ -44,7 +44,7 @@
   min-width: 90vw;
 
   @media (min-width: 768px) {
-    min-width: 80vw;
+    min-width: 60vw;
   }
 }
 
@@ -71,7 +71,7 @@
   }
 
   @media (min-width: 768px) {
-    height: 32px !important;
-    width: 32px !important;
+    height: 48px !important;
+    width: 48px !important;
   }
 }
