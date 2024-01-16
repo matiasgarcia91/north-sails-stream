@@ -49,7 +49,7 @@ const StreamPage = () => {
       <div className="iframe-container" id="el-portador">
         {hasWatermark && (
           <div className="watermark">
-            Alexandra Marques - aviz.marques@gmail.com
+            {fullName} - {email}
           </div>
         )}
 
