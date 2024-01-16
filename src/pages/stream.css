@@ -1,5 +1,7 @@
 .stream-page {
-  height: 100%;
+  width: 100vw;
+  min-height: 100vh;
+  overflow: hidden;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -15,241 +17,61 @@
   }
 }
 
-.frame {
-  width: 100%;
-  height: 100%;
-}
-.bar-fullscreen {
-  position: absolute;
-  top: 70%;
-  left: -20%;
-  width: 100%;
-  height: 40px;
-  z-index: 2;
-  color: white;
-  font-size: 60px;
-  font-family: Arial;
-  opacity: 0.2;
-}
-
-.bar {
+.watermark {
   position: absolute;
   flex: 0;
   top: 60%;
-  left: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
   z-index: 2;
   color: white;
-  font-size: 40px;
+  font-size: 20px;
   font-family: Arial;
   opacity: 0.2;
+  max-width: 70vw;
+
+  @media (min-width: 768px) {
+    font-size: 40px;
+  }
 }
 
-.button {
+.iframe-container {
   position: relative;
-  top: 93%;
-  left: -11%;
-  z-index: 2;
-}
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 90vw;
 
-/* super small phones */
-@media (min-device-width: 300px) and (min-device-height: 520px) and (max-device-height: 650px) {
-  .button {
-    position: relative;
-    top: 56%;
-    left: -24%;
-    z-index: 2;
-  }
-  .bar {
-    top: 52%;
-    left: 18%;
-    font-size: 12px;
+  @media (min-width: 768px) {
+    min-width: 80vw;
   }
 }
 
-/* small phones */
-@media (min-device-width: 375px) and (min-device-height: 650px) and (max-device-height: 720px) {
-  .center-it {
-    height: 60%;
-    width: 90%;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-  }
-  .button {
-    position: relative;
-    top: 62%;
-    left: -15%;
-    z-index: 2;
-  }
-  .bar {
-    top: 52%;
-    left: 8%;
-    font-size: 16px;
-  }
+.iframe-player {
+  width: 100%;
+  aspect-ratio: 16/9;
 }
 
-/* iphoneX */
-@media (min-device-width: 375px) and (min-device-height: 800px) {
-  .button {
-    position: relative;
-    top: 62%;
-    left: -18%;
-    z-index: 2;
-  }
-  .center-it {
-    width: 100%;
-  }
-  .bar {
-    top: 52%;
-    left: 15%;
-    font-size: 14px;
-  }
-}
+.fullscreen-button {
+  position: absolute !important;
+  z-index: 50;
+  right: 16px;
+  top: 16px;
 
-/* big phones */
-@media (min-device-width: 410px) and (min-device-height: 700px) {
-  .center-it {
-    height: 60%;
-    width: 90%;
-  }
-  .button {
-    position: relative;
-    top: 63%;
-    left: -17%;
-    z-index: 2;
-  }
-  .bar {
-    top: 52%;
-    left: 8%;
-    font-size: 16px;
-  }
-}
-/* super-small phones landscape */
-@media (min-device-width: 560px) and (min-device-height: 300px) and (max-device-height: 375px) {
-  .button {
-    position: relative;
-    top: 74%;
-    left: -20%;
-    z-index: 2;
-  }
-  .bar {
-    top: 52%;
-    left: 18%;
-    font-size: 12px;
-  }
-}
+  color: rgba(255, 246, 240, 1) !important;
+  background-color: black !important;
+  height: 40px !important;
+  width: 40px !important;
+  min-width: 0 !important;
+  padding: 0 0 !important;
 
-/* small phones landscape */
-@media (min-device-width: 660px) and (max-device-width: 800px) and (min-device-height: 375px) {
-  .center-it {
-    height: 60%;
-    width: 90%;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
+  &:hover {
+    color: #00adefff !important;
   }
-  .button {
-    position: relative;
-    top: 78%;
-    left: -25%;
-    z-index: 2;
-  }
-  .bar {
-    top: 56%;
-    left: 21%;
-    font-size: 18px;
-  }
-}
 
-/* IphoneX landscape */
-@media (min-device-width: 800px) and (min-device-height: 375px) {
-  .center-it {
-    height: 80%;
-    width: 90%;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-  }
-  .button {
-    position: relative;
-    top: 84%;
-    left: -20%;
-    z-index: 2;
-  }
-  .bar {
-    top: 55%;
-    left: 27%;
-    font-size: 18px;
-  }
-}
-
-/* big phones landscape */
-@media (min-device-height: 414px) and (min-device-width: 730px) {
-  .center-it {
-    height: 60%;
-    width: 90%;
-  }
-  .button {
-    position: relative;
-    top: 80%;
-    left: -25%;
-    z-index: 2;
-  }
-  .bar {
-    top: 56%;
-    left: 21%;
-    font-size: 18px;
-  }
-}
-
-/* tablets */
-@media (min-device-width: 768px) and (min-device-height: 1000px) {
-  .button {
-    position: relative;
-    top: 74%;
-    left: -10%;
-    z-index: 2;
-  }
-  .center-it {
-    height: 60%;
-    width: 90%;
-  }
-}
-
-/* normal laptop screens */
-@media (min-device-width: 1224px) and (min-device-height: 755px) {
-  .button {
-    position: relative;
-    top: 92%;
-    left: -20%;
-    z-index: 2;
-  }
-  .center-it {
-    height: 60%;
-    width: 90%;
-  }
-  .bar {
-    top: 56%;
-    left: 25%;
-    font-size: 30px;
-  }
-}
-
-/* huge screens */
-@media (min-device-width: 1824px) and (min-device-height: 900px) {
-  .button {
-    position: relative;
-    top: 93%;
-    left: -23%;
-    z-index: 2;
-  }
-  .center-it {
-    height: 60%;
-    width: 90%;
-  }
-  .bar {
-    top: 56%;
-    left: 25%;
-    font-size: 30px;
+  @media (min-width: 768px) {
+    height: 32px !important;
+    width: 32px !important;
   }
 }
