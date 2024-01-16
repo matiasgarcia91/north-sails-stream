@@ -16,19 +16,18 @@ const StreamPage = () => {
   const { permission, fullName, email } = useSelector(
     getStreamPermissionAndName
   );
-  const streamId = useSelector(streamCode);
+  const streamUrl = useSelector(streamCode);
   const hasWatermark = useSelector(withWatermark);
   const history = useHistory();
   const [fullScreen, setFullScreen] = useState(false);
 
-  // useEffect(() => {
-  //   console.log(permission);
-  //   if (!permission && !fullName) {
-  //     history.push("/disconnected");
-  //   } else if (!permission) {
-  //     history.push("/disconnected");
-  //   }
-  // }, [permission, fullName, history]);
+  useEffect(() => {
+    if (!permission && !fullName) {
+      history.push("/disconnected");
+    } else if (!permission) {
+      history.push("/disconnected");
+    }
+  }, [permission, fullName, history]);
 
   const ua = window.navigator.userAgent;
   const isIphone = ua.indexOf("iPhone") !== -1 && ua.indexOf("Safari") !== -1;
@@ -56,8 +55,7 @@ const StreamPage = () => {
 
         <IframeResizer
           log
-          src={`https://vimeo.com/event/4018255/embed/236b0de5b2/interaction`}
-          // src={`https://player.vimeo.com/video/788725490?title=0`}
+          src={streamUrl}
           className="iframe-player"
           frameBorder="0"
         />
